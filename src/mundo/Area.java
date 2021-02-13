@@ -8,7 +8,7 @@ package mundo;
 import java.util.ArrayList;
 
 /**
- *ALALALALOL
+ *ALALALALOLghghgh
  * @author WIN10
  */
 public class Area {
