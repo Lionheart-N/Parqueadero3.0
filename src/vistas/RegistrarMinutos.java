@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rangu
@@ -16,6 +20,13 @@ public class RegistrarMinutos extends javax.swing.JFrame {
      */
     public RegistrarMinutos() {
         initComponents();
+        setTitle("Registro por minutos");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -37,6 +48,7 @@ public class RegistrarMinutos extends javax.swing.JFrame {
         txt_Placa = new javax.swing.JTextField();
         txt_Hora = new javax.swing.JTextField();
         Calendario = new com.toedter.calendar.JDateChooser();
+        btn_salir = new javax.swing.JButton();
 
         jTextField2.setText("jTextField2");
 
@@ -63,6 +75,15 @@ public class RegistrarMinutos extends javax.swing.JFrame {
         txt_Hora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_HoraActionPerformed(evt);
+            }
+        });
+
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
+        btn_salir.setContentAreaFilled(false);
+        btn_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-G.png"))); // NOI18N
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirMouseClicked(evt);
             }
         });
 
@@ -96,7 +117,9 @@ public class RegistrarMinutos extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(54, 54, 54))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
+                .addComponent(btn_salir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_RegistrarMinutos)
                 .addGap(256, 256, 256))
         );
@@ -122,9 +145,15 @@ public class RegistrarMinutos extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(txt_Placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btn_RegistrarMinutos)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_RegistrarMinutos)
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_salir)
+                        .addGap(21, 21, 21))))
         );
 
         pack();
@@ -138,6 +167,13 @@ public class RegistrarMinutos extends javax.swing.JFrame {
     private void txt_HoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_HoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_HoraActionPerformed
+
+    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
+        // TODO add your handling code here:
+        Pago pago = new Pago();
+        pago.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -177,6 +213,7 @@ public class RegistrarMinutos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser Calendario;
     private javax.swing.JButton btn_RegistrarMinutos;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

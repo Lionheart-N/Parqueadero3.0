@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author WIN10
@@ -16,6 +20,13 @@ public class Resultados extends javax.swing.JFrame {
      */
     public Resultados() {
         initComponents();
+        setTitle("Resultados");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -30,6 +41,7 @@ public class Resultados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +60,15 @@ public class Resultados extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
+        btn_salir.setContentAreaFilled(false);
+        btn_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-G.png"))); // NOI18N
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,7 +79,9 @@ public class Resultados extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_salir)
+                        .addGap(58, 58, 58)
                         .addComponent(jButton1)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -68,12 +91,21 @@ public class Resultados extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btn_salir))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
+        // TODO add your handling code here:
+        Estadisticas estadisticas = new Estadisticas();
+        estadisticas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -112,6 +144,7 @@ public class Resultados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_salir;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

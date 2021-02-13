@@ -38,16 +38,17 @@ public class Estadisticas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
         jLabel1 = new javax.swing.JLabel();
         boxPeriodo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         boxTipoVehiculo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        dateFechaInicial = new com.toedter.calendar.JDateChooser();
-        dateFechaFinal = new com.toedter.calendar.JDateChooser();
-        buttonGenerar = new javax.swing.JButton();
+        btn_generar = new javax.swing.JButton();
         btn_Salir = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,12 +79,15 @@ public class Estadisticas extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 72, -1));
 
         jLabel4.setText("   Fecha final");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 72, -1));
-        getContentPane().add(dateFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 140, -1));
-        getContentPane().add(dateFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 140, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 72, -1));
 
-        buttonGenerar.setText("Generar");
-        getContentPane().add(buttonGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
+        btn_generar.setText("Generar");
+        btn_generar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_generarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_Salir.setContentAreaFilled(false);
@@ -94,6 +98,8 @@ public class Estadisticas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 331, 60, 50));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 140, -1));
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,6 +117,13 @@ public class Estadisticas extends javax.swing.JFrame {
         miAdministrador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_SalirMouseClicked
+
+    private void btn_generarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_generarMouseClicked
+        // TODO add your handling code here:
+        Resultados resultados = new Resultados();
+        resultados.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_generarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,9 +167,10 @@ public class Estadisticas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxPeriodo;
     private javax.swing.JComboBox<String> boxTipoVehiculo;
     private javax.swing.JButton btn_Salir;
-    private javax.swing.JButton buttonGenerar;
-    private com.toedter.calendar.JDateChooser dateFechaFinal;
-    private com.toedter.calendar.JDateChooser dateFechaInicial;
+    private javax.swing.JButton btn_generar;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

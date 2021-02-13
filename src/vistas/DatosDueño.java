@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rangu
@@ -16,6 +20,13 @@ public class DatosDueño extends javax.swing.JFrame {
      */
     public DatosDueño() {
         initComponents();
+        setTitle("Datos dueño");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -38,6 +49,7 @@ public class DatosDueño extends javax.swing.JFrame {
         txt_Telefono = new javax.swing.JTextField();
         txt_Direccion = new javax.swing.JTextField();
         btn_Registrar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Daños del Dueño");
@@ -65,6 +77,15 @@ public class DatosDueño extends javax.swing.JFrame {
             }
         });
 
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
+        btn_salir.setContentAreaFilled(false);
+        btn_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-G.png"))); // NOI18N
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,9 +107,11 @@ public class DatosDueño extends javax.swing.JFrame {
                     .addComponent(txt_Direccion))
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addContainerGap()
+                .addComponent(btn_salir)
+                .addGap(18, 18, 18)
                 .addComponent(btn_Registrar)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,8 +137,10 @@ public class DatosDueño extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txt_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btn_Registrar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Registrar)
+                    .addComponent(btn_salir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,6 +153,13 @@ public class DatosDueño extends javax.swing.JFrame {
     private void txt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_NombreActionPerformed
+
+    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
+        // TODO add your handling code here:
+        RegistrarEntrada registrarEntrada = new RegistrarEntrada();
+        registrarEntrada.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -167,6 +199,7 @@ public class DatosDueño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NombreT;
     private javax.swing.JButton btn_Registrar;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

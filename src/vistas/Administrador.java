@@ -53,6 +53,11 @@ public class Administrador extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 100));
 
         btn_RegistrarParqueadero.setText("Registrar  parqueadero");
+        btn_RegistrarParqueadero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_RegistrarParqueaderoMouseClicked(evt);
+            }
+        });
         btn_RegistrarParqueadero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_RegistrarParqueaderoActionPerformed(evt);
@@ -64,6 +69,11 @@ public class Administrador extends javax.swing.JFrame {
         btn_ConsultarEntrada.setText("Consultar entrada y salida de vehículos");
         btn_ConsultarEntrada.setAlignmentY(0.0F);
         btn_ConsultarEntrada.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_ConsultarEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ConsultarEntradaMouseClicked(evt);
+            }
+        });
         btn_ConsultarEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ConsultarEntradaActionPerformed(evt);
@@ -84,6 +94,11 @@ public class Administrador extends javax.swing.JFrame {
         btn_ValorRecaudado.setAutoscrolls(true);
         btn_ValorRecaudado.setBorderPainted(false);
         btn_ValorRecaudado.setDefaultCapable(false);
+        btn_ValorRecaudado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ValorRecaudadoMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_ValorRecaudado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 40));
 
         btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
@@ -111,7 +126,7 @@ public class Administrador extends javax.swing.JFrame {
 
     private void btn_RegistrarParqueaderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarParqueaderoActionPerformed
         // TODO add your handling code here:
-        
+       
     }//GEN-LAST:event_btn_RegistrarParqueaderoActionPerformed
 
     private void btn_EstadisticasIngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EstadisticasIngresoMouseClicked
@@ -129,6 +144,27 @@ public class Administrador extends javax.swing.JFrame {
         miIngreso.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_SalirActionPerformed
+
+    private void btn_RegistrarParqueaderoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarParqueaderoMouseClicked
+        // TODO add your handling code here:
+        RegistrarParqueadero registrarParqueader = new RegistrarParqueadero();
+        registrarParqueader.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_RegistrarParqueaderoMouseClicked
+
+    private void btn_ConsultarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConsultarEntradaMouseClicked
+        // TODO add your handling code here:
+        ConsultaEntradaSalidaDeVehiculo consulta = new ConsultaEntradaSalidaDeVehiculo();
+        consulta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_ConsultarEntradaMouseClicked
+
+    private void btn_ValorRecaudadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ValorRecaudadoMouseClicked
+        // TODO add your handling code here:
+        RecaudoPeriodos recaudoPeriodos = new RecaudoPeriodos();
+        recaudoPeriodos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_ValorRecaudadoMouseClicked
 
     /**
      * @param args the command line arguments

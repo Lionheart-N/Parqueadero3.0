@@ -6,10 +6,12 @@
 package vistas;
 
 import datos.Constantes;
+import datos.EmpleadoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mundo.Controlador;
 /**
  *
  * @author USUARIO
@@ -164,8 +166,18 @@ public class Ingreso extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_IngresarAdminActionPerformed
 
     private void btn_IngresarAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_IngresarAdminMouseClicked
+       
+       
         String myPass=String.valueOf(txt_ContraseñaAdmin.getPassword());
-        if(txt_UsuarioAdmin.getText().equals(Constantes.CODIGOADMIN) && myPass.equals(Constantes.CONTRASENIAADMIN)){
+        Controlador controlador = new Controlador();
+        try{
+            controlador.buscarEmpleado(myPass);
+        }catch(Exception e1){
+            System.out.println("Error --> " + e1 + e1.getMessage());
+        }
+        // SET DE DATOS LOGIN 
+        if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) && 
+                myPass.equals(controlador.getEmpleado().getContraseña())){
             Administrador miAdministrador = new Administrador();
             miAdministrador.setVisible(true);
             this.dispose();

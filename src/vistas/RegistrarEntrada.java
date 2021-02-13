@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rangu
@@ -16,6 +20,13 @@ public class RegistrarEntrada extends javax.swing.JFrame {
      */
     public RegistrarEntrada() {
         initComponents();
+        setTitle("Registo por contrato");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -49,6 +60,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         btn_EntradaVehiculo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         Calendario = new com.toedter.calendar.JDateChooser();
+        btn_salir = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -56,6 +68,11 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         setTitle("Registrar Entrada por Contrato");
 
         btn_RegistrarInfo.setText("Registrar Informacion del Dueño");
+        btn_RegistrarInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_RegistrarInfoMouseClicked(evt);
+            }
+        });
         btn_RegistrarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_RegistrarInfoActionPerformed(evt);
@@ -99,6 +116,15 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         });
 
         jLabel8.setText("Tipo de Servicio");
+
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
+        btn_salir.setContentAreaFilled(false);
+        btn_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-G.png"))); // NOI18N
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,20 +174,25 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_PlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(77, 77, 77))
+                        .addComponent(btn_salir)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txt_PlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(77, 77, 77))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,8 +206,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txt_Hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_PlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_PlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,7 +242,9 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(txt_Color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_salir)
+                .addContainerGap())
         );
 
         pack();
@@ -232,6 +264,20 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private void btn_EntradaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EntradaVehiculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_EntradaVehiculoActionPerformed
+
+    private void btn_RegistrarInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarInfoMouseClicked
+        // TODO add your handling code here:
+        DatosDueño datosDueño = new DatosDueño();
+        datosDueño.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_RegistrarInfoMouseClicked
+
+    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
+        // TODO add your handling code here:
+        Pago pago = new Pago();
+        pago.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -276,6 +322,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private javax.swing.JButton btn_EntradaVehiculo;
     private javax.swing.JButton btn_RegistrarContrato;
     private javax.swing.JButton btn_RegistrarInfo;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

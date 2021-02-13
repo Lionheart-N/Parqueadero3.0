@@ -61,6 +61,11 @@ public class Empleado extends javax.swing.JFrame {
         getContentPane().add(btn_RegistrarSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 120, 40));
 
         btn_RegistrarEntrada.setText("Registrar entrada");
+        btn_RegistrarEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_RegistrarEntradaMouseClicked(evt);
+            }
+        });
         btn_RegistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_RegistrarEntradaActionPerformed(evt);
@@ -96,6 +101,13 @@ public class Empleado extends javax.swing.JFrame {
         myIngreso.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_SalirMouseClicked
+
+    private void btn_RegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaMouseClicked
+        // TODO add your handling code here:
+        Pago pago = new Pago();
+        pago.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_RegistrarEntradaMouseClicked
 
     /**
      * @param args the command line arguments
