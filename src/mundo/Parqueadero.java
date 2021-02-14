@@ -5,30 +5,40 @@
  */
 package mundo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author WIN10
  */
 public class Parqueadero {
     
-    private String identificacion;
+    private String nombre;
     private String localidad;
     private String caracteristicas;
     private String direccion;
+    private ArrayList<Area> area;
+    private String telefono;
+    private String nit;
+    private String regimen;
 
-    public Parqueadero(String identificacion, String localidad, String caracteristicas, String direccion) {
-        this.identificacion = identificacion;
+    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit, String regimen) {
+        this.nombre = nombre;
         this.localidad = localidad;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
+        this.area = area;
+        this.telefono = telefono;
+        this.nit = nit;
+        this.regimen = regimen;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getLocalidad() {
@@ -54,6 +64,41 @@ public class Parqueadero {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public ArrayList<Area> getArea() {
+        return area;
+    }
+
+    public void setArea(ArrayList<Area> area) {
+        this.area = area;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public String getRegimen() {
+        return regimen;
+    }
+
+    public void setRegimen(String regimen) {
+        this.regimen = regimen;
+    }
+    
+    
+    
     
     
     

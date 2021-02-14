@@ -11,4 +11,6 @@ package datos;
  */
 public class PropietarioDAO {
     
+    
+    
 }

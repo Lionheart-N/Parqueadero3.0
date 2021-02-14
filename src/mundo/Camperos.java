@@ -11,4 +11,21 @@ package mundo;
  */
 public class Camperos extends Vehiculo{
     
+    private String tipoVehiculo;
+
+    public Camperos(String tipoVehiculo, String idVehiculo, String color, String marca) {
+        super(idVehiculo, color, marca);
+        this.tipoVehiculo = tipoVehiculo;
+    }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
+    
+    
+    
 }

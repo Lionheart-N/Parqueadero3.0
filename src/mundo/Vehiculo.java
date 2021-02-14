@@ -15,5 +15,40 @@ public class Vehiculo {
     
     private String color;
     
+    private String marca;
+
+    public Vehiculo(String idVehiculo, String color, String marca) {
+        this.idVehiculo = idVehiculo;
+        this.color = color;
+        this.marca = marca;
+    }
+
+    public String getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public void setIdVehiculo(String idVehiculo) {
+        this.idVehiculo = idVehiculo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+    
+    
+    
     
 }

@@ -176,8 +176,8 @@ public class Ingreso extends javax.swing.JFrame {
             System.out.println("Error --> " + e1 + e1.getMessage());
         }
         // SET DE DATOS LOGIN 
-        if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) && 
-                myPass.equals(controlador.getEmpleado().getContraseña())){
+        if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) &&
+            myPass.equals(controlador.getEmpleado().getContraseña())){
             Administrador miAdministrador = new Administrador();
             miAdministrador.setVisible(true);
             this.dispose();

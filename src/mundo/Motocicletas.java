@@ -11,4 +11,21 @@ package mundo;
  */
 public class Motocicletas extends Vehiculo{
     
+    private String tipoVehiculo;
+
+    public Motocicletas(String tipoVehiculo, String idVehiculo, String color, String marca) {
+        super(idVehiculo, color, marca);
+        this.tipoVehiculo = tipoVehiculo;
+    }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
+    
+    
+    
 }
