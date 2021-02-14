@@ -53,6 +53,7 @@ public class EmpleadoDAO {
               miEmpleado.setUsuario(rs.getString(2));
                   
           }
+          conexion.close();
       }catch(SQLException e){
         throw new CaException("EmpleadoDAO", "No pudo recuperar el Empleado "+ e.getMessage());
       }

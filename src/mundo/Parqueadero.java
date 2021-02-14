@@ -6,6 +6,7 @@
 package mundo;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -21,8 +22,9 @@ public class Parqueadero {
     private String telefono;
     private String nit;
     private String regimen;
+    private String poliza;
 
-    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit, String regimen) {
+    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit, String regimen, String poliza) {
         this.nombre = nombre;
         this.localidad = localidad;
         this.caracteristicas = caracteristicas;
@@ -31,8 +33,12 @@ public class Parqueadero {
         this.telefono = telefono;
         this.nit = nit;
         this.regimen = regimen;
+        this.poliza = poliza;
     }
 
+    public Parqueadero() {
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -95,13 +101,14 @@ public class Parqueadero {
 
     public void setRegimen(String regimen) {
         this.regimen = regimen;
+    }   
+
+    public String getPoliza() {
+        return poliza;
     }
-    
-    
-    
-    
-    
-    
-    
+
+    public void setPoliza(String poliza) {
+        this.poliza = poliza;
+    }
     
 }

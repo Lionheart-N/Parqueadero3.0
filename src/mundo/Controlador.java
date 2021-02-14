@@ -5,7 +5,7 @@
  */
 package mundo;
 
-import datos.EmpleadoDAO;
+import datos.*;
 import util.CaException;
 
 /**
@@ -15,18 +15,21 @@ import util.CaException;
 public class Controlador {
     
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+    private ParqueaderoDAO parqueaderoDAO = new ParqueaderoDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
     }
-
-
     public Empleado getEmpleado() {
         return empleadoDAO.getMiEmpleado();
     }
-    
-    public void buscarEmpleado(String identificaion)throws CaException{
+    public void buscarEmpleado(String identificaion) throws CaException{
         empleadoDAO.buscarEmpleado(identificaion);
     }
-    
+    public void incluirParqueadero( ) throws CaException {
+        parqueaderoDAO.incluirParqueadero();
+    }
+    public void buscarParqueadero(String idParqueadero)throws CaException{
+        parqueaderoDAO.buscarParqueadero(idParqueadero);
+    }
 }
