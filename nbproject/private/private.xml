@@ -4,7 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/mundo/Controlador.java</file>
+            <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/vistas/RegistrarParqueadero.java</file>
+            <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/vistas/Ingreso.java</file>
+            <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/datos/ParqueaderoDAO.java</file>
             <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/datos/EmpleadoDAO.java</file>
+            <file>file:/C:/Users/Gabriel%20Dubuc/Documents/NetBeansProjects/Parqueadero/src/mundo/Parqueadero.java</file>
         </group>
     </open-files>
 </project-private>

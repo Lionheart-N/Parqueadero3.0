@@ -7,6 +7,7 @@ package mundo;
 
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -16,22 +17,21 @@ public class Servicio {
     
     private String idServicio;
     private Calendar horaEntrada;
-    private Calendar minutoEntrada;
-    private Calendar segundoEntrada;
     private Calendar horaSalida;
-    private Calendar minutoSalida;
-    private Calendar segundoSalida;
+    private Date fechaEntrada;
+    private Date fechaSalida;
     private Pago miPago;
 
-    public Servicio(String idServicio, Calendar horaEntrada, Calendar minutoEntrada, Calendar segundoEntrada, Calendar horaSalida, Calendar minutoSalida, Calendar segundoSalida, Pago miPago) {
+    public Servicio(String idServicio, Calendar horaEntrada, Calendar horaSalida, Date fechaEntrada, Date fechaSalida, Pago miPago) {
         this.idServicio = idServicio;
         this.horaEntrada = horaEntrada;
-        this.minutoEntrada = minutoEntrada;
-        this.segundoEntrada = segundoEntrada;
         this.horaSalida = horaSalida;
-        this.minutoSalida = minutoSalida;
-        this.segundoSalida = segundoSalida;
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
         this.miPago = miPago;
+    }
+
+    public Servicio() {
     }
 
     public String getIdServicio() {
@@ -50,22 +50,6 @@ public class Servicio {
         this.horaEntrada = horaEntrada;
     }
 
-    public Calendar getMinutoEntrada() {
-        return minutoEntrada;
-    }
-
-    public void setMinutoEntrada(Calendar minutoEntrada) {
-        this.minutoEntrada = minutoEntrada;
-    }
-
-    public Calendar getSegundoEntrada() {
-        return segundoEntrada;
-    }
-
-    public void setSegundoEntrada(Calendar segundoEntrada) {
-        this.segundoEntrada = segundoEntrada;
-    }
-
     public Calendar getHoraSalida() {
         return horaSalida;
     }
@@ -74,21 +58,23 @@ public class Servicio {
         this.horaSalida = horaSalida;
     }
 
-    public Calendar getMinutoSalida() {
-        return minutoSalida;
+    public Date getFechaEntrada() {
+        return fechaEntrada;
     }
 
-    public void setMinutoSalida(Calendar minutoSalida) {
-        this.minutoSalida = minutoSalida;
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
     }
 
-    public Calendar getSegundoSalida() {
-        return segundoSalida;
+    public Date getFechaSalida() {
+        return fechaSalida;
     }
 
-    public void setSegundoSalida(Calendar segundoSalida) {
-        this.segundoSalida = segundoSalida;
+    public void setFechaSalida(Date fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
+
+   
 
     public Pago getMiPago() {
         return miPago;
@@ -97,6 +83,7 @@ public class Servicio {
     public void setMiPago(Pago miPago) {
         this.miPago = miPago;
     }
+
     
     
 

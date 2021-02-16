@@ -7,15 +7,20 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mundo.Controlador;
+import mundo.Servicio;
 
 /**
  *
  * @author Javier
  */
 public class RecaudoPeriodos extends javax.swing.JFrame {
-
+    
+    private Servicio servicio;
+    private Controlador controlador;
     /**
      * Creates new form recaudoPeriodos
      */
@@ -42,8 +47,8 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_consultar = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        date_inicial = new com.toedter.calendar.JDateChooser();
+        date_final = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +68,11 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
                 btn_consultarActionPerformed(evt);
             }
         });
+
+        date_inicial.setDateFormatString("dd-MM-yyyy");
+        date_inicial.setMaxSelectableDate(new java.util.Date(253370786499000L));
+
+        date_final.setDateFormatString("dd-MM-yyyy");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -86,8 +96,8 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(date_inicial, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                            .addComponent(date_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,11 +111,11 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(date_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(date_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_consultar)
@@ -122,9 +132,19 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
 
     private void btn_consultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_consultarMouseClicked
         // TODO add your handling code here:
-        ResultadoConsulta rConsulta = new ResultadoConsulta();
-        rConsulta.setVisible(true);
-        this.dispose();
+        controlador = new Controlador();
+        servicio = new Servicio();
+        servicio.setFechaEntrada(date_inicial.getDate());
+        servicio.setFechaSalida(date_final.getDate());
+        if(date_inicial.getDate() == null || date_final.getDate()== null)
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese todos los datos");
+        }else{
+            ResultadoConsulta rConsulta = new ResultadoConsulta();
+            rConsulta.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_btn_consultarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -172,9 +192,9 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_consultar;
+    private com.toedter.calendar.JDateChooser date_final;
+    private com.toedter.calendar.JDateChooser date_inicial;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

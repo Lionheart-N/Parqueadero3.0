@@ -16,6 +16,7 @@ public class Controlador {
     
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
     private ParqueaderoDAO parqueaderoDAO = new ParqueaderoDAO();
+    private ServicioDAO servicioDAO = new ServicioDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -26,10 +27,13 @@ public class Controlador {
     public void buscarEmpleado(String identificaion) throws CaException{
         empleadoDAO.buscarEmpleado(identificaion);
     }
-    public void incluirParqueadero( ) throws CaException {
-        parqueaderoDAO.incluirParqueadero();
+    public void incluirParqueadero(Parqueadero parqueadero ) throws CaException {
+        parqueaderoDAO.incluirParqueadero(parqueadero);
     }
     public void buscarParqueadero(String idParqueadero)throws CaException{
         parqueaderoDAO.buscarParqueadero(idParqueadero);
+    }
+    public void buscarServicio(Servicio servicio) throws CaException{
+        servicioDAO.buscarServicio(servicio);
     }
 }

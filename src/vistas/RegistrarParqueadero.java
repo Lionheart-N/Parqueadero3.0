@@ -80,7 +80,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
         jLabel3.setText("Telefono:");
 
-        box_localidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Localidad de Antonio Nariño", "Localidad de Barrios Unidos", "Localidad de Bosa", "Localidad de Chapinero", "Localidad de Ciudad Bolívar", "Localidad de Engativá", "Localidad de Fontibón", "Localidad de Kennedy", "Localidad de La Candelaria", "Localidad de Los Mártires", "Localidad de Puente Aranda", "Localidad de Rafael Uribe Uribe", "Localidad de San Cristóbal", "Localidad de Santa Fe", "Localidad de Suba", "Localidad de Sumapaz", "Localidad de Teusaquillo", "Localidad de Tunjuelito", "Localidad de Usaquén", "Localidad de Usme" }));
+        box_localidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Antonio Nariño", "Barrios Unidos", "Bosa", "Chapinero", "Ciudad Bolívar", "Engativá", "Fontibón", "Kennedy", "Candelaria", "Mártires", "Puente Aranda", "Rafael Uribe Uribe", "San Cristóbal", "Santa Fe", "Suba", "Sumapaz", "Teusaquillo", "Tunjuelito", "Usaquén", "Usme" }));
         box_localidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 box_localidadActionPerformed(evt);
@@ -277,9 +277,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
             System.out.print(parqueadero.getCaracteristicas());
             
             try{
-                //controlador.incluirParqueadero(parqueadero);
-                ParqueaderoDAO pa = new ParqueaderoDAO();
-                pa.incluirParqueadero();
+                controlador.incluirParqueadero(parqueadero);          
             }catch(CaException e1){
                 System.out.println("Error --> " + e1 + e1.getMessage());
             }finally{
