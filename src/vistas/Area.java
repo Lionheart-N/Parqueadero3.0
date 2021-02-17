@@ -8,6 +8,7 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import mundo.Parqueadero;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.swing.ImageIcon;
  */
 public class Area extends javax.swing.JFrame {
 
+    private Parqueadero miParqueadero = new Parqueadero();
     /**
      * Creates new form Area
      */
@@ -138,6 +140,15 @@ public class Area extends javax.swing.JFrame {
             }
         });
     }
+
+    public Parqueadero getMiParqueadero() {
+        return miParqueadero;
+    }
+
+    public void setMiParqueadero(Parqueadero miParqueadero) {
+        this.miParqueadero = miParqueadero;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salir;

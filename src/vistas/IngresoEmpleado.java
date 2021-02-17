@@ -7,6 +7,7 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -28,6 +29,9 @@ public class IngresoEmpleado extends javax.swing.JFrame {
         int width = pantalla.width;		
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
+        ArrayList<String> Lista = new ArrayList<String> ();
+        ///ParqueaderoDao.llenar_combo();
+
     }
 
     /**

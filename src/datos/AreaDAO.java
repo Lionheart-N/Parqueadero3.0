@@ -5,10 +5,93 @@
  */
 package datos;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import mundo.Area;
+import mundo.Empleado;
+import util.CaException;
+import util.ServiceLocator;
 /**
  *
  * @author WIN10
  */
-public class AreaDAO {
+public class AreaDAO {//Holaaa
+    private Area miArea;
+    private ServiceLocator conexion = new ServiceLocator();
     
+    public AreaDAO() {
+        
+        miArea = new Area();
+        
+    }
+    
+    public void incluirEmpleado() throws CaException {
+     
+      
+    }
+    
+    public void modificarEmpleado(){
+      
+    }
+    
+    public void eliminarEmpleado(){
+      
+    }
+    
+    public void buscarEmpleado(String identificacion) throws CaException{
+        
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_identificacion, o_clave FROM empleado WHERE "
+                 + "k_identificacion =" + identificacion ;
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                
+                  
+            }
+        }catch(Exception e){
+            
+        }
+        /*try{
+            String strSQL = "SELECT k_identificacion, o_clave FROM empleado WHERE "
+                 + "k_identificacion =" + identificaion ;
+         
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            ResultSet rs = prepStmt.executeQuery();
+            while (rs.next()){
+                miEmpleado.setContraseña(String.valueOf(rs.getInt(1)));
+                miEmpleado.setUsuario(rs.getString(2));
+                  
+            }
+            conexion.close();
+        }catch(SQLException e){
+            throw new CaException("EmpleadoDAO", "No pudo recuperar el Empleado "+ e.getMessage());
+        }*/
+      
+    }
+    
+
+    public void actualizarEmpleado() throws CaException {
+
+    }
+
+    public Area getMiArea() {
+        return miArea;
+    }
+
+    public void setMiArea(Area miArea) {
+        this.miArea = miArea;
+    }
+
+   
 }

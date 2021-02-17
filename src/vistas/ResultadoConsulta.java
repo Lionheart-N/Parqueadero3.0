@@ -8,25 +8,46 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import mundo.Controlador;
+import mundo.Servicio;
 
 /**
  *
  * @author Javier
  */
 public class ResultadoConsulta extends javax.swing.JFrame {
-
+    
+    private Servicio servicio = new Servicio();
+    private String columnas[]={"Periodo","Recaudado"};
+    private DefaultTableModel modelo = new DefaultTableModel(columnas,0);
+    private Controlador controlador = new Controlador();
+    
     /**
      * Creates new form resultadoConsulta
      */
     public ResultadoConsulta() {
         initComponents();
         setTitle("Resultados");
+        try{
+            
+            controlador.buscarServicio(servicio);
+            
+        }catch(Exception ex){
+            
+            System.out.print(ex);
+        }
+        
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
         int width = pantalla.width;		
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
+    }
+    private void cargar(){
+        
+        
     }
 
     /**
@@ -153,10 +174,20 @@ public class ResultadoConsulta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new ResultadoConsulta().setVisible(true);
             }
         });
     }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

@@ -10,7 +10,7 @@ package datos;
  * @author WIN10
  */
 public class PropietarioDAO {
-    
+   
     
     
 }

@@ -171,17 +171,22 @@ public class Ingreso extends javax.swing.JFrame {
         String myPass=String.valueOf(txt_ContraseñaAdmin.getPassword());
         Controlador controlador = new Controlador();
         try{
-            controlador.buscarEmpleado(myPass);
+            controlador.buscarEmpleado(txt_UsuarioAdmin.getText());
         }catch(Exception e1){
             System.out.println("Error --> " + e1 + e1.getMessage());
         }
         // SET DE DATOS LOGIN 
+        System.out.print(controlador.getEmpleado().getUsuario());
+        System.out.print(controlador.getEmpleado().getContraseña());
         if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) &&
-            myPass.equals(controlador.getEmpleado().getContraseña())){
+            myPass.equals(controlador.getEmpleado().getContraseña()) && 
+                controlador.getEmpleado().getCargo().equals("A") ){
             Administrador miAdministrador = new Administrador();
             miAdministrador.setVisible(true);
             this.dispose();
-        }else if(txt_UsuarioAdmin.getText().equals("EMPLE")&& myPass.equals("1407")){
+        }else if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) &&
+            myPass.equals(controlador.getEmpleado().getContraseña()) && 
+            controlador.getEmpleado().getCargo().equals("E") ){
             IngresoEmpleado ingresoEmpleado = new IngresoEmpleado();
             ingresoEmpleado.setVisible(true);
             this.dispose();

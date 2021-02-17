@@ -18,6 +18,10 @@ public class Area {
     private int cuposDisponibles;
     private String tipoArea;
 
+    public Area() {
+    }
+
+    
     public Area(String identificacion, ArrayList<Espacio> numCupos, int cuposDisponibles, String tipoArea) {
         this.identificacion = identificacion;
         this.numCupos = numCupos;

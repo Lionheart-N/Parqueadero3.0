@@ -37,58 +37,27 @@ public class RegistrarSalida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateFechaEntrada = new com.toedter.calendar.JDateChooser();
         txtPlacaVehiculo = new javax.swing.JTextField();
-        txtHoraEntrada = new javax.swing.JTextField();
-        btnPago = new javax.swing.JButton();
         btnSalida = new javax.swing.JButton();
-        btnFactura = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         btn_Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(dateFechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 77, 97, -1));
 
         txtPlacaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPlacaVehiculoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 77, 99, -1));
-
-        txtHoraEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoraEntradaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 77, 79, -1));
-
-        btnPago.setText("Generar pago");
-        btnPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 200, -1, -1));
+        getContentPane().add(txtPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 110, -1));
 
         btnSalida.setText("Registrar salida");
-        getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 200, -1, -1));
-
-        btnFactura.setText("Generar factura");
-        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
+        getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 110, -1));
 
         jLabel1.setText("  Placa del Vehiculo");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 52, 99, -1));
-
-        jLabel2.setText("Fecha de salida");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 52, -1, -1));
-
-        jLabel3.setText("  Hora de salida");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 52, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 99, -1));
 
         btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_Salir.setContentAreaFilled(false);
@@ -103,7 +72,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 btn_SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 279, 60, 50));
+        getContentPane().add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 60, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,14 +80,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private void txtPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlacaVehiculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlacaVehiculoActionPerformed
-
-    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagoActionPerformed
-
-    private void txtHoraEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraEntradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoraEntradaActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
         // TODO add your handling code here:
@@ -167,15 +128,9 @@ public class RegistrarSalida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFactura;
-    private javax.swing.JButton btnPago;
     private javax.swing.JButton btnSalida;
     private javax.swing.JButton btn_Salir;
-    private com.toedter.calendar.JDateChooser dateFechaEntrada;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtHoraEntrada;
     private javax.swing.JTextField txtPlacaVehiculo;
     // End of variables declaration//GEN-END:variables
 }

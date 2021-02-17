@@ -141,6 +141,7 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor ingrese todos los datos");
         }else{
             ResultadoConsulta rConsulta = new ResultadoConsulta();
+            rConsulta.setServicio(servicio);
             rConsulta.setVisible(true);
             this.dispose();
         }

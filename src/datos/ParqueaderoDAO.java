@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import mundo.Empleado;
 import mundo.Parqueadero;
 import util.CaException;
@@ -31,16 +32,18 @@ public class ParqueaderoDAO {
      
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?)" ;
+        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?,?,?,?)" ;
         
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
-            prepStmt.setInt(1,5);
+            prepStmt.setInt(1,4);
             prepStmt.setString(2,parqueadero.getLocalidad());
             prepStmt.setString(3,parqueadero.getDireccion());
-            
+            prepStmt.setString(4,parqueadero.getNombre());
+            prepStmt.setString(5,parqueadero.getCaracteristicas());
+            prepStmt.setString(6,parqueadero.getNit());
             if(prepStmt.executeUpdate()>0){
                 con.close();
             }else{
@@ -112,6 +115,10 @@ public class ParqueaderoDAO {
         this.parqueadero = parqueadero;
     }
     
-    
+    /*public static ArrayList<String> llenar_combo (){
+     /*ArrayList<String> Lista = new ArrayList<String> ();
+     String q = "SELECT * FROM "
+     return Lista;*/
+    //}
     
 }

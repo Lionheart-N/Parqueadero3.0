@@ -42,12 +42,12 @@ public class EmpleadoDAO {
       
     }
     
-    public void buscarEmpleado(String identificaion) throws CaException{
+    public void buscarEmpleado(String usuario) throws CaException{
         
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT k_identificacion, o_clave FROM empleado WHERE "
-                 + "k_identificacion =" + identificaion ;
+        String strSQL = "SELECT k_id_empeado, o_clave,i_cargo FROM empleado WHERE "
+                 + "k_id_empeado = '"+usuario+"'";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -55,9 +55,9 @@ public class EmpleadoDAO {
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
             while (rs.next()){
-                miEmpleado.setContraseña(String.valueOf(rs.getInt(1)));
-                miEmpleado.setUsuario(rs.getString(2));
-                  
+                miEmpleado.setUsuario(rs.getString(1));
+                miEmpleado.setContraseña(rs.getString(2));            
+                miEmpleado.setCargo(rs.getString(3));
             }
         }catch(Exception e){
             

@@ -26,12 +26,12 @@ public class ServicioDAO {
      //FROM servicio
     //WHERE f_fechaentrada BETWEEN '1996-07-01' AND '1996-07-31' ;
     
-    private Servicio servicio;
+    private Servicio servicioN;
     private ServiceLocator conexion = new ServiceLocator();
 
     public ServicioDAO() {
         
-        servicio = new Servicio();
+        servicioN = new Servicio();
     }
     
     public void incluirServicio() throws CaException {
@@ -50,11 +50,13 @@ public class ServicioDAO {
     public void buscarServicio(Servicio servicio) throws CaException{
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //String date = sdf.format();
-        //String dateFinal = sdf.format();
+        String date = sdf.format(servicio.getFechaEntrada());
+        String dateFinal = sdf.format(servicio.getFechaSalida());
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = ""  ;
+        String strSQL = "SELECT CONCAT('Del ',f_fechaentrada, ' al ', f_fechaentrada) AS '\"Periodo\", SUM(v_valor)" +
+        "FROM servicio WHERE f_fechaentrada BETWEEN '"+servicio.getFechaEntrada()+"' AND '"+servicio.getFechaSalida()+"'"
+                + "GROUP BY '\"Periodo\" ";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -62,8 +64,7 @@ public class ServicioDAO {
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
             while (rs.next()){
-                //miEmpleado.setContraseña(String.valueOf(rs.getInt(1)));
-                //miEmpleado.setUsuario(rs.getString(2));
+                
                   
             }
         }catch(Exception e){

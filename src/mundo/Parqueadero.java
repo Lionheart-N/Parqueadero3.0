@@ -21,10 +21,7 @@ public class Parqueadero {
     private ArrayList<Area> area;
     private String telefono;
     private String nit;
-    private String regimen;
-    private String poliza;
-
-    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit, String regimen, String poliza) {
+    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit) {
         this.nombre = nombre;
         this.localidad = localidad;
         this.caracteristicas = caracteristicas;
@@ -32,8 +29,6 @@ public class Parqueadero {
         this.area = area;
         this.telefono = telefono;
         this.nit = nit;
-        this.regimen = regimen;
-        this.poliza = poliza;
     }
 
     public Parqueadero() {
@@ -93,22 +88,6 @@ public class Parqueadero {
 
     public void setNit(String nit) {
         this.nit = nit;
-    }
-
-    public String getRegimen() {
-        return regimen;
-    }
-
-    public void setRegimen(String regimen) {
-        this.regimen = regimen;
-    }   
-
-    public String getPoliza() {
-        return poliza;
-    }
-
-    public void setPoliza(String poliza) {
-        this.poliza = poliza;
     }
     
 }

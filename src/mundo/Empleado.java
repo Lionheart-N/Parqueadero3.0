@@ -16,16 +16,18 @@ public class Empleado {
     private String contraseña;
     
     private String codParqueadero;
+    
+    private String cargo;
 
-    public Empleado(String usuario, String contraseña, String codParqueadero) {
+    public Empleado(String usuario, String contraseña, String codParqueadero, String cargo) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.codParqueadero = codParqueadero;
+        this.cargo = cargo;
     }
 
     public Empleado() {
     }
-    
 
     public String getUsuario() {
         return usuario;
@@ -50,6 +52,16 @@ public class Empleado {
     public void setCodParqueadero(String codParqueadero) {
         this.codParqueadero = codParqueadero;
     }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+   
     
     
     

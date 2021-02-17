@@ -22,6 +22,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
     private Parqueadero parqueadero;
     private Controlador controlador;
+    
     /**
      * Creates new form registrarParqueadero
      */
@@ -53,12 +54,8 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         box_localidad = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txt_poliza = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_nit = new javax.swing.JTextField();
-        box_regimen = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
         btn_salir = new javax.swing.JButton();
         spi_areas = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
@@ -89,13 +86,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
         jLabel4.setText("Localidad:");
 
-        jLabel8.setText("Numero poliza:");
-
         jLabel9.setText("NIT:");
-
-        box_regimen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel10.setText("Regimen:");
 
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_salir.setContentAreaFilled(false);
@@ -118,6 +109,11 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         jLabel5.setText("Caracteristicas");
 
         box_caracteristicas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En altura o subterráneo con dos o más niveles", "Subterráneo, un solo nivel y 50 cupos o más", "Subterráneo, un solo nivel y con menos de 50 cupos", "A nivel, piso en concreto, asfalto o gravilla lavada de río compactada, y con 50 cupos o más", "A nivel, piso en concreto, asfalto o gravilla lavada de río compactada, y con menos de 50 cupos", "A nivel, pisos en afirmado o césped  " }));
+        box_caracteristicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_caracteristicasActionPerformed(evt);
+            }
+        });
 
         btn_registrarArea.setText("Registrar area");
         btn_registrarArea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,11 +140,10 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel11)
                             .addComponent(jLabel9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btn_salir)
-                                .addComponent(jLabel8)))
+                                .addComponent(jLabel11)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -159,18 +154,13 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
                                     .addComponent(box_localidad, 0, 528, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(spi_areas))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_nit, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(spi_areas)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(221, 221, 221)
+                                .addGap(212, 212, 212)
                                 .addComponent(btn_registrarArea)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nit, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_poliza)
-                            .addComponent(box_regimen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(38, 38, 38)
@@ -205,26 +195,16 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
                     .addComponent(spi_areas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_poliza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(box_regimen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btn_salir)
-                        .addContainerGap(15, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_registrarArea)
-                        .addGap(24, 24, 24))))
+                        .addComponent(jLabel9)
+                        .addGap(49, 49, 49)
+                        .addComponent(btn_salir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(btn_registrarArea)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,8 +238,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         parqueadero = new Parqueadero();
         controlador = new Controlador();
         if(txt_nombreParqueadero.getText().equals("") || txt_direccion.getText().equals("") || 
-                txt_nit.getText().equals("") ||
-                txt_poliza.getText().equals("") || txt_telefono.getText().equals("") ){
+                txt_nit.getText().equals("") || txt_telefono.getText().equals("") ){
             
             
             JOptionPane.showMessageDialog(null ,"Por favor llena todos los campos");
@@ -271,19 +250,15 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
             parqueadero.setTelefono(txt_telefono.getText());
             parqueadero.setLocalidad((String) box_localidad.getSelectedItem());
             parqueadero.setNit(txt_nit.getText());
-            parqueadero.setRegimen((String) box_regimen.getSelectedItem());
-            parqueadero.setPoliza(txt_poliza.getText());
-            
-            System.out.print(parqueadero.getCaracteristicas());
-            
+                      
+            Area area = new Area();
+            area.setMiParqueadero(parqueadero);
+            area.setVisible(true);
+            this.dispose();
             try{
-                controlador.incluirParqueadero(parqueadero);          
-            }catch(CaException e1){
-                System.out.println("Error --> " + e1 + e1.getMessage());
-            }finally{
-                Area area = new Area();
-                area.setVisible(true);
-                this.dispose();
+                controlador.incluirParqueadero(parqueadero);
+            }catch(Exception ex){
+                System.out.print(ex);
             }
            
             
@@ -291,6 +266,10 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_registrarAreaMouseClicked
+
+    private void box_caracteristicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_caracteristicasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_caracteristicasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,23 +310,19 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> box_caracteristicas;
     private javax.swing.JComboBox<String> box_localidad;
-    private javax.swing.JComboBox<String> box_regimen;
     private javax.swing.JButton btn_registrarArea;
     private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner spi_areas;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_nit;
     private javax.swing.JTextField txt_nombreParqueadero;
-    private javax.swing.JTextField txt_poliza;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }
