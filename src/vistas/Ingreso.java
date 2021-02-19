@@ -176,8 +176,6 @@ public class Ingreso extends javax.swing.JFrame {
             System.out.println("Error --> " + e1 + e1.getMessage());
         }
         // SET DE DATOS LOGIN 
-        System.out.print(controlador.getEmpleado().getUsuario());
-        System.out.print(controlador.getEmpleado().getContraseña());
         if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) &&
             myPass.equals(controlador.getEmpleado().getContraseña()) && 
                 controlador.getEmpleado().getCargo().equals("A") ){

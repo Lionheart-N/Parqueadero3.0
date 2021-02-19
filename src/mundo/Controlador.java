@@ -6,6 +6,8 @@
 package mundo;
 
 import datos.*;
+import java.util.ArrayList;
+import java.util.Date;
 import util.CaException;
 
 /**
@@ -33,7 +35,10 @@ public class Controlador {
     public void buscarParqueadero(String idParqueadero)throws CaException{
         parqueaderoDAO.buscarParqueadero(idParqueadero);
     }
-    public void buscarServicio(Servicio servicio) throws CaException{
-        servicioDAO.buscarServicio(servicio);
+    public void buscarServicio(String inicial, String ultimo) throws CaException{
+        servicioDAO.buscarServicio(inicial,ultimo);
+    }
+    public Object getInformacion(){
+        return servicioDAO.getInformacion();
     }
 }

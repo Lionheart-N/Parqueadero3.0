@@ -8,10 +8,12 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mundo.Controlador;
 import mundo.Servicio;
+
 
 /**
  *
@@ -21,6 +23,8 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
     
     private Servicio servicio;
     private Controlador controlador;
+    public static String fecha;
+    public static String fechaFinal;
     /**
      * Creates new form recaudoPeriodos
      */
@@ -132,16 +136,16 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
 
     private void btn_consultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_consultarMouseClicked
         // TODO add your handling code here:
+        
         controlador = new Controlador();
-        servicio = new Servicio();
-        servicio.setFechaEntrada(date_inicial.getDate());
-        servicio.setFechaSalida(date_final.getDate());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        fecha = sdf.format(date_inicial.getDate()) ;
+        fechaFinal = sdf.format(date_final.getDate());
         if(date_inicial.getDate() == null || date_final.getDate()== null)
         {
             JOptionPane.showMessageDialog(null, "Por favor ingrese todos los datos");
         }else{
             ResultadoConsulta rConsulta = new ResultadoConsulta();
-            rConsulta.setServicio(servicio);
             rConsulta.setVisible(true);
             this.dispose();
         }
@@ -193,8 +197,8 @@ public class RecaudoPeriodos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_consultar;
-    private com.toedter.calendar.JDateChooser date_final;
-    private com.toedter.calendar.JDateChooser date_inicial;
+    public static com.toedter.calendar.JDateChooser date_final;
+    public static com.toedter.calendar.JDateChooser date_inicial;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

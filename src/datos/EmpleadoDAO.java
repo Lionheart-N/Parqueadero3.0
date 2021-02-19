@@ -60,7 +60,7 @@ public class EmpleadoDAO {
                 miEmpleado.setCargo(rs.getString(3));
             }
         }catch(Exception e){
-            
+            System.out.print(e);
         }
         /*try{
             String strSQL = "SELECT k_identificacion, o_clave FROM empleado WHERE "

@@ -7,10 +7,12 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import mundo.Controlador;
 import mundo.Servicio;
+import static vistas.RecaudoPeriodos.date_inicial;
 
 /**
  *
@@ -18,38 +20,37 @@ import mundo.Servicio;
  */
 public class ResultadoConsulta extends javax.swing.JFrame {
     
-    private Servicio servicio = new Servicio();
+    
     private String columnas[]={"Periodo","Recaudado"};
     private DefaultTableModel modelo = new DefaultTableModel(columnas,0);
     private Controlador controlador = new Controlador();
-    
+    private String fecha;
+    private String fechaFinal;
     /**
      * Creates new form resultadoConsulta
      */
     public ResultadoConsulta() {
         initComponents();
-        setTitle("Resultados");
+        Servicio miServi = new Servicio();
+        RecaudoPeriodos rP = new RecaudoPeriodos();
+        fecha = rP.fecha;
+        fechaFinal = rP.fechaFinal;
         try{
-            
-            controlador.buscarServicio(servicio);
-            
+            controlador.buscarServicio(fecha, fechaFinal);
         }catch(Exception ex){
-            
             System.out.print(ex);
-        }
-        
+        }  
+        modelo.addRow((Object[]) controlador.getInformacion());
+        tbl_informacion.setModel(modelo);
+        setTitle("Resultados");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
-        int width = pantalla.width;		
+        int width = pantalla.width;
+        
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
-    private void cargar(){
-        
-        
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,13 +61,13 @@ public class ResultadoConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_informacion = new javax.swing.JTable();
         btnAceptar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_informacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null}
@@ -83,7 +84,7 @@ public class ResultadoConsulta extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_informacion);
 
         btnAceptar.setText("Aceptar");
 
@@ -178,21 +179,12 @@ public class ResultadoConsulta extends javax.swing.JFrame {
                 new ResultadoConsulta().setVisible(true);
             }
         });
-    }
-
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
-    
+    }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btn_salir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_informacion;
     // End of variables declaration//GEN-END:variables
 }

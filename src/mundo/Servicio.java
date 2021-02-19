@@ -22,6 +22,7 @@ public class Servicio {
     private Date fechaSalida;
     private Pago miPago;
 
+
     public Servicio(String idServicio, Calendar horaEntrada, Calendar horaSalida, Date fechaEntrada, Date fechaSalida, Pago miPago) {
         this.idServicio = idServicio;
         this.horaEntrada = horaEntrada;
@@ -84,6 +85,7 @@ public class Servicio {
         this.miPago = miPago;
     }
 
+    
     
     
 

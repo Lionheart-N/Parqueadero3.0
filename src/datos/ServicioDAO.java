@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import mundo.Empleado;
 import mundo.Servicio;
@@ -28,6 +29,7 @@ public class ServicioDAO {
     
     private Servicio servicioN;
     private ServiceLocator conexion = new ServiceLocator();
+    private Object[] informacion = new Object[2];
 
     public ServicioDAO() {
         
@@ -47,16 +49,13 @@ public class ServicioDAO {
       
     }
     
-    public void buscarServicio(Servicio servicio) throws CaException{
+    public void buscarServicio(String inicial, String ultimo) throws CaException{
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(servicio.getFechaEntrada());
-        String dateFinal = sdf.format(servicio.getFechaSalida());
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT CONCAT('Del ',f_fechaentrada, ' al ', f_fechaentrada) AS '\"Periodo\", SUM(v_valor)" +
-        "FROM servicio WHERE f_fechaentrada BETWEEN '"+servicio.getFechaEntrada()+"' AND '"+servicio.getFechaSalida()+"'"
-                + "GROUP BY '\"Periodo\" ";
+        String strSQL = "SELECT CONCAT('Del ',f_fechaentrada, ' al ', f_fechaentrada) AS \"Periodo\", SUM(v_valor)" +
+        "FROM servicio WHERE f_fechaentrada BETWEEN '"+inicial+"' AND '"+ultimo+"'"
+                + "GROUP BY \"Periodo\" ";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -65,11 +64,14 @@ public class ServicioDAO {
             rs = prepStmt.executeQuery();
             while (rs.next()){
                 
-                  
+                  informacion[0] = rs.getObject(1);
+                  informacion[1] = rs.getObject(2);
             }
+            
         }catch(Exception e){
             
         }
+
         /*try{
             String strSQL = "SELECT k_identificacion, o_clave FROM empleado WHERE "
                  + "k_identificacion =" + identificaion ;
@@ -92,6 +94,9 @@ public class ServicioDAO {
 
     public void actualizarServicio() throws CaException {
 
+    }
+    public Object getInformacion(){
+        return informacion;
     }
     
 }
