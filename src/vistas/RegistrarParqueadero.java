@@ -22,7 +22,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
     private Parqueadero parqueadero;
     private Controlador controlador;
-    
+
     /**
      * Creates new form registrarParqueadero
      */
@@ -32,9 +32,9 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
-        int width = pantalla.width;		
+        int width = pantalla.width;
         setLocationRelativeTo(null);
-        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -237,34 +237,41 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         // TODO add your handling code here:
         parqueadero = new Parqueadero();
         controlador = new Controlador();
-        if(txt_nombreParqueadero.getText().equals("") || txt_direccion.getText().equals("") || 
-                txt_nit.getText().equals("") || txt_telefono.getText().equals("") ){
-            
-            
-            JOptionPane.showMessageDialog(null ,"Por favor llena todos los campos");
-        }
-        else{
+        if (txt_nombreParqueadero.getText().equals("") || txt_direccion.getText().equals("")
+                || txt_nit.getText().equals("") || txt_telefono.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Por favor llena todos los campos");
+        } else {
             parqueadero.setNombre(txt_nombreParqueadero.getText());
             parqueadero.setCaracteristicas((String) box_caracteristicas.getSelectedItem());
             parqueadero.setDireccion(txt_direccion.getText());
             parqueadero.setTelefono(txt_telefono.getText());
             parqueadero.setLocalidad((String) box_localidad.getSelectedItem());
             parqueadero.setNit(txt_nit.getText());
-                      
-            Area area = new Area();
-            area.setMiParqueadero(parqueadero);
-            area.setVisible(true);
-            this.dispose();
-            try{
-                controlador.incluirParqueadero(parqueadero);
-            }catch(Exception ex){
-                System.out.print(ex);
+
+            System.out.println(spi_areas.getValue().toString());
+            int contador = 0;
+            do{
+                Area area = new Area(parqueadero);
+                area.setVisible(true);
+                this.dispose();
+                try {
+                    controlador.incluirParqueadero(parqueadero);
+                } catch (Exception ex) {
+                    System.out.print(ex);
+                }
+                
+                if(contador== 0){
+                    
+                    
+                }
+                contador++;
+            }while (contador < Integer.parseInt(spi_areas.getValue().toString())); {
+               
             }
-           
-            
-            
+
         }
-        
+
     }//GEN-LAST:event_btn_registrarAreaMouseClicked
 
     private void box_caracteristicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_caracteristicasActionPerformed

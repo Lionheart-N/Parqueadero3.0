@@ -16,19 +16,21 @@ import mundo.Parqueadero;
  */
 public class Area extends javax.swing.JFrame {
 
-    private Parqueadero miParqueadero = new Parqueadero();
+    Parqueadero parqueadero;
+
     /**
      * Creates new form Area
      */
-    public Area() {
+    public Area(mundo.Parqueadero parqueadero) {
+        this.parqueadero = parqueadero;
         initComponents();
         setTitle("Area");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
-        int width = pantalla.width;		
+        int width = pantalla.width;
         setLocationRelativeTo(null);
-        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("../img/icon.png")).getImage());
     }
 
     /**
@@ -46,8 +48,8 @@ public class Area extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        btn_Area = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,30 +59,27 @@ public class Area extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 160, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 160, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 160, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 160, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Ingresa la cantidad de cupos para bicicletas");
         jLabel2.setToolTipText("");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 100, 30));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ingresa la cantidad de cupos para carros");
         jLabel3.setToolTipText("");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 100, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 100, 30));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ingresa la cantidad de cupos para motos");
         jLabel4.setToolTipText("");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 100, 30));
-
-        jButton1.setText("Registrar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 30));
 
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_salir.setContentAreaFilled(false);
@@ -90,7 +89,15 @@ public class Area extends javax.swing.JFrame {
                 btn_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        btn_Area.setText("Registrar Area");
+        btn_Area.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_AreaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,6 +112,13 @@ public class Area extends javax.swing.JFrame {
         registrarParqueadero.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked
+
+    private void btn_AreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AreaMouseClicked
+        // TODO add your handling code here:
+        System.out.println(parqueadero.getNombre());
+        
+        
+    }//GEN-LAST:event_btn_AreaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -136,23 +150,15 @@ public class Area extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Area().setVisible(true);
+                new Area(null).setVisible(true);
             }
         });
     }
 
-    public Parqueadero getMiParqueadero() {
-        return miParqueadero;
-    }
-
-    public void setMiParqueadero(Parqueadero miParqueadero) {
-        this.miParqueadero = miParqueadero;
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Area;
     private javax.swing.JButton btn_salir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

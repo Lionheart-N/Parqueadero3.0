@@ -8,25 +8,36 @@ package mundo;
 import java.util.ArrayList;
 
 /**
- *HOLa
+ * HOLa
+ *
  * @author WIN10
  */
 public class Area {
-    
+
     private String identificacion;
-    private ArrayList<Espacio> numCupos;
-    private int cuposDisponibles;
-    private String tipoArea;
+    private int cuposAutomoviles;
+    private int cuposMotos;
+    private int cuposBicicletas;
+    private int cuposTotales;
+    private int codigoParqueadero;
+    private int motosDisponibles;
+    private int autosDisponibles;
+    private int bicicletasDisponibles;
 
     public Area() {
     }
 
-    
     public Area(String identificacion, ArrayList<Espacio> numCupos, int cuposDisponibles, String tipoArea) {
         this.identificacion = identificacion;
-        this.numCupos = numCupos;
-        this.cuposDisponibles = cuposDisponibles;
-        this.tipoArea = tipoArea;
+        this.cuposAutomoviles = cuposAutomoviles;
+        this.cuposMotos = cuposMotos;
+        this.cuposBicicletas = cuposBicicletas;
+        this.bicicletasDisponibles = bicicletasDisponibles;
+        this.motosDisponibles = motosDisponibles;
+        this.autosDisponibles = autosDisponibles;
+        this.cuposTotales = cuposTotales;
+        this.codigoParqueadero = codigoParqueadero;
+
     }
 
     public String getIdentificacion() {
@@ -37,30 +48,68 @@ public class Area {
         this.identificacion = identificacion;
     }
 
-    public ArrayList<Espacio> getNumCupos() {
-        return numCupos;
+    public int getCuposAutomoviles() {
+        return cuposAutomoviles;
     }
 
-    public void setNumCupos(ArrayList<Espacio> numCupos) {
-        this.numCupos = numCupos;
+    public void setCuposAutomoviles(int cuposAutomoviles) {
+        this.cuposAutomoviles = cuposAutomoviles;
     }
 
-    public int getCuposDisponibles() {
-        return cuposDisponibles;
+    public int getCuposMotos() {
+        return cuposMotos;
     }
 
-    public void setCuposDisponibles(int cuposDisponibles) {
-        this.cuposDisponibles = cuposDisponibles;
+    public void setCuposMotos(int cuposMotos) {
+        this.cuposMotos = cuposMotos;
     }
 
-    public String getTipoArea() {
-        return tipoArea;
+    public int getCuposBicicletas() {
+        return cuposBicicletas;
     }
 
-    public void setTipoArea(String tipoArea) {
-        this.tipoArea = tipoArea;
+    public void setCuposBicicletas(int cuposBicicletas) {
+        this.cuposBicicletas = cuposBicicletas;
     }
-    
-    
-    
+
+    public int getCuposTotales() {
+        return cuposTotales;
+    }
+
+    public void setCuposTotales(int cuposTotales) {
+        this.cuposTotales = cuposTotales;
+    }
+
+    public int getCodigoParqueadero() {
+        return codigoParqueadero;
+    }
+
+    public void setCodigoParqueadero(int codigoParqueadero) {
+        this.codigoParqueadero = codigoParqueadero;
+    }
+
+    public int getMotosDisponibles() {
+        return motosDisponibles;
+    }
+
+    public void setMotosDisponibles(int motosDisponibles) {
+        this.motosDisponibles = motosDisponibles;
+    }
+
+    public int getAutosDisponibles() {
+        return autosDisponibles;
+    }
+
+    public void setAutosDisponibles(int autosDisponibles) {
+        this.autosDisponibles = autosDisponibles;
+    }
+
+    public int getBicicletasDisponibles() {
+        return bicicletasDisponibles;
+    }
+
+    public void setBicicletasDisponibles(int bicicletasDisponibles) {
+        this.bicicletasDisponibles = bicicletasDisponibles;
+    }
+
 }
