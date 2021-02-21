@@ -8,7 +8,14 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+import mundo.Registro;
+import util.CaException;
 
 /**
  *
@@ -115,7 +122,23 @@ public class ConsultaEntradaSalidaDeVehiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_consultarPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarPlacaActionPerformed
-        // TODO add your handling code here:
+        ArrayList<Registro> registros = new ArrayList<>();
+        Controlador consultarPlaca = new Controlador();
+        try {
+            
+            registros = consultarPlaca.buscarVehiculoPorPlaca(jTextField_placa.getText());
+            if(registros.size() != 0){
+            Consulta consulta = new Consulta(registros);
+            consulta.setVisible(true);
+            this.dispose();
+            }else {
+                JOptionPane.showMessageDialog(null, "El vehículo no ha entrado al parqueadero");
+            }
+            
+            // TODO add your handling code here:
+        } catch (CaException ex) {
+            Logger.getLogger(ConsultaEntradaSalidaDeVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_consultarPlacaActionPerformed
 
     private void jTextField_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_placaActionPerformed

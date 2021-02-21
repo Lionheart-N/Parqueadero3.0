@@ -5,10 +5,12 @@
  */
 package vistas;
 
+import datos.ParqueaderoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import mundo.Controlador;
 
 /**
  *
@@ -23,15 +25,20 @@ public class IngresoEmpleado extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Empleado");
-         setResizable(false);
+        setResizable(false);
+        
+        
+        ArrayList<String> nombres;
+        nombres= Controlador.consultar_nombres();
+        for (int i=0; i<nombres.size(); i++){
+             box_Parqueaderos.addItem(nombres. get(i));
+        }
+        
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
         int width = pantalla.width;		
         setLocationRelativeTo(null);
-        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
-        ArrayList<String> Lista = new ArrayList<String> ();
-        ///ParqueaderoDao.llenar_combo();
-
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());    
     }
 
     /**
@@ -49,7 +56,6 @@ public class IngresoEmpleado extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        box_Parqueaderos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         box_Parqueaderos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 box_ParqueaderosActionPerformed(evt);
@@ -146,4 +152,6 @@ public class IngresoEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btn_IngresarEmpleado;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

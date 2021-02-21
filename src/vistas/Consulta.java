@@ -4,19 +4,44 @@
  * and open the template in the editor.
  */
 
-package vistas.parqueadero;
+package vistas;
+
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import mundo.Registro;
 
 /**
  *
  * @author kestn
  */
 public class Consulta extends javax.swing.JFrame {
+    private ArrayList<Registro> registros;
 
     /**
      * Creates new form Consulta
      */
-    public Consulta() {
+    public Consulta (){
         initComponents();
+    }
+    
+    
+    public Consulta(ArrayList<Registro> registros) {
+        this.registros = registros;
+        initComponents();
+        DefaultTableModel modelo=(DefaultTableModel) jTable_registrosConsulta.getModel(); 
+ 
+        
+        
+ 
+        for(int i=0; i<registros.size(); i++) {
+            Object [] fila=new Object[3];
+            fila[0]=registros.get(i).getPlaca(); 
+            fila[1]=registros.get(i).getEntrada(); 
+            fila[2]=registros.get(i).getSalida(); 
+            modelo.addRow(fila); 
+        }   
+        jTable_registrosConsulta.setModel(modelo); 
+        
     }
 
     /**
@@ -36,10 +61,7 @@ public class Consulta extends javax.swing.JFrame {
 
         jTable_registrosConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Placa", "Entrada", "Salida"
@@ -123,3 +145,4 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JTable jTable_registrosConsulta;
     // End of variables declaration//GEN-END:variables
 }
+

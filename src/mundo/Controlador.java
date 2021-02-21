@@ -42,6 +42,14 @@ public class Controlador {
     public void incluirArea(Area area) throws CaException{
         areaDAO.incluirArea(area);
     }
+    public static ArrayList<String> consultar_nombres (){
+        return ParqueaderoDAO.consultar_nombres();
+    }
+    
+    public ArrayList<Registro> buscarVehiculoPorPlaca(String placa) throws CaException{
+        VehiculoDAO buscar = new VehiculoDAO();
+        return buscar.buscarVehiculo(placa);
+    }
     public Object getInformacion(){
         return servicioDAO.getInformacion();
     }

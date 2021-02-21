@@ -21,11 +21,12 @@ import util.ServiceLocator;
  * @author WIN10
  */
 public class ParqueaderoDAO {
+
     
-    private Parqueadero parqueadero;
-    private ServiceLocator conexion = new ServiceLocator();
+ 
+    private static ServiceLocator conexion;
     public ParqueaderoDAO() {
-        parqueadero = new Parqueadero();
+        conexion = new ServiceLocator();
     }
     
     public void incluirParqueadero(Parqueadero parqueadero ) throws CaException {
@@ -38,7 +39,7 @@ public class ParqueaderoDAO {
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
-            prepStmt.setInt(1,parqueadero.getIdentificador());
+            prepStmt.setInt(1,4);
             prepStmt.setString(2,parqueadero.getLocalidad());
             prepStmt.setString(3,parqueadero.getDireccion());
             prepStmt.setString(4,parqueadero.getNombre());
@@ -106,19 +107,36 @@ public class ParqueaderoDAO {
     public void actualizarParqueadero() throws CaException {
 
     }
-
+    /**
     public Parqueadero getMiParqueadero() {
         return parqueadero;
     }
 
     public void setMiEmpleado(Parqueadero parqueadero) {
         this.parqueadero = parqueadero;
+    }*/
+    
+    public static ArrayList<String> consultar_nombres (){
+        Connection con;
+        PreparedStatement prepStmt;
+        String script = "SELECT n_nombreparqueadero FROM parqueadero";
+        ResultSet rs;
+        ArrayList<String> nombres = new ArrayList<String>();
+
+     try {
+         Class.forName(conexion.getDriver());
+         con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+         prepStmt = con.prepareStatement(script);
+         rs = prepStmt.executeQuery();
+         while (rs.next()){
+              nombres.add(rs.getString(1));
+          }
+        }catch (Exception e){
+            System.out.println("No se pudo consultar los nombres del parqueadero, porque ocurrió este error: " + e);
+        }
+ 
+     return nombres;
     }
-    
-    /*public static ArrayList<String> llenar_combo (){
-     /*ArrayList<String> Lista = new ArrayList<String> ();
-     String q = "SELECT * FROM "
-     return Lista;*/
-    //}
-    
 }
+    
+
