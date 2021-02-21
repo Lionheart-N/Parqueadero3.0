@@ -9,17 +9,20 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
+
 /**
  *
  * @author USUARIO
  */
 public class Empleado extends javax.swing.JFrame {
-
+    
+    private int codigoParqueadero;
     /**
      * Creates new form Empleado
      */
-    public Empleado() {
+    public Empleado(java.lang.Integer codigoParqueadero) {
         initComponents();
+        this.codigoParqueadero = codigoParqueadero;
         setTitle("Empleado");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -139,7 +142,7 @@ public class Empleado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empleado().setVisible(true);
+                new Empleado(null).setVisible(true);
             }
         });
     }

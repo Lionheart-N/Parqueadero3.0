@@ -93,6 +93,25 @@ public class EmpleadoDAO {
     public void setMiEmpleado(Empleado miEmpleado) {
         this.miEmpleado = miEmpleado;
     }
+    public int getCodigoParqueadero(String usuario){
+        Connection con;
+        int codigo = 0;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_codigoparqueadero FROM empleado WHERE k_id_empeado = '" +usuario+"'" ;
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while(rs.next()){
+                codigo = rs.getInt(1);
+            }
+        }catch(Exception ex){
+            System.out.print(ex);
+        }
+        return codigo;
+    }
     
     
     

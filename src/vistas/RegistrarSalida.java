@@ -86,7 +86,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirMouseClicked
-       Empleado miEmpleado = new Empleado ();
+       Empleado miEmpleado = new Empleado (null);
        miEmpleado.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btn_SalirMouseClicked

@@ -185,8 +185,8 @@ public class Ingreso extends javax.swing.JFrame {
         }else if(txt_UsuarioAdmin.getText().equals(controlador.getEmpleado().getUsuario()) &&
             myPass.equals(controlador.getEmpleado().getContraseña()) && 
             controlador.getEmpleado().getCargo().equals("E") ){
-            IngresoEmpleado ingresoEmpleado = new IngresoEmpleado();
-            ingresoEmpleado.setVisible(true);
+            Empleado empleado = new Empleado(controlador.getCodigoParqueadero(txt_UsuarioAdmin.getText()));
+            empleado.setVisible(true);
             this.dispose();
             
         }else{

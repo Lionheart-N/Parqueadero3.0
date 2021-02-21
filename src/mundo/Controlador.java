@@ -53,4 +53,7 @@ public class Controlador {
     public Object getInformacion(){
         return servicioDAO.getInformacion();
     }
+    public int getCodigoParqueadero(String usuario){
+        return empleadoDAO.getCodigoParqueadero(usuario);
+    }
 }

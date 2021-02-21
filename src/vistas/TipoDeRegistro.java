@@ -150,7 +150,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         // TODO add your handling code here:
-        Empleado miEmpleado = new Empleado();
+        Empleado miEmpleado = new Empleado(null);
         miEmpleado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked
