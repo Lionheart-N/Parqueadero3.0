@@ -13,27 +13,28 @@ import javax.swing.JComboBox;
  * @author WIN10
  */
 public class Parqueadero {
-    
+
+    private int identificador;
     private String nombre;
     private String localidad;
     private String caracteristicas;
     private String direccion;
-    private ArrayList<Area> area;
-    private String telefono;
+    private int telefono;
     private String nit;
-    public Parqueadero(String nombre, String localidad, String caracteristicas, String direccion, ArrayList<Area> area, String telefono, String nit) {
+
+    public Parqueadero(int identificador, String nombre, String localidad, String caracteristicas, String direccion, int telefono, String nit) {
+        this.identificador = identificador;
         this.nombre = nombre;
         this.localidad = localidad;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
-        this.area = area;
         this.telefono = telefono;
         this.nit = nit;
     }
 
     public Parqueadero() {
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -66,19 +67,19 @@ public class Parqueadero {
         this.direccion = direccion;
     }
 
-    public ArrayList<Area> getArea() {
-        return area;
+    public int getIdentificador() {
+        return identificador;
     }
 
-    public void setArea(ArrayList<Area> area) {
-        this.area = area;
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -89,5 +90,5 @@ public class Parqueadero {
     public void setNit(String nit) {
         this.nit = nit;
     }
-    
+
 }

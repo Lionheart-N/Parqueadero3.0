@@ -38,7 +38,7 @@ public class ParqueaderoDAO {
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
-            prepStmt.setInt(1,4);
+            prepStmt.setInt(1,parqueadero.getIdentificador());
             prepStmt.setString(2,parqueadero.getLocalidad());
             prepStmt.setString(3,parqueadero.getDireccion());
             prepStmt.setString(4,parqueadero.getNombre());

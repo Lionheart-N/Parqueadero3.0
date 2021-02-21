@@ -25,19 +25,19 @@ public class Area {
     private int bicicletasDisponibles;
 
     public Area() {
+        
     }
 
-    public Area(String identificacion, ArrayList<Espacio> numCupos, int cuposDisponibles, String tipoArea) {
+    public Area(String identificacion, int cuposAutomoviles, int cuposMotos, int cuposBicicletas, int cuposTotales, int codigoParqueadero, int motosDisponibles, int autosDisponibles, int bicicletasDisponibles) {
         this.identificacion = identificacion;
         this.cuposAutomoviles = cuposAutomoviles;
         this.cuposMotos = cuposMotos;
         this.cuposBicicletas = cuposBicicletas;
-        this.bicicletasDisponibles = bicicletasDisponibles;
-        this.motosDisponibles = motosDisponibles;
-        this.autosDisponibles = autosDisponibles;
         this.cuposTotales = cuposTotales;
         this.codigoParqueadero = codigoParqueadero;
-
+        this.motosDisponibles = motosDisponibles;
+        this.autosDisponibles = autosDisponibles;
+        this.bicicletasDisponibles = bicicletasDisponibles;
     }
 
     public String getIdentificacion() {

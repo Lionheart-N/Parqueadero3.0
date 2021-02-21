@@ -5,23 +5,31 @@
  */
 package vistas;
 
+import mundo.Area;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import mundo.Controlador;
 import mundo.Parqueadero;
+import util.CaException;
 
 /**
  *
  * @author Gabriel Dubuc
  */
-public class Area extends javax.swing.JFrame {
+public class VistaArea extends javax.swing.JFrame {
 
     Parqueadero parqueadero;
+    Controlador control =  new Controlador();
+    Area area = new Area();
+    int contador=0;
 
     /**
      * Creates new form Area
      */
-    public Area(mundo.Parqueadero parqueadero) {
+    public VistaArea(mundo.Parqueadero parqueadero) {
         this.parqueadero = parqueadero;
         initComponents();
         setTitle("Area");
@@ -42,44 +50,46 @@ public class Area extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        cuposCarros = new javax.swing.JTextField();
+        cuposMotos = new javax.swing.JTextField();
+        cuposBicicletas = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_salir = new javax.swing.JButton();
         btn_Area = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_areaID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        cuposCarros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                cuposCarrosActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 160, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, -1));
+        getContentPane().add(cuposCarros, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 160, -1));
+        getContentPane().add(cuposMotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 160, -1));
+        getContentPane().add(cuposBicicletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 160, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Ingresa la cantidad de cupos para bicicletas");
         jLabel2.setToolTipText("");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 100, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 220, 30));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ingresa la cantidad de cupos para carros");
         jLabel3.setToolTipText("");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 100, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 220, 30));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ingresa la cantidad de cupos para motos");
         jLabel4.setToolTipText("");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 220, 30));
 
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_salir.setContentAreaFilled(false);
@@ -89,7 +99,7 @@ public class Area extends javax.swing.JFrame {
                 btn_salirMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         btn_Area.setText("Registrar Area");
         btn_Area.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,14 +107,24 @@ public class Area extends javax.swing.JFrame {
                 btn_AreaMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        getContentPane().add(btn_Area, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jLabel1.setText("Ingresa un ID para esta area:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 190, -1));
+
+        txt_areaID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_areaIDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_areaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void cuposCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuposCarrosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_cuposCarrosActionPerformed
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         // TODO add your handling code here:
@@ -114,11 +134,30 @@ public class Area extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirMouseClicked
 
     private void btn_AreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AreaMouseClicked
-        // TODO add your handling code here:
+        
         System.out.println(parqueadero.getNombre());
-        
-        
+        area.setCuposAutomoviles(Integer.parseInt(cuposCarros.getText()));
+        area.setCuposMotos(Integer.parseInt(cuposMotos.getText()));
+        area.setCuposBicicletas(Integer.parseInt(cuposBicicletas.getText()));
+        area.setAutosDisponibles(Integer.parseInt(cuposCarros.getText()));
+        area.setMotosDisponibles(Integer.parseInt(cuposMotos.getText()));
+        area.setBicicletasDisponibles(Integer.parseInt(cuposBicicletas.getText()));
+        int cuposTotales = Integer.parseInt(cuposCarros.getText()) + Integer.parseInt(cuposMotos.getText() + Integer.parseInt(cuposBicicletas.getText()));
+        area.setCuposTotales(cuposTotales);
+        area.setIdentificacion(txt_areaID.getText());
+        area.setCodigoParqueadero(parqueadero.getIdentificador());
+        System.out.println(txt_areaID.getText());
+        try {
+            control.incluirArea(area);
+        } catch (CaException ex) {
+            Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_btn_AreaMouseClicked
+
+    private void txt_areaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_areaIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_areaIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +189,7 @@ public class Area extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Area(null).setVisible(true);
+                new VistaArea(null).setVisible(true);
             }
         });
     }
@@ -159,11 +198,13 @@ public class Area extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Area;
     private javax.swing.JButton btn_salir;
+    private javax.swing.JTextField cuposBicicletas;
+    private javax.swing.JTextField cuposCarros;
+    private javax.swing.JTextField cuposMotos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txt_areaID;
     // End of variables declaration//GEN-END:variables
 }

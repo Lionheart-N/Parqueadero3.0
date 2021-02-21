@@ -26,11 +26,11 @@ public class AreaDAO {//Holaaa
     private ServiceLocator conexion = new ServiceLocator();
 
     public AreaDAO() {
-        miArea = new Area();
+        
     }
 
     public void incluirArea(Area area) throws CaException {
-
+        miArea = area;
         Connection con;
         PreparedStatement prepStmt;
         String strSQL = "INSERT INTO area VALUES(?,?,?,?,?,?,?,?,?)";
@@ -48,13 +48,14 @@ public class AreaDAO {//Holaaa
             prepStmt.setInt(7, miArea.getMotosDisponibles());
             prepStmt.setInt(8, miArea.getBicicletasDisponibles());
             prepStmt.setString(9, miArea.getIdentificacion()); //Autoincremento del identificador
+            System.out.println(miArea.getIdentificacion());
             if (prepStmt.executeUpdate() > 0) {
                 con.close();
             } else {
                 con.close();
             }
         } catch (Exception e) {
-
+            System.out.println(e);
         }
         //Connection conexion = ServiceLocator.getInstance().tomarConexion();
         /*try{

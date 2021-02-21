@@ -19,6 +19,7 @@ public class Controlador {
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
     private ParqueaderoDAO parqueaderoDAO = new ParqueaderoDAO();
     private ServicioDAO servicioDAO = new ServicioDAO();
+    private AreaDAO areaDAO = new AreaDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -37,6 +38,9 @@ public class Controlador {
     }
     public void buscarServicio(String inicial, String ultimo) throws CaException{
         servicioDAO.buscarServicio(inicial,ultimo);
+    }
+    public void incluirArea(Area area) throws CaException{
+        areaDAO.incluirArea(area);
     }
     public Object getInformacion(){
         return servicioDAO.getInformacion();

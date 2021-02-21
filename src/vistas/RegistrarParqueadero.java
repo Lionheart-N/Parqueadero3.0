@@ -62,6 +62,8 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         box_caracteristicas = new javax.swing.JComboBox<>();
         btn_registrarArea = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txt_identificador = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,50 +129,70 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Ingrese el ID:");
+
+        txt_identificador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_identificadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_nit, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(spi_areas)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_nombreParqueadero)
+                                            .addComponent(txt_direccion)
+                                            .addComponent(txt_telefono)
+                                            .addComponent(box_localidad, 0, 537, Short.MAX_VALUE)
+                                            .addComponent(txt_identificador)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(38, 38, 38)
+                                .addComponent(box_caracteristicas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
                                 .addComponent(btn_salir)
-                                .addComponent(jLabel11)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(221, 221, 221)
+                                .addComponent(btn_registrarArea))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_nombreParqueadero)
-                                    .addComponent(txt_direccion)
-                                    .addComponent(txt_telefono)
-                                    .addComponent(box_localidad, 0, 528, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_nit, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(spi_areas)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(212, 212, 212)
-                                .addComponent(btn_registrarArea)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(38, 38, 38)
-                        .addComponent(box_caracteristicas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap()
+                                .addComponent(jLabel6)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_nombreParqueadero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,13 +220,13 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(49, 49, 49)
-                        .addComponent(btn_salir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btn_registrarArea)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(6, 6, 6))
+                    .addComponent(txt_nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_salir)
+                    .addComponent(btn_registrarArea))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -242,17 +264,18 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Por favor llena todos los campos");
         } else {
+            parqueadero.setIdentificador(Integer.parseInt(txt_identificador.getText()));
             parqueadero.setNombre(txt_nombreParqueadero.getText());
             parqueadero.setCaracteristicas((String) box_caracteristicas.getSelectedItem());
             parqueadero.setDireccion(txt_direccion.getText());
-            parqueadero.setTelefono(txt_telefono.getText());
+            parqueadero.setTelefono(Integer.parseInt(txt_telefono.getText()));
             parqueadero.setLocalidad((String) box_localidad.getSelectedItem());
             parqueadero.setNit(txt_nit.getText());
 
             System.out.println(spi_areas.getValue().toString());
             int contador = 0;
-            do{
-                Area area = new Area(parqueadero);
+            do {
+                VistaArea area = new VistaArea(parqueadero);
                 area.setVisible(true);
                 this.dispose();
                 try {
@@ -260,14 +283,13 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     System.out.print(ex);
                 }
-                
-                if(contador== 0){
-                    
-                    
-                }
+
                 contador++;
-            }while (contador < Integer.parseInt(spi_areas.getValue().toString())); {
-               
+            } while (contador < Integer.parseInt(spi_areas.getValue().toString()));{
+                JOptionPane.showMessageDialog(null, "Parqueadero y areas registradas con exito", "Parqueadero", 1);
+                Administrador administrador = new Administrador();
+                administrador.setVisible(true);
+                this.dispose();
             }
 
         }
@@ -277,6 +299,10 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
     private void box_caracteristicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_caracteristicasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_box_caracteristicasActionPerformed
+
+    private void txt_identificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_identificadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_identificadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,9 +351,11 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner spi_areas;
     private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_identificador;
     private javax.swing.JTextField txt_nit;
     private javax.swing.JTextField txt_nombreParqueadero;
     private javax.swing.JTextField txt_telefono;
