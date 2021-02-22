@@ -46,8 +46,8 @@ public class EmpleadoDAO {
         
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT k_id_empeado, o_clave,i_cargo FROM empleado WHERE "
-                 + "k_id_empeado = '"+usuario+"'";
+        String strSQL = "SELECT k_id_empleado, o_clave,i_cargo FROM empleado WHERE "
+                 + "k_id_empleado = '"+usuario+"'";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -97,7 +97,7 @@ public class EmpleadoDAO {
         Connection con;
         int codigo = 0;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT k_codigoparqueadero FROM empleado WHERE k_id_empeado = '" +usuario+"'" ;
+        String strSQL = "SELECT k_codigoparqueadero FROM empleado WHERE k_id_empleado = '" +usuario+"'" ;
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());

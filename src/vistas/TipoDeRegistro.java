@@ -177,12 +177,15 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         }else{
            try {
                 controlador.buscarContrato(txt_placa.getText());
-                System.out.print(controlador.getContrato().getEstado());
-                
+                            
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+            if(controlador.getContrato().getEstado().equals("A")){
+                
+            }else{
+                
+            }
            
             
         }

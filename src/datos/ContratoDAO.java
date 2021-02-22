@@ -23,6 +23,11 @@ public class ContratoDAO {
     
     private static ServiceLocator conexion;
     private Contrato contrato = new Contrato();
+
+    public ContratoDAO() {
+        conexion = new ServiceLocator();
+    }
+    
     
     public void buscarContrato(String placa) throws CaException, SQLException{
         Connection con;
@@ -37,8 +42,7 @@ public class ContratoDAO {
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
             while (rs.next()){
-                //contrato.setEstado(rs.getByte("q_estado"));
-                System.out.print(rs.getCharacterStream(1));
+                contrato.setEstado(rs.getString("q_estado"));
             }
         }catch(Exception ex){
             
