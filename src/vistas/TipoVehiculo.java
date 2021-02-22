@@ -88,9 +88,9 @@ public class TipoVehiculo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VistaArea areaVehiculo = new VistaArea(null);
-        VistaArea areaMotos = new VistaArea(null);
-        VistaArea areaBicis = new VistaArea(null);
+        VistaArea areaVehiculo = new VistaArea(null,0);
+        VistaArea areaMotos = new VistaArea(null,0);
+        VistaArea areaBicis = new VistaArea(null,0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

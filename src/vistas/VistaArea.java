@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import mundo.Controlador;
 import mundo.Parqueadero;
 import util.CaException;
@@ -22,15 +23,18 @@ import util.CaException;
 public class VistaArea extends javax.swing.JFrame {
 
     Parqueadero parqueadero;
-    Controlador control =  new Controlador();
+    Controlador control = new Controlador();
     Area area = new Area();
-    int contador=0;
+    static int contador;
+    static int contadorPropio = 0;
+
 
     /**
      * Creates new form Area
      */
-    public VistaArea(mundo.Parqueadero parqueadero) {
+    public VistaArea(mundo.Parqueadero parqueadero, int contador) {
         this.parqueadero = parqueadero;
+        this.contador = contador;
         initComponents();
         setTitle("Area");
         setResizable(false);
@@ -134,8 +138,7 @@ public class VistaArea extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirMouseClicked
 
     private void btn_AreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AreaMouseClicked
-        
-        System.out.println(parqueadero.getNombre());
+
         area.setCuposAutomoviles(Integer.parseInt(cuposCarros.getText()));
         area.setCuposMotos(Integer.parseInt(cuposMotos.getText()));
         area.setCuposBicicletas(Integer.parseInt(cuposBicicletas.getText()));
@@ -146,13 +149,35 @@ public class VistaArea extends javax.swing.JFrame {
         area.setCuposTotales(cuposTotales);
         area.setIdentificacion(txt_areaID.getText());
         area.setCodigoParqueadero(parqueadero.getIdentificador());
-        System.out.println(txt_areaID.getText());
-        try {
-            control.incluirArea(area);
-        } catch (CaException ex) {
-            Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
+
+        contadorPropio++;
+        if (contadorPropio <= contador) {
+            try {
+                control.incluirArea(area);
+            } catch (CaException ex) {
+                Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            System.out.println("Estoy en el primer if");
+            System.out.println(contador);
+            System.out.println(contadorPropio);
         }
-        this.dispose();
+        if (contadorPropio == contador+1) {
+            System.out.println("Estoy en el segundo if");
+            System.out.println(contador);
+            System.out.println(contadorPropio);
+            try {
+                control.incluirArea(area);
+            } catch (CaException ex) {
+                Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Parqueadero y areas registradas con exito", "Parqueadero", 1);
+            Administrador administrador = new Administrador();
+            administrador.setVisible(true);
+            this.dispose();
+        }
+
+
     }//GEN-LAST:event_btn_AreaMouseClicked
 
     private void txt_areaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_areaIDActionPerformed
@@ -189,7 +214,7 @@ public class VistaArea extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaArea(null).setVisible(true);
+                new VistaArea(null, contador).setVisible(true);
             }
         });
     }

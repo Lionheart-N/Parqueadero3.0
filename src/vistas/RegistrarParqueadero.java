@@ -22,6 +22,8 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
 
     private Parqueadero parqueadero;
     private Controlador controlador;
+    int contador;
+    int numVistas;
 
     /**
      * Creates new form registrarParqueadero
@@ -271,25 +273,26 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
             parqueadero.setTelefono(Integer.parseInt(txt_telefono.getText()));
             parqueadero.setLocalidad((String) box_localidad.getSelectedItem());
             parqueadero.setNit(txt_nit.getText());
-
-            System.out.println(spi_areas.getValue().toString());
+            contador = 0;
+            numVistas = Integer.parseInt(txt_identificador.getText());
+            
             int contador = 0;
+            int numVistas = Integer.parseInt(spi_areas.getValue().toString());
+
+            try {
+                controlador.incluirParqueadero(parqueadero);
+            } catch (Exception ex) {
+                System.out.print(ex);
+            }
+
             do {
-                VistaArea area = new VistaArea(parqueadero);
+                VistaArea area = new VistaArea(parqueadero, contador);
                 area.setVisible(true);
                 this.dispose();
-                try {
-                    controlador.incluirParqueadero(parqueadero);
-                } catch (Exception ex) {
-                    System.out.print(ex);
-                }
-
                 contador++;
-            } while (contador < Integer.parseInt(spi_areas.getValue().toString()));{
-                JOptionPane.showMessageDialog(null, "Parqueadero y areas registradas con exito", "Parqueadero", 1);
-                Administrador administrador = new Administrador();
-                administrador.setVisible(true);
-                this.dispose();
+            } while (contador < Integer.parseInt(spi_areas.getValue().toString()));
+            {
+
             }
 
         }
