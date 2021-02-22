@@ -9,6 +9,9 @@ import datos.Constantes;
 import datos.EmpleadoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mundo.Controlador;
@@ -31,6 +34,12 @@ public class Ingreso extends javax.swing.JFrame {
         int width = pantalla.width;		
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
+        Controlador controlador = new Controlador();
+        try {
+            controlador.actualizarContrato();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

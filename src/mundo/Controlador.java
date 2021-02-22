@@ -6,8 +6,11 @@
 package mundo;
 
 import datos.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.CaException;
 
 /**
@@ -20,6 +23,7 @@ public class Controlador {
     private ParqueaderoDAO parqueaderoDAO = new ParqueaderoDAO();
     private ServicioDAO servicioDAO = new ServicioDAO();
     private AreaDAO areaDAO = new AreaDAO();
+    private ContratoDAO contratoDAO = new ContratoDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -55,5 +59,19 @@ public class Controlador {
     }
     public int getCodigoParqueadero(String usuario){
         return empleadoDAO.getCodigoParqueadero(usuario);
+    }
+    public void buscarContrato(String placa) throws CaException{
+        try {
+            contratoDAO.buscarContrato(placa);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public Contrato getContrato(){
+    
+        return contratoDAO.getContrato();
+    }
+    public void actualizarContrato() throws SQLException{
+        contratoDAO.actualizarContrato();
     }
 }

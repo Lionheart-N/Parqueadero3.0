@@ -27,6 +27,10 @@ public class Contrato {
         this.precio = precio;
     }
 
+    public Contrato() {
+        
+    }
+
     public String getIdContrato() {
         return idContrato;
     }

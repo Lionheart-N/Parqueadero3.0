@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mundo.Contrato;
 import mundo.Controlador;
 import mundo.Registro;
 import util.CaException;
@@ -23,7 +24,8 @@ import util.CaException;
  */
 public class TipoDeRegistro extends javax.swing.JFrame {
     
-    private Controlador controlador;
+    private Controlador controlador = new Controlador();
+    private Contrato contrato = new Contrato();
 
     /**
      * Creates new form Pago
@@ -63,6 +65,11 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         btn_pagoMinutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pagoMinutosMouseClicked(evt);
+            }
+        });
+        btn_pagoMinutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pagoMinutosActionPerformed(evt);
             }
         });
 
@@ -168,18 +175,15 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos");
             
         }else{
-            
-            try {
-                registros = controlador.buscarVehiculoPorPlaca(txt_placa.getText());
-                if(registros.size() != 0){
-                    JOptionPane.showMessageDialog(null, "El vehículo ya esta en el parqueadero");
-                this.dispose();
-                }else if(true){
-                    
-                }
+           try {
+                controlador.buscarContrato(txt_placa.getText());
+                System.out.print(controlador.getContrato().getEstado());
+                
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+           
             
         }
         
@@ -206,6 +210,10 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void btn_pagoMinutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagoMinutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pagoMinutosActionPerformed
 
     /**
      * @param args the command line arguments
