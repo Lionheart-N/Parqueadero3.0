@@ -7,7 +7,11 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+import mundo.Estadistica;
 
 /**
  *
@@ -15,9 +19,10 @@ import javax.swing.ImageIcon;
  */
 public class Estadisticas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Resultados
-     */
+    private Estadistica estadistica;
+    private Controlador controlador;
+    public static String fecha;
+    public static String fechaFinal;
     public Estadisticas() {
         initComponents();
         setTitle("Estadisticas");
@@ -40,9 +45,9 @@ public class Estadisticas extends javax.swing.JFrame {
 
         jDayChooser1 = new com.toedter.calendar.JDayChooser();
         jLabel1 = new javax.swing.JLabel();
-        boxPeriodo = new javax.swing.JComboBox<>();
+        boxPeriodo = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
-        boxTipoVehiculo = new javax.swing.JComboBox<>();
+        boxTipoVehiculo = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_generar = new javax.swing.JButton();
@@ -53,21 +58,21 @@ public class Estadisticas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Seleccione un periodo");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 22));
+        jLabel1.setText("Seleccione un parqueadero");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 30));
 
-        boxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         boxPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(boxPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 140, -1));
+        getContentPane().add(boxPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 250, -1));
 
         jLabel2.setText("Tipo de vehiculo");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
-        boxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         boxTipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTipoVehiculoActionPerformed(evt);
@@ -85,6 +90,11 @@ public class Estadisticas extends javax.swing.JFrame {
         btn_generar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_generarMouseClicked(evt);
+            }
+        });
+        btn_generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
@@ -120,10 +130,27 @@ public class Estadisticas extends javax.swing.JFrame {
 
     private void btn_generarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_generarMouseClicked
         // TODO add your handling code here:
-        Resultados resultados = new Resultados();
-        resultados.setVisible(true);
-        this.dispose();
+        
+        
+        controlador = new Controlador();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        fecha = sdf.format(jDateChooser1.getDate()) ;
+        fechaFinal = sdf.format(jDateChooser2.getDate());
+        if(jDateChooser1.getDate() == null || jDateChooser1.getDate()== null)
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese todos los datos");
+        }else{ 
+            Resultados resultados = new Resultados();
+            resultados.setVisible(true);
+            this.dispose();
+        }
+        
+        
     }//GEN-LAST:event_btn_generarMouseClicked
+
+    private void btn_generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_generarActionPerformed
 
     /**
      * @param args the command line arguments
