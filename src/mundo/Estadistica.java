@@ -20,11 +20,9 @@ public class Estadistica {
     private int numeroMotos;
     private int numeroBicis;
 
-    public Estadistica(String nombreParqueadero, int numeroCarros, int numeroMotos, int numeroBicis) {
-        this.nombreParqueadero = nombreParqueadero;
-        this.numeroCarros = numeroCarros;
-        this.numeroMotos = numeroMotos;
-        this.numeroBicis = numeroBicis;
+    
+
+    public Estadistica() {
     }
 
     public String getNombreParqueadero() {

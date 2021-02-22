@@ -19,13 +19,14 @@ import static vistas.RecaudoPeriodos.date_inicial;
  * @author Javier
  */
 public class ResultadoConsulta extends javax.swing.JFrame {
-    
-    
+ 
     private String columnas[]={"Periodo","Recaudado"};
     private DefaultTableModel modelo = new DefaultTableModel(columnas,0);
     private Controlador controlador = new Controlador();
     private String fecha;
     private String fechaFinal;
+    
+    
     /**
      * Creates new form resultadoConsulta
      */
@@ -87,6 +88,11 @@ public class ResultadoConsulta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_informacion);
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAceptarMouseClicked(evt);
+            }
+        });
 
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_salir.setContentAreaFilled(false);
@@ -143,6 +149,10 @@ public class ResultadoConsulta extends javax.swing.JFrame {
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarMouseClicked
 
     /**
      * @param args the command line arguments

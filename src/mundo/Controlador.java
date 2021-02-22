@@ -24,6 +24,7 @@ public class Controlador {
     private ServicioDAO servicioDAO = new ServicioDAO();
     private AreaDAO areaDAO = new AreaDAO();
     private ContratoDAO contratoDAO = new ContratoDAO();
+    private EstadisticaDAO estadisticaDAO = new EstadisticaDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -43,6 +44,13 @@ public class Controlador {
     public void buscarServicio(String inicial, String ultimo) throws CaException{
         servicioDAO.buscarServicio(inicial,ultimo);
     }
+    public void buscarEstadistica(String inicial, String ultimo) throws CaException{
+        estadisticaDAO.buscarEstadistica(inicial, ultimo);
+    }
+    public int columnasEstadisticas(String inicial, String ultimo) throws CaException{
+        return estadisticaDAO.numeroColumnas(inicial, ultimo);
+    }
+
     public void incluirArea(Area area) throws CaException{
         areaDAO.incluirArea(area);
     }
@@ -56,6 +64,9 @@ public class Controlador {
     }
     public Object getInformacion(){
         return servicioDAO.getInformacion();
+    }
+    public Object getInformacionEstadistica(){
+        return estadisticaDAO.getInformacion();
     }
     public int getCodigoParqueadero(String usuario){
         return empleadoDAO.getCodigoParqueadero(usuario);

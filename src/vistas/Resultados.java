@@ -8,6 +8,10 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import mundo.Controlador;
+import mundo.Estadistica;
+import util.CaException;
 
 /**
  *
@@ -15,11 +19,41 @@ import javax.swing.ImageIcon;
  */
 public class Resultados extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Estadisticas
-     */
-    public Resultados() {
+    private String columnas[]={"Parqueadero","Vehículo","Cantidad"};
+    private DefaultTableModel modelo = new DefaultTableModel(columnas,0);
+    private Controlador controlador = new Controlador();
+    private String fecha;
+    private String fechaFinal;
+    public Resultados(){
         initComponents();
+        Estadistica miEsta = new Estadistica();
+        Estadisticas eV= new Estadisticas();
+        fecha = eV.fecha;
+        fechaFinal = eV.fechaFinal;
+        int auxiliar=0;
+        
+        try{
+            controlador.buscarEstadistica(fecha, fechaFinal);
+            auxiliar=controlador.columnasEstadisticas(fecha, fechaFinal);
+        }catch(Exception ex){
+            System.out.print(ex);
+        } 
+        Object[] tabla=(Object[])controlador.getInformacionEstadistica();
+
+        while(auxiliar!=0){
+            Object [] filas= null;
+            auxiliar--; 
+            filas= new Object[3];
+            for (int i=0;i<3;i++){
+                int auxDos=(auxiliar*3)+i;
+                filas[i]= tabla[auxDos];
+                System.out.println(tabla[auxDos]);
+            }
+            modelo.addRow(filas);
+        }
+        jTable1.setModel(modelo);
+        
+        
         setTitle("Resultados");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -28,7 +62,6 @@ public class Resultados extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +73,6 @@ public class Resultados extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,8 +89,6 @@ public class Resultados extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("jButton1");
 
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
         btn_salir.setContentAreaFilled(false);
@@ -80,20 +110,16 @@ public class Resultados extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(btn_salir)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton1)))
+                        .addComponent(btn_salir)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btn_salir))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_salir)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -145,7 +171,6 @@ public class Resultados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
