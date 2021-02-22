@@ -20,6 +20,50 @@ import util.ServiceLocator;
  */
 public class VehiculoDAO {
     private ServiceLocator conexion = new ServiceLocator();
+    
+    public void incluirVehiculoMinutos() throws CaException {
+     
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?,?,?,?)" ;
+        
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setInt(1,4);
+
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            
+        }
+        //Connection conexion = ServiceLocator.getInstance().tomarConexion();
+        /*try{
+          // FALTA POR ARREGLAR 
+            String strSQL = "INSERT INTO parqueadero VALUES(?,?,?)" ;
+            
+         
+            Connection conexion = ServiceLocator.getInstance().tomarConexion();
+            PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
+            prepStmt.setInt(1, 3);
+            prepStmt.setString(2, "Bosa");
+            prepStmt.setString(3, "65652");
+            prepStmt.executeUpdate();
+            prepStmt.close();
+            ServiceLocator.getInstance().commit();
+            
+        }catch(SQLException e){
+            throw new CaException("ParqueaderoDAO", "No pudo incluir el parqueadero "+ e.getMessage());
+        }finally {
+            ServiceLocator.getInstance().liberarConexion();
+        }*/
+    }
+    
+    
     public ArrayList<Registro> buscarVehiculo(String placa) throws CaException{
         ArrayList<Registro> registros = new ArrayList<>();
         Registro registro = new Registro(placa);

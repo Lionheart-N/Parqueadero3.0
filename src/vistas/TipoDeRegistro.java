@@ -8,13 +8,22 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+import mundo.Registro;
+import util.CaException;
 
 /**
  *
  * @author kestn
  */
 public class TipoDeRegistro extends javax.swing.JFrame {
+    
+    private Controlador controlador;
 
     /**
      * Creates new form Pago
@@ -44,8 +53,9 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         btn_contrato = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_salir = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txt_placa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,24 +90,25 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_placa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_placaActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Placa del vehiculo");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automoviles", "Camperos", "Camionetas", "vehiculos pesados", "Motocicletas", "Bicicletas" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(btn_pagoMinutos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btn_contrato)
-                .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -107,9 +118,20 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                         .addGap(134, 134, 134)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(62, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_pagoMinutos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_contrato)
+                        .addGap(70, 70, 70))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,12 +141,14 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_contrato)
-                    .addComponent(btn_pagoMinutos))
-                .addGap(18, 18, 18)
+                .addComponent(txt_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_contrato, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_pagoMinutos, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_salir)
                 .addGap(24, 24, 24))
         );
@@ -137,7 +161,27 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_contratoActionPerformed
 
     private void btn_pagoMinutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pagoMinutosMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        ArrayList<Registro> registros = new ArrayList<>();
+        if(txt_placa.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos");
+            
+        }else{
+            
+            try {
+                registros = controlador.buscarVehiculoPorPlaca(txt_placa.getText());
+                if(registros.size() != 0){
+                    JOptionPane.showMessageDialog(null, "El vehículo ya esta en el parqueadero");
+                this.dispose();
+                }else if(true){
+                    
+                }
+            } catch (CaException ex) {
+                Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
         
     }//GEN-LAST:event_btn_pagoMinutosMouseClicked
 
@@ -155,9 +199,13 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_placaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_placaActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,8 +247,9 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     private javax.swing.JButton btn_contrato;
     private javax.swing.JButton btn_pagoMinutos;
     private javax.swing.JButton btn_salir;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txt_placa;
     // End of variables declaration//GEN-END:variables
 }
