@@ -26,12 +26,14 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     
     private Controlador controlador = new Controlador();
     private Contrato contrato = new Contrato();
+    private int codigoParqueadero = 0;
 
     /**
      * Creates new form Pago
      */
-    public TipoDeRegistro() {
+    public TipoDeRegistro(java.lang.Integer codigoParqueadero) {
         initComponents();
+        this.codigoParqueadero = codigoParqueadero;
         setTitle("Pago");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -61,7 +63,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_pagoMinutos.setText("Minutos");
+        btn_pagoMinutos.setText("Ingreso");
         btn_pagoMinutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pagoMinutosMouseClicked(evt);
@@ -181,7 +183,9 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(controlador.getContrato().getEstado().equals("A")){
+            if(controlador.getContrato().getEstado().equals("A") && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
+                
+                System.out.print("Hola");
                 
             }else{
                 
@@ -249,7 +253,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                new TipoDeRegistro().setVisible(true);
+                new TipoDeRegistro(null).setVisible(true);
             }
         });
     }

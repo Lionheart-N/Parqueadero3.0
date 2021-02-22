@@ -18,14 +18,18 @@ public class Contrato {
     private Date fechaFinal;
     private String estado;
     private double precio;
+    private int idParqueadero;
 
-    public Contrato(String idContrato, Date fechaInicio, Date fechaFinal, String estado, double precio) {
+    public Contrato(String idContrato, Date fechaInicio, Date fechaFinal, String estado, double precio, int idParqueadero) {
         this.idContrato = idContrato;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.estado = estado;
         this.precio = precio;
+        this.idParqueadero = idParqueadero;
     }
+
+    
 
     public Contrato() {
         
@@ -69,6 +73,14 @@ public class Contrato {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public int getIdParqueadero() {
+        return idParqueadero;
+    }
+
+    public void setIdParqueadero(int idParqueadero) {
+        this.idParqueadero = idParqueadero;
     }
     
     

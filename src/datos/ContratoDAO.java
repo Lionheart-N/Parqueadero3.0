@@ -32,10 +32,9 @@ public class ContratoDAO {
     public void buscarContrato(String placa) throws CaException, SQLException{
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT q_estado, MAX(f_fechafinalizacion) FROM contrato"
-                + " WHERE k_placa = '"+placa+"' GROUP BY q_estado";
+        String strSQL = "SELECT q_estado, MAX(f_fechafinalizacion),k_codigoparqueadero  FROM contrato"
+                + " WHERE k_placa = '"+placa+"' GROUP BY q_estado , k_codigoparqueadero";
         ResultSet rs;
-        System.out.print((placa));
         try{   
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
@@ -43,6 +42,7 @@ public class ContratoDAO {
             rs = prepStmt.executeQuery();
             while (rs.next()){
                 contrato.setEstado(rs.getString("q_estado"));
+                contrato.setIdParqueadero(rs.getInt("k_codigoparqueadero"));
             }
         }catch(Exception ex){
             
@@ -81,6 +81,7 @@ public class ContratoDAO {
         }*/
         
     }
+    
 
     
 }

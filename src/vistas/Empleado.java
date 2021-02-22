@@ -91,6 +91,7 @@ public class Empleado extends javax.swing.JFrame {
 
     private void btn_RegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_RegistrarEntradaActionPerformed
 
     private void btn_RegistrarSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarSalidaMouseClicked
@@ -107,7 +108,7 @@ public class Empleado extends javax.swing.JFrame {
 
     private void btn_RegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaMouseClicked
         // TODO add your handling code here:
-        TipoDeRegistro pago = new TipoDeRegistro();
+        TipoDeRegistro pago = new TipoDeRegistro(codigoParqueadero);
         pago.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_RegistrarEntradaMouseClicked
