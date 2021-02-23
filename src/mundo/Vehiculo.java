@@ -16,12 +16,21 @@ public class Vehiculo {
     private String color;
     
     private String marca;
+    
+    private String tipoVehiculo;
 
-    public Vehiculo(String idVehiculo, String color, String marca) {
+    public Vehiculo(String idVehiculo, String color, String marca, String tipoVehiculo) {
         this.idVehiculo = idVehiculo;
         this.color = color;
         this.marca = marca;
+        this.tipoVehiculo = tipoVehiculo;
     }
+
+    
+
+    public Vehiculo() {
+    }
+    
 
     public String getIdVehiculo() {
         return idVehiculo;
@@ -45,6 +54,14 @@ public class Vehiculo {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
     
     

@@ -220,7 +220,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         // TODO add your handling code here:
-        TipoDeRegistro pago = new TipoDeRegistro(null);
+        TipoDeRegistro pago = new TipoDeRegistro(null, null);
         pago.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked

@@ -6,7 +6,11 @@
 package vistas;
 
 import javax.swing.JOptionPane;
+import mundo.Automoviles;
+import mundo.Bicicletas;
 import mundo.Controlador;
+import mundo.Motocicletas;
+import mundo.Vehiculo;
 
 /**
  *
@@ -95,11 +99,30 @@ public class TipoVehiculo extends javax.swing.JFrame {
     private void validar_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validar_disponibilidadActionPerformed
             String tipoVehiculo;
             tipoVehiculo = tipo_vehiculo.getSelectedItem().toString();
+            Vehiculo miVehiculo = new Vehiculo();
+            if(tipoVehiculo.equals("Automoviles")){
+                Automoviles miCarrito = new Automoviles();
+                miCarrito.setTipoVehiculo(tipoVehiculo);
+                miVehiculo = miCarrito;
+            }else if(tipoVehiculo.equals("Motocicletas")){
+                
+                Motocicletas miMotico = new Motocicletas();
+                miMotico.setTipoVehiculo(tipoVehiculo);
+                miVehiculo = miMotico;
+                
+            }else if(tipoVehiculo.equals("Bicicletas")){
+            
+                Bicicletas miBicicletita = new Bicicletas();
+                miBicicletita.setTipoVehiculo(tipoVehiculo);
+                miVehiculo = miBicicletita;
+                
+            }
             Controlador controlador = new Controlador();
             boolean cupo =controlador.verificarCupo(tipoVehiculo, codigoParqueadero);
             if(cupo==true){
                 JOptionPane.showMessageDialog(null, "Si hay cupos disponibles");
-                TipoDeRegistro registro = new TipoDeRegistro(codigoParqueadero);
+                
+                TipoDeRegistro registro = new TipoDeRegistro(codigoParqueadero, miVehiculo);
                 registro.setVisible(true);
                 this.dispose();
             }else{

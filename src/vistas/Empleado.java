@@ -111,7 +111,7 @@ public class Empleado extends javax.swing.JFrame {
 
     private void btn_RegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaMouseClicked
         // TODO add your handling code here:
-        TipoDeRegistro pago = new TipoDeRegistro(codigoParqueadero);
+        TipoDeRegistro pago = new TipoDeRegistro(codigoParqueadero, null);
         pago.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_RegistrarEntradaMouseClicked

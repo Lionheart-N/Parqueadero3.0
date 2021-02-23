@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import mundo.Registro;
+import mundo.Vehiculo;
 import util.CaException;
 import util.ServiceLocator;
 
@@ -21,25 +22,27 @@ import util.ServiceLocator;
 public class VehiculoDAO {
     private ServiceLocator conexion = new ServiceLocator();
     
-    public void incluirVehiculoMinutos() throws CaException {
+    public void incluirVehiculoMinutos(Vehiculo miVehiculo) throws CaException {
      
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?,?,?,?)" ;
+        String strSQL = "INSERT INTO vehiculo VALUES(?,?,?,?)" ;
         
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
-            prepStmt.setInt(1,4);
-
+            prepStmt.setString(1,miVehiculo.getIdVehiculo());
+            prepStmt.setString(2,miVehiculo.getTipoVehiculo());
+            prepStmt.setString(3,null);
+            prepStmt.setString(4,null);
             if(prepStmt.executeUpdate()>0){
                 con.close();
             }else{
                 con.close();
             }
         }catch(Exception e){
-            
+            System.out.print(e);
         }
         //Connection conexion = ServiceLocator.getInstance().tomarConexion();
         /*try{

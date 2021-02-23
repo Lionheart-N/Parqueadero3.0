@@ -10,23 +10,13 @@ package mundo;
  * @author Gabriel Dubuc
  */
 public class Automoviles extends Vehiculo{
-    
-    private String tipoVehiculo;
 
-    public Automoviles(String tipoVehiculo, String idVehiculo, String color, String marca) {
-        super(idVehiculo, color, marca);
-        this.tipoVehiculo = tipoVehiculo;
+    public Automoviles(String idVehiculo, String color, String marca, String tipoVehiculo) {
+        super(idVehiculo, color, marca, tipoVehiculo);
+    } 
+    public Automoviles() {
     }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
-    }
-    
-    
     
     
 }

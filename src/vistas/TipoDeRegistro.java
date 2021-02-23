@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import mundo.Contrato;
 import mundo.Controlador;
 import mundo.Registro;
+import mundo.Vehiculo;
 import util.CaException;
 
 /**
@@ -27,12 +28,15 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     private Controlador controlador = new Controlador();
     private Contrato contrato = new Contrato();
     private int codigoParqueadero = 0;
+    private Vehiculo miVehiculo = new Vehiculo();
 
     /**
      * Creates new form Pago
      */
-    public TipoDeRegistro(java.lang.Integer codigoParqueadero) {
+    public TipoDeRegistro(java.lang.Integer codigoParqueadero, mundo.Vehiculo vehiculo) {
         initComponents();
+        this.miVehiculo = vehiculo;
+
         this.codigoParqueadero = codigoParqueadero;
         setTitle("Pago");
         setResizable(false);
@@ -156,25 +160,33 @@ public class TipoDeRegistro extends javax.swing.JFrame {
 
     private void btn_pagoMinutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pagoMinutosMouseClicked
         // TODO add your handling code here
-
+        
         if(txt_placa.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos");
             
         }else{
-           try {
+            miVehiculo.setIdVehiculo(txt_placa.getText());
+            System.out.print(miVehiculo.getIdVehiculo()+ " "+miVehiculo.getTipoVehiculo());
+            try {
                 controlador.buscarContrato(txt_placa.getText());
+                if(controlador.getContrato().getEstado() == null){
+                    
+                    controlador.incluirVehiculoMinutos(miVehiculo);
+                }
+                else if((controlador.getContrato().getEstado().equals("I")) && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
+                
+                    controlador.incluirVehiculoMinutos(miVehiculo);
+                
+                }else{
+                    JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato activo o su "
+                        + "contrato pertenece a otro parqueadero");
+                }
                             
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(controlador.getContrato().getEstado().equals("A") && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
-                
-                
-                
-            }else{
-                
-            }
+            
            
             
         }
@@ -234,7 +246,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                new TipoDeRegistro(null).setVisible(true);
+                new TipoDeRegistro(null, null).setVisible(true);
             }
         });
     }

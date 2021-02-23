@@ -29,7 +29,7 @@ public class ContratoDAO {
     }
     
     
-    public void buscarContrato(String placa) throws CaException, SQLException{
+    public Contrato buscarContrato(String placa) throws CaException, SQLException{
         Connection con;
         PreparedStatement prepStmt;
         String strSQL = "SELECT q_estado, MAX(f_fechafinalizacion),k_codigoparqueadero  FROM contrato"
@@ -48,7 +48,7 @@ public class ContratoDAO {
             
             System.out.print(ex);
         }
-      
+        return contrato;
     }
     public Contrato getContrato(){
         return contrato;

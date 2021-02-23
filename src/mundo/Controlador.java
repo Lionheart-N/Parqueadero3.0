@@ -25,6 +25,7 @@ public class Controlador {
     private AreaDAO areaDAO = new AreaDAO();
     private ContratoDAO contratoDAO = new ContratoDAO();
     private EstadisticaDAO estadisticaDAO = new EstadisticaDAO();
+    private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -72,6 +73,7 @@ public class Controlador {
         return empleadoDAO.getCodigoParqueadero(usuario);
     }
     public void buscarContrato(String placa) throws CaException{
+
         try {
             contratoDAO.buscarContrato(placa);
         } catch (SQLException ex) {
@@ -89,7 +91,11 @@ public class Controlador {
         parqueaderoDAO = new ParqueaderoDAO();
         return parqueaderoDAO.verificarCupo(tipoVehiculo, codigoParqueadero); 
     }
-    
+    public void incluirVehiculoMinutos(Vehiculo miVehiculo) throws CaException {
+        
+        vehiculoDAO.incluirVehiculoMinutos(miVehiculo);
+        
+    }
     
     
 }
