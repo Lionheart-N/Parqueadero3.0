@@ -96,6 +96,8 @@ public class Controlador {
         vehiculoDAO.incluirVehiculoMinutos(miVehiculo);
         
     }
-    
+    public int id_incremento (int codigoParqueadero){
+        return servicioDAO.id_incremento(codigoParqueadero);
+    }
     
 }

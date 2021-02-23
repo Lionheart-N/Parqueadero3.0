@@ -99,6 +99,27 @@ public class ServicioDAO {
     public Object getInformacion(){
         return informacion;
     }
-   
+    public int id_incremento (int codigoParqueadero){
+        int id = 1;
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT MAX(k_numeroservicio) FROM servicio WHERE k_codigoparqueadero ="+codigoParqueadero;
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                id =rs.getInt(1)+1;
+            }
+            
+        }catch(Exception e){
+            System.out.println("No funciona");
+        }
+        return id;
+    }
+
+} 
     
-}
+

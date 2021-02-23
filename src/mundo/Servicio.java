@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Servicio {
     
-    private String idServicio;
+    private Integer idServicio;
     private Calendar horaEntrada;
     private Calendar horaSalida;
     private Date fechaEntrada;
@@ -23,7 +23,7 @@ public class Servicio {
     private Pago miPago;
 
 
-    public Servicio(String idServicio, Calendar horaEntrada, Calendar horaSalida, Date fechaEntrada, Date fechaSalida, Pago miPago) {
+    public Servicio(Integer idServicio, Calendar horaEntrada, Calendar horaSalida, Date fechaEntrada, Date fechaSalida, Pago miPago) {
         this.idServicio = idServicio;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
@@ -35,11 +35,11 @@ public class Servicio {
     public Servicio() {
     }
 
-    public String getIdServicio() {
+    public Integer getIdServicio() {
         return idServicio;
     }
 
-    public void setIdServicio(String idServicio) {
+    public void setIdServicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
 
