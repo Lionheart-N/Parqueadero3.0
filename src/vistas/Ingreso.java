@@ -5,7 +5,6 @@
  */
 package vistas;
 
-import datos.Constantes;
 import datos.EmpleadoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;

@@ -99,5 +99,9 @@ public class Controlador {
     public int id_incremento (int codigoParqueadero){
         return servicioDAO.id_incremento(codigoParqueadero);
     }
-    
+    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero) throws CaException {
+      
+        servicioDAO.incluirServicio(vehiculo, codigoParqueadero);
+      
+    }
 }

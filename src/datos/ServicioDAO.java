@@ -10,10 +10,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
 import java.util.Date;
 import mundo.Empleado;
 import mundo.Servicio;
+import mundo.Vehiculo;
 import util.CaException;
 import util.ServiceLocator;
 
@@ -36,8 +40,35 @@ public class ServicioDAO {
         servicioN = new Servicio();
     }
     
-    public void incluirServicio() throws CaException {
+    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero) throws CaException {
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "INSERT INTO servicio VALUES(?,?,?,?,?,?,?,?,?,?,?)" ;
         
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            System.out.print(id_incremento ( codigoParqueadero));
+            prepStmt.setInt(1, id_incremento ( codigoParqueadero));           
+            prepStmt.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
+            prepStmt.setDate(3, null);
+            prepStmt.setTime(4, java.sql.Time.valueOf(LocalTime.now()));
+            prepStmt.setTime(5, null);
+            prepStmt.setInt(6, 1);
+            prepStmt.setInt(7, 1);
+            prepStmt.setInt(8, 1);
+            prepStmt.setString(9, vehiculo.getIdVehiculo());
+            prepStmt.setString(10, null);
+            prepStmt.setInt(11, codigoParqueadero);
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
         
       
     }
@@ -100,7 +131,7 @@ public class ServicioDAO {
         return informacion;
     }
     public int id_incremento (int codigoParqueadero){
-        int id = 1;
+        int id = 0;
         Connection con;
         PreparedStatement prepStmt;
         String strSQL = "SELECT MAX(k_numeroservicio) FROM servicio WHERE k_codigoparqueadero ="+codigoParqueadero;
@@ -115,7 +146,7 @@ public class ServicioDAO {
             }
             
         }catch(Exception e){
-            System.out.println("No funciona");
+            System.out.println(e);
         }
         return id;
     }

@@ -66,7 +66,7 @@ public class ContratoDAO {
             rs = prepStmt.executeQuery();
             
         }catch(Exception e){
-            System.out.print("F");
+            System.out.print(e);
         }
         /*strSQL = "update contrato set q_estado='A' "
                 + "where current_date>=f_fechainicio and current_date<f_fechafinalizacion;";

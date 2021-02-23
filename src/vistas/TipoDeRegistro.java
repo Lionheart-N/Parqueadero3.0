@@ -167,12 +167,12 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             
         }else{
             miVehiculo.setIdVehiculo(txt_placa.getText());
-            System.out.print(miVehiculo.getIdVehiculo()+ " "+miVehiculo.getTipoVehiculo());
             try {
                 controlador.buscarContrato(txt_placa.getText());
                 if(controlador.getContrato().getEstado() == null){
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
+                    controlador.incluirServicio(miVehiculo,codigoParqueadero);
                 }
                 else if((controlador.getContrato().getEstado().equals("I")) && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
                 
