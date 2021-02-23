@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author WIN10
  */
-public class Area {
+public class Area { //Hola
 
     private String identificacion;
     private int cuposAutomoviles;
