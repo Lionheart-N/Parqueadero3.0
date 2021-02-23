@@ -84,8 +84,8 @@ public class Controlador {
     
         return contratoDAO.getContrato();
     }
-    public void actualizarContrato() throws SQLException{
-        contratoDAO.actualizarContrato();
+    public void actualizarContrato(String fecha) throws SQLException{
+        contratoDAO.actualizarContrato(fecha);
     }
     public boolean verificarCupo(String tipoVehiculo, int codigoParqueadero){
         parqueaderoDAO = new ParqueaderoDAO();

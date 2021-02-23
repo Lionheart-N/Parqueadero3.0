@@ -47,7 +47,6 @@ public class Resultados extends javax.swing.JFrame {
             for (int i=0;i<3;i++){
                 int auxDos=(auxiliar*3)+i;
                 filas[i]= tabla[auxDos];
-                System.out.println(tabla[auxDos]);
             }
             modelo.addRow(filas);
         }

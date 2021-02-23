@@ -44,7 +44,6 @@ public class EstadisticaDAO {
             rs = prepStmt.executeQuery();
             int auxDos=0;
             while (rs.next()){
-                System.out.println(auxDos);
                 for(int i=0;i<3;i++){
                     informacion[(auxDos*3)+i]=rs.getObject(i+1);
                 } 
@@ -60,7 +59,6 @@ public class EstadisticaDAO {
         Connection con;
         PreparedStatement prepStmt;
         String strSQL = "select count(n_nombreparqueadero || n_tipo) from espacio e, servicio s,area a, parqueadero p where e.k_idespacio=s.k_idespacio and s.k_idarea=e.k_idarea and s.k_codigoparqueadero=e.k_codigoparqueadero and s.k_idarea=a.k_idarea and s.k_codigoparqueadero=a.k_codigoparqueadero and p.k_codigoparqueadero=a.k_codigoparqueadero and f_fechaentrada>='"+inicial+"' and f_fechasalida<=' "+ultimo+"'";
-        System.out.println(strSQL);
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -74,7 +72,6 @@ public class EstadisticaDAO {
         }catch(Exception e){
             
         }
-        System.out.println(resultado);
         return resultado;
         
     }

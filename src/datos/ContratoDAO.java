@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import mundo.Contrato;
 import util.CaException;
 import java.util.Date;
@@ -53,22 +54,19 @@ public class ContratoDAO {
     public Contrato getContrato(){
         return contrato;
     }
-    public void actualizarContrato() throws SQLException{
+   public void actualizarContrato(String fecha) throws SQLException{
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "update contrato set q_estado=?;";
+        String strSQL = "Select actualizar_contratos('"+fecha+"');";
+        ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
-            prepStmt.setString(1,"I");
-            if(prepStmt.executeUpdate()>0){
-                con.close();
-            }else{
-                con.close();
-            }
+            rs = prepStmt.executeQuery();
+            
         }catch(Exception e){
-            System.out.print("Hola");
+            System.out.print("F");
         }
         /*strSQL = "update contrato set q_estado='A' "
                 + "where current_date>=f_fechainicio and current_date<f_fechafinalizacion;";

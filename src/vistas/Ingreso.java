@@ -10,6 +10,7 @@ import datos.EmpleadoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -35,8 +36,10 @@ public class Ingreso extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
         Controlador controlador = new Controlador();
+        LocalDate fechaActual=LocalDate.now();
+        String fecha =fechaActual.toString();
         try {
-            controlador.actualizarContrato();
+            controlador.actualizarContrato(fecha);
         } catch (SQLException ex) {
             Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
         }
