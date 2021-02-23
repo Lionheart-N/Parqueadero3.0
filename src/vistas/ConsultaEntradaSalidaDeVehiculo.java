@@ -24,7 +24,7 @@ import util.CaException;
 public class ConsultaEntradaSalidaDeVehiculo extends javax.swing.JFrame {
 
     /**
-     * Creates new form ConsultaEntradaSalidaDeVehículo
+     * Creates new form ConsultaEntradaSalidaDeVehículo LALA
      */
     public ConsultaEntradaSalidaDeVehiculo() {
         initComponents();

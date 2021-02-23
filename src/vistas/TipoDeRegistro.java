@@ -156,7 +156,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
 
     private void btn_pagoMinutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pagoMinutosMouseClicked
         // TODO add your handling code here
-        ArrayList<Registro> registros = new ArrayList<>();
+
         if(txt_placa.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos");
@@ -170,7 +170,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             }
             if(controlador.getContrato().getEstado().equals("A") && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
                 
-                System.out.print("Hola");
+                
                 
             }else{
                 
