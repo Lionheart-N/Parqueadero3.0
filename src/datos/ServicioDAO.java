@@ -98,5 +98,6 @@ public class ServicioDAO {
     public Object getInformacion(){
         return informacion;
     }
+   
     
 }

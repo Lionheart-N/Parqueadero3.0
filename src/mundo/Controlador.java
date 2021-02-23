@@ -85,4 +85,11 @@ public class Controlador {
     public void actualizarContrato() throws SQLException{
         contratoDAO.actualizarContrato();
     }
+    public boolean verificarCupo(String tipoVehiculo, int codigoParqueadero){
+        parqueaderoDAO = new ParqueaderoDAO();
+        return parqueaderoDAO.verificarCupo(tipoVehiculo, codigoParqueadero); 
+    }
+    
+    
+    
 }

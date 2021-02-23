@@ -5,19 +5,26 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+
 /**
  *
  * @author felip
  */
 public class TipoVehiculo extends javax.swing.JFrame {
-
+    private int codigoParqueadero;
     /**
      * Creates new form TipoVehiculo
      */
     public TipoVehiculo() {
         initComponents();
     }
-
+    public TipoVehiculo(int codigoParqueadero){
+        this.codigoParqueadero = codigoParqueadero;
+        initComponents();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,26 +34,25 @@ public class TipoVehiculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipo_vehiculo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        validar_disponibilidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automoviles", "Camperos", "Camionetas", "Vehiculos Pesados", "Motocicletas", "Bicicletas" }));
-        jComboBox1.setSelectedIndex(-1);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        tipo_vehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automoviles", "Motocicletas", "Bicicletas" }));
+        tipo_vehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                tipo_vehiculoActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Tipo de vehiculo");
 
-        jButton1.setText("Validar disponibilidad");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        validar_disponibilidad.setText("Validar disponibilidad");
+        validar_disponibilidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                validar_disponibilidadActionPerformed(evt);
             }
         });
 
@@ -57,9 +63,9 @@ public class TipoVehiculo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(validar_disponibilidad)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tipo_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)))
                 .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -73,25 +79,40 @@ public class TipoVehiculo extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipo_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(validar_disponibilidad)
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void tipo_vehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_vehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_tipo_vehiculoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void validar_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validar_disponibilidadActionPerformed
+            String tipoVehiculo;
+            tipoVehiculo = tipo_vehiculo.getSelectedItem().toString();
+            Controlador controlador = new Controlador();
+            boolean cupo =controlador.verificarCupo(tipoVehiculo, codigoParqueadero);
+            if(cupo==true){
+                JOptionPane.showMessageDialog(null, "Si hay cupos disponibles");
+                TipoDeRegistro registro = new TipoDeRegistro(codigoParqueadero);
+                registro.setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "NO hay cupos disponibles");
+            }
+            
+            
+        
         // TODO add your handling code here:
-        VistaArea areaVehiculo = new VistaArea(null,0);
+        /**VistaArea areaVehiculo = new VistaArea(null,0);
         VistaArea areaMotos = new VistaArea(null,0);
-        VistaArea areaBicis = new VistaArea(null,0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        VistaArea areaBicis = new VistaArea(null,0);*/
+    }//GEN-LAST:event_validar_disponibilidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,8 +150,8 @@ public class TipoVehiculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> tipo_vehiculo;
+    private javax.swing.JButton validar_disponibilidad;
     // End of variables declaration//GEN-END:variables
 }

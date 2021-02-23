@@ -137,6 +137,36 @@ public class ParqueaderoDAO {
  
      return nombres;
     }
+    public boolean verificarCupo(String tipoVehiculo, int codigoParqueadero){
+        Connection con;
+        PreparedStatement prepStmt;
+        String script="";
+        if(tipoVehiculo.equals("Motocicletas")){
+            script = " SELECT q_disponiblesmotos FROM area WHERE k_codigoparqueadero ="+ codigoParqueadero;
+        }else if(tipoVehiculo.equals("Automoviles")){
+            script = " SELECT q_disponiblesautomoviles FROM area WHERE k_codigoparqueadero ="+ codigoParqueadero;
+        }else{
+            script = " SELECT q_disponiblesbicicletas FROM area WHERE k_codigoparqueadero ="+ codigoParqueadero;
+        }  
+        ResultSet rs;
+        try {
+         Class.forName(conexion.getDriver());
+         con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+         prepStmt = con.prepareStatement(script);
+         rs = prepStmt.executeQuery();
+         rs.next();
+         int numeroCupos = rs.getInt(1);
+         if(numeroCupos>0){
+            return true;
+         }else{
+            return false;
+         }    
+          
+        }catch (Exception e){
+            return false;
+        } 
+    }
 }
+
     
 

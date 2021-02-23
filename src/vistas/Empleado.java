@@ -90,7 +90,10 @@ public class Empleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_RegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaActionPerformed
-        // TODO add your handling code here:
+                TipoVehiculo vehiculo = new TipoVehiculo(codigoParqueadero);
+                vehiculo.setVisible(true);
+                this.dispose();          
+                // TODO add your handling code here:
         
     }//GEN-LAST:event_btn_RegistrarEntradaActionPerformed
 
