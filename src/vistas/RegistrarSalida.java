@@ -7,7 +7,12 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+import util.CaException;
 
 /**
  *
@@ -15,11 +20,14 @@ import javax.swing.ImageIcon;
  */
 public class RegistrarSalida extends javax.swing.JFrame {
 
+    private Controlador controlador = new Controlador();
+    private int codigoParqueadero = 0;
     /**
      * Creates new form VentanaUno
      */
-    public RegistrarSalida() {
+    public RegistrarSalida(java.lang.Integer codigoParqueadero) {
         initComponents();
+        this.codigoParqueadero = codigoParqueadero;
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
@@ -54,6 +62,11 @@ public class RegistrarSalida extends javax.swing.JFrame {
         getContentPane().add(txtPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 110, -1));
 
         btnSalida.setText("Registrar salida");
+        btnSalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalidaMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 110, -1));
 
         jLabel1.setText("  Placa del Vehiculo");
@@ -91,6 +104,37 @@ public class RegistrarSalida extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_btn_SalirMouseClicked
 
+    private void btnSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalidaMouseClicked
+        // TODO add your handling code here:
+        if(txtPlacaVehiculo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor no sea imbecil");
+        }else{
+            try {
+                controlador.buscarContrato(txtPlacaVehiculo.getText());
+                if(controlador.getContrato().getEstado() == null){
+                    
+                    if(controlador.buscarServicioSalida(txtPlacaVehiculo.getText())== null)
+                    {
+                        
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
+                    }
+                }
+                else if((controlador.getContrato().getEstado().equals("A")) && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
+                
+                    
+                
+                }else{
+                    JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato inactivo");
+                }
+            } catch (CaException ex) {
+                Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+    }//GEN-LAST:event_btnSalidaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -122,7 +166,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarSalida().setVisible(true);
+                new RegistrarSalida(null).setVisible(true);
             }
         });
     }

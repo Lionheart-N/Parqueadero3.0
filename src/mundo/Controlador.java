@@ -104,4 +104,9 @@ public class Controlador {
         servicioDAO.incluirServicio(vehiculo, codigoParqueadero);
       
     }
+    
+    public String buscarServicioSalida(String placa){
+            
+        return servicioDAO.buscarServicioSalida(placa);
+    }
 }

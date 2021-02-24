@@ -98,7 +98,7 @@ public class Empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_RegistrarEntradaActionPerformed
 
     private void btn_RegistrarSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarSalidaMouseClicked
-        RegistrarSalida registrarSalida = new RegistrarSalida();
+        RegistrarSalida registrarSalida = new RegistrarSalida(codigoParqueadero);
         registrarSalida.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_RegistrarSalidaMouseClicked

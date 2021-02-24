@@ -122,10 +122,35 @@ public class ServicioDAO {
         }*/
       
     }
+    public String buscarServicioSalida(String placa){
+        Connection con;
+        String fechaSalida = "";
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT MAX(f_fechaentrada), f_fechasalida "
+                + "FROM servicio WHERE k_placa = '"+placa+"' GROUP BY f_fechasalida";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                
+                fechaSalida =  rs.getString("f_fechasalida");
+            }
+            
+        }catch(Exception e){
+            
+        }
+        return fechaSalida;
+    }
     
 
     public void actualizarServicio() throws CaException {
-
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "UPDATE servicio SET f_fechasalida = ?, o_horasalida";
+        ResultSet rs;
     }
     public Object getInformacion(){
         return informacion;
