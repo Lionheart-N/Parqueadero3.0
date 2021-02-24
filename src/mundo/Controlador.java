@@ -72,14 +72,21 @@ public class Controlador {
     public int getCodigoParqueadero(String usuario){
         return empleadoDAO.getCodigoParqueadero(usuario);
     }
-    public void buscarContrato(String placa) throws CaException{
-
+    public char validarContrato(String placa,int codigo) throws CaException{
+        char respuesta='I';
         try {
-            contratoDAO.buscarContrato(placa);
+            respuesta = contratoDAO.buscarContrato(placa,codigo);
         } catch (SQLException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return respuesta;
     }
+    public char buscarServicioActivo(String placa){
+        char ingreso='N';
+        ingreso= servicioDAO.buscarServicioActivo(placa);
+        return ingreso;
+    }
+
     public Contrato getContrato(){
     
         return contratoDAO.getContrato();
@@ -104,7 +111,11 @@ public class Controlador {
         servicioDAO.incluirServicio(vehiculo, codigoParqueadero);
       
     }
-    
+    public char buscarContrato(String Placa, int parqueadero) throws CaException, SQLException{
+        char estado='I';
+        estado=contratoDAO.buscarContrato(Placa, parqueadero);
+        return estado;
+    }
     public String buscarServicioSalida(String placa){
             
         return servicioDAO.buscarServicioSalida(placa);

@@ -167,29 +167,22 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             
         }else{
             miVehiculo.setIdVehiculo(txt_placa.getText());
+            System.out.print(miVehiculo.getIdVehiculo()+ " "+miVehiculo.getTipoVehiculo());
             try {
-                controlador.buscarContrato(txt_placa.getText());
-                if(controlador.getContrato().getEstado() == null){
+                
+                if(controlador.buscarServicioActivo(txt_placa.getText()) == 'N'){
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
-                    controlador.incluirServicio(miVehiculo,codigoParqueadero);
                 }
-                else if((controlador.getContrato().getEstado().equals("I")) && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
-                
-                    controlador.incluirVehiculoMinutos(miVehiculo);
-                
-                }else{
-                    JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato activo o su "
-                        + "contrato pertenece a otro parqueadero");
+                else{
+                    JOptionPane.showMessageDialog(null, "El vehiculo ya se encuentra alojado en alguno de nuestros parqueaderos");
                 }
                             
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-           
-            
         }
+
         
     }//GEN-LAST:event_btn_pagoMinutosMouseClicked
 

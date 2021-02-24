@@ -28,28 +28,27 @@ public class ContratoDAO {
     public ContratoDAO() {
         conexion = new ServiceLocator();
     }
-    
-    
-    public Contrato buscarContrato(String placa) throws CaException, SQLException{
+    public char buscarContrato(String placa, int parqueadero) throws CaException, SQLException{
+        char resultado='I';
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT q_estado, MAX(f_fechafinalizacion),k_codigoparqueadero  FROM contrato"
-                + " WHERE k_placa = '"+placa+"' GROUP BY q_estado , k_codigoparqueadero";
+        String strSQL = "select count(*) from contrato where k_codigoparqueadero="+parqueadero+
+                "and k_placa='"+placa+"' and q_estado='A';";
         ResultSet rs;
         try{   
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
-            while (rs.next()){
-                contrato.setEstado(rs.getString("q_estado"));
-                contrato.setIdParqueadero(rs.getInt("k_codigoparqueadero"));
+            if(rs.getInt(1)!=0){
+                resultado='A';
             }
+            
         }catch(Exception ex){
             
             System.out.print(ex);
         }
-        return contrato;
+        return resultado;
     }
     public Contrato getContrato(){
         return contrato;

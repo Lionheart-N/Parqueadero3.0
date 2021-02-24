@@ -7,6 +7,7 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -107,11 +108,10 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private void btnSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalidaMouseClicked
         // TODO add your handling code here:
         if(txtPlacaVehiculo.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Por favor no sea imbecil");
+            JOptionPane.showMessageDialog(null, "Por favor ingresa un valor válido");
         }else{
             try {
-                controlador.buscarContrato(txtPlacaVehiculo.getText());
-                if(controlador.getContrato().getEstado() == null){
+                if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='I'){
                     
                     if(controlador.buscarServicioSalida(txtPlacaVehiculo.getText())== null)
                     {
@@ -120,7 +120,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
                     }
                 }
-                else if((controlador.getContrato().getEstado().equals("A")) && controlador.getContrato().getIdParqueadero() == codigoParqueadero){
+                else if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='A'){
                 
                     
                 
@@ -128,6 +128,8 @@ public class RegistrarSalida extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato inactivo");
                 }
             } catch (CaException ex) {
+                Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
                 Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
             }
             

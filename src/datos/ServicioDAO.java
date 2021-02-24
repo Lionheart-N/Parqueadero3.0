@@ -81,6 +81,30 @@ public class ServicioDAO {
       
     }
     
+    public char buscarServicioActivo(String placa){
+        char ingreso='N';
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "select k_numeroservicio, count(*) from servicio where k_placa='"+placa+"' and f_fechasalida is null group by k_numeroservicio;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                int a =rs.getInt(1);
+                if(a!=0){
+                ingreso='Y';
+            }
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return ingreso;
+    }
+
+    
     public void buscarServicio(String inicial, String ultimo) throws CaException{
         
         Connection con;
