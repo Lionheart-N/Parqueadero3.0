@@ -44,21 +44,19 @@ public class ServicioDAO {
         long minutos = 0;
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT f_fechaentrada, MAX(f_fechasalida) AS f_fechasalida , o_horaentrada, o_horasalida FROM servicio WHERE k_placa = '"
-                +placa+"' GROUP BY f_fechaentrada,o_horaentrada,o_horasalida ";
+        String strSQL = "SELECT CONCAT(f_fechaentrada ||' '|| o_horaentrada), CONCAT(f_fechasalida ||' '|| o_horasalida) \n" +
+                        "FROM servicio WHERE k_placa = '"
+                +placa+"' ORDER BY f_fechaentrada DESC  limit 1";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
-            while (rs.next()){
-                String fechaInicial = rs.getDate("f_fechaentrada") + " "+ rs.getTime("o_horaentrada");
-                String fechaFinal = rs.getDate("f_fechasalida") + " "+ rs.getTime("o_horasalida");
+            while(rs.next()){
                 
-                minutos = servicioN.calcularDifMinutos(fechaInicial, fechaFinal);
-                
-                
+                minutos = servicioN.calcularDifMinutos(rs.getString(1), rs.getString(2));
+                             
             }
             
         }catch(Exception e){
@@ -121,7 +119,27 @@ public class ServicioDAO {
         
       
     }
-    
+    public void insertarMinutosPago(int minutos, String placa, int pago){
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "UPDATE servicio SET q_minutos = ?, v_valor = ? WHERE k_placa = '"+placa+"' AND q_minutos IS null  "
+                + "AND v_valor IS null";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setInt(1, minutos);           
+            prepStmt.setInt(2, pago); 
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
     public void modificarServicio(){
       
     }

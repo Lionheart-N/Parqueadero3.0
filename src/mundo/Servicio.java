@@ -47,14 +47,14 @@ public class Servicio {
       long respuesta=0;
       Date fechaIni = null;
       Date fechafin = null;
-      SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       try{
           fechaIni = format.parse(fechaInicial);
           fechafin = format.parse(fechaFinal);
       }catch(Exception ex){
           System.out.print(ex);
       }
-      respuesta = (fechaIni.getTime() - fechafin.getTime())/6000;
+      respuesta = (fechafin.getTime() - fechaIni.getTime())/60000;
       
       
       return respuesta;

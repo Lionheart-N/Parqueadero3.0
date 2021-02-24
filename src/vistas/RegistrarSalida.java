@@ -116,7 +116,11 @@ public class RegistrarSalida extends javax.swing.JFrame {
                     if(controlador.buscarServicioActivo(txtPlacaVehiculo.getText(),codigoParqueadero)=='Y')
                     {
                         controlador.actualizarServicio(txtPlacaVehiculo.getText());
-                        JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente");       
+                        int minuto = (int) controlador.calcularMinutos(txtPlacaVehiculo.getText());
+                        int pago  = controlador.valorPago(txtPlacaVehiculo.getText(), codigoParqueadero,minuto );
+                        controlador.insertarMinutosPago(minuto, txtPlacaVehiculo.getText(), pago);
+                        JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente"); 
+                        
                     }else{
                         JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
                     }
@@ -129,9 +133,9 @@ public class RegistrarSalida extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato inactivo");
                 }
             } catch (CaException ex) {
-                Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }

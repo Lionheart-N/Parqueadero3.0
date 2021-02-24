@@ -27,6 +27,7 @@ public class Controlador {
     private EstadisticaDAO estadisticaDAO = new EstadisticaDAO();
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private EspacioDAO espacioDAO = new EspacioDAO();
+    private JoinDAO joinDAO = new JoinDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -125,5 +126,16 @@ public class Controlador {
     public String buscarServicioSalida(String placa){
             
         return servicioDAO.buscarServicioSalida(placa);
+    }
+    public long calcularMinutos(String placa){
+        return servicioDAO.calcularMinutos(placa);
+    }
+    public int valorPago(String placa, int codigoParqueadero, int minutos){
+        
+        return joinDAO.valorPago(placa, codigoParqueadero, minutos);
+    }
+    public void insertarMinutosPago(int minutos, String placa, int pago){
+        
+        servicioDAO.insertarMinutosPago(minutos, placa, pago);
     }
 }
