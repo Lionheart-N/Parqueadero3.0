@@ -23,6 +23,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
 
     private Controlador controlador = new Controlador();
     private int codigoParqueadero = 0;
+    private VentanaFactura  ventanaFactura;
     /**
      * Creates new form VentanaUno
      */
@@ -118,18 +119,20 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         controlador.actualizarServicio(txtPlacaVehiculo.getText());
                         int minuto = (int) controlador.calcularMinutos(txtPlacaVehiculo.getText());
                         int pago  = controlador.valorPago(txtPlacaVehiculo.getText(), codigoParqueadero,minuto );
+                        if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='A'){
+                            pago = 0;
+                        }
                         controlador.insertarMinutosPago(minuto, txtPlacaVehiculo.getText(), pago);
-                        JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente"); 
+                        JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente");
                         
+                        ventanaFactura = new VentanaFactura(txtPlacaVehiculo.getText());
+                        ventanaFactura.setVisible(true);
+                        this.dispose();
                     }else{
                         JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
                     }
                 }
-                else if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='A'){
-                
-                    
-                
-                }else{
+                else{
                     JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato inactivo");
                 }
             } catch (CaException ex) {

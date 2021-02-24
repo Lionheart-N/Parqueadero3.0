@@ -29,6 +29,7 @@ public class Controlador {
     private EspacioDAO espacioDAO = new EspacioDAO();
     private PropietarioDAO propietarioDAO = new PropietarioDAO();
     private JoinDAO joinDAO = new JoinDAO();
+    private FacturaDAO facturaDAO = new FacturaDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -145,4 +146,13 @@ public class Controlador {
     public void ingresarPropietario(int idPropietario,String nombUno,String nombDos,String apeUno,String apeDos) throws CaException{
         propietarioDAO.ingresarPropietario(idPropietario, nombUno, nombDos, apeUno, apeDos);
     }
+    public void rellenarFactura(String placa){
+    
+        facturaDAO.rellenarFactura(placa);
+    }
+    public Factura getFactura(){
+        
+        return facturaDAO.getFactura();
+    }
+
 }
