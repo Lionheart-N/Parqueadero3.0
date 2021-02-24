@@ -96,6 +96,44 @@ public class VehiculoDAO {
             return buscarVehiculoContrato(placa);  
         } 
 }
+    
+   
+    
+    public void actualizarDatos(String marca, String modelo,String color,String placa) throws CaException {
+     
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update vehiculo set n_modelo=?,o_color=?,n_marca=? where k_placa=?;" ;
+        
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setString(1,modelo);
+            prepStmt.setString(2,color);
+            prepStmt.setString(3,marca);
+            prepStmt.setString(4,placa);
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public ArrayList<Registro> buscarVehiculoContrato(String placa) throws CaException{
         ArrayList<Registro> registros = new ArrayList<>();
         Registro registro = new Registro(placa);

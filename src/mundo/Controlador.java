@@ -27,6 +27,7 @@ public class Controlador {
     private EstadisticaDAO estadisticaDAO = new EstadisticaDAO();
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private EspacioDAO espacioDAO = new EspacioDAO();
+    private PropietarioDAO propietarioDAO = new PropietarioDAO();
     private JoinDAO joinDAO = new JoinDAO();
     
     public void incluirEmpleado() throws CaException {
@@ -131,5 +132,17 @@ public class Controlador {
     public void insertarMinutosPago(int minutos, String placa, int pago){
         
         servicioDAO.insertarMinutosPago(minutos, placa, pago);
+    }
+    
+    public void actualizarContratoYVehiculo(int idPropietario,String placa,String fechaFinal,int valor, int codigoParqueadero,String marca,String modelo,String color) throws CaException{
+        contratoDAO.ingresarContrato(idPropietario, placa, fechaFinal, valor, codigoParqueadero);
+        vehiculoDAO.actualizarDatos(marca, modelo, color, placa);
+    }
+    public boolean buscarPropietario(int idPropietario) throws CaException{
+        return propietarioDAO.buscarPropietario(idPropietario);
+    }
+    
+    public void ingresarPropietario(int idPropietario,String nombUno,String nombDos,String apeUno,String apeDos) throws CaException{
+        propietarioDAO.ingresarPropietario(idPropietario, nombUno, nombDos, apeUno, apeDos);
     }
 }

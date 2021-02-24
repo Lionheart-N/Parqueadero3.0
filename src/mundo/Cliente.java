@@ -18,11 +18,7 @@ public class Cliente {
     private String apellido;
     private ArrayList<String> telefono;
 
-    public Cliente(String cedula, String nombre, String apellido, ArrayList<String> telefono) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
+    public Cliente() {    
     }
 
     public String getCedula() {

@@ -11,9 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.Date;
 import mundo.Contrato;
 import util.CaException;
-import java.util.Date;
 import util.ServiceLocator;
 
 /**
@@ -32,7 +33,7 @@ public class ContratoDAO {
         char resultado='I';
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "select count(*) from contrato where k_codigoparqueadero="+1+
+        String strSQL = "select count(*) from contrato where k_codigoparqueadero="+parqueadero+
                 "and k_placa='"+placa+"' and q_estado='A';";
         ResultSet rs;
         try{   
@@ -73,16 +74,31 @@ public class ContratoDAO {
         }catch(Exception e){
             System.out.print(e);
         }
-        /*strSQL = "update contrato set q_estado='A' "
-                + "where current_date>=f_fechainicio and current_date<f_fechafinalizacion;";
+        
+    }
+   
+   
+   
+   public void ingresarContrato(int idPropietario,String placa ,String fechaFinal,int valor,int codigoParqueadero) throws CaException {
+     
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "INSERT INTO contrato VALUES((select count(*) from contrato)+1,?,'"+fechaFinal+"',"+
+                valor+",'"+placa+"','"+idPropietario+"',"+codigoParqueadero+",'A')" ;
+        
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setDate(1,java.sql.Date.valueOf(LocalDate.now()));
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
         }catch(Exception e){
             System.out.print(e);
-        }*/
-        
+        }
     }
     
 

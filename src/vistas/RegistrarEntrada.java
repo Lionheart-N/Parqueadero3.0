@@ -7,7 +7,15 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import mundo.Controlador;
+import mundo.Vehiculo;
+import util.CaException;
 
 /**
  *
@@ -15,11 +23,14 @@ import javax.swing.ImageIcon;
  */
 public class RegistrarEntrada extends javax.swing.JFrame {
     int codigoParqueadero;
-    String placa;
+    String placa; 
+    String tipo;
+    private Controlador controlador;
     /**
      * Creates new form RegistrarEntrada
      */
-    public RegistrarEntrada(int codigo,String placa) {
+    public RegistrarEntrada(int codigo,String placa,String tipo) {
+        this.tipo=tipo;
         this.placa=placa;
         codigoParqueadero=codigo;
         initComponents();
@@ -43,19 +54,20 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         btn_RegistrarInfo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_IdentificacionPropietario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txt_Modelo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_Color = new javax.swing.JTextField();
-        Calendario = new com.toedter.calendar.JDateChooser();
         btn_salir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         Calendario1 = new com.toedter.calendar.JDateChooser();
         txt_Marca1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btn_RealizarContrato = new javax.swing.JButton();
+        txt_Valor = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -73,8 +85,6 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 btn_RegistrarInfoActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Fecha de Inicio");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Marca");
@@ -98,6 +108,21 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         jLabel9.setText("Identificación propietario");
 
+        btn_RealizarContrato.setText("Firmar Contrato");
+        btn_RealizarContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_RealizarContratoMouseClicked(evt);
+            }
+        });
+        btn_RealizarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RealizarContratoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Valor contrato");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,82 +131,83 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(Calendario, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addComponent(Calendario1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                         .addComponent(txt_IdentificacionPropietario))
                     .addComponent(jLabel9)
+                    .addComponent(btn_RealizarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(30, 30, 30)
+                            .addComponent(txt_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_RegistrarInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txt_Color, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(txt_Modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(txt_Marca1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btn_salir))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(btn_RegistrarInfo)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Color, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(txt_Modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(txt_Marca1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Calendario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addGap(5, 5, 5)
+                        .addComponent(txt_IdentificacionPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Calendario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_Color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_IdentificacionPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(txt_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_RegistrarInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_salir))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_salir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(btn_RegistrarInfo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_RealizarContrato)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_RegistrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarInfoActionPerformed
-        DatosDueño  DD=new DatosDueño(codigoParqueadero,placa);
+        DatosDueño  DD=new DatosDueño(codigoParqueadero,placa,tipo);
         DD.setVisible(true);   
         dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_RegistrarInfoActionPerformed
 
     private void btn_RegistrarInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarInfoMouseClicked
-        // TODO add your handling code here:
-        DatosDueño datosDueño = new DatosDueño(codigoParqueadero,placa);
-        datosDueño.setVisible(true);
-        this.dispose();
+                DatosDueño datosDueño = new DatosDueño(codigoParqueadero,placa,tipo);
+                datosDueño.setVisible(true);
+                this.dispose();             
     }//GEN-LAST:event_btn_RegistrarInfoMouseClicked
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
@@ -190,6 +216,52 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         pago.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked
+
+    private void btn_RealizarContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RealizarContratoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_RealizarContratoMouseClicked
+
+    private void btn_RealizarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RealizarContratoActionPerformed
+        int idPropietario;
+        String marca;
+        String modelo;
+        String color;
+        String fechaFinal;
+        int valor;
+        
+        idPropietario=Integer.parseInt( txt_IdentificacionPropietario.getText().toString());
+        marca=txt_Marca1.getText().toString();
+        color=txt_Color.getText().toString();
+        modelo=txt_Modelo.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        fechaFinal = sdf.format(Calendario1.getDate()) ;
+        controlador=new Controlador();
+        valor=Integer.parseInt( txt_Valor.getText().toString());
+        
+        try {
+            if(controlador.buscarPropietario(idPropietario)){
+                Vehiculo vehiculoContrato=new Vehiculo(placa,null,null,tipo);
+                controlador.incluirVehiculoMinutos(vehiculoContrato);
+                controlador.actualizarContratoYVehiculo(idPropietario, placa, fechaFinal, valor, codigoParqueadero, marca, modelo, color);
+                controlador.incluirServicio(vehiculoContrato, codigoParqueadero);
+            }else{
+                JOptionPane.showMessageDialog(null, "El propietario todavía no se encuentra registrado, por favor registrelo.");
+            }
+        } catch (CaException ex) {
+                Logger.getLogger(RegistrarEntrada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_RealizarContratoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,20 +298,21 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser Calendario;
     private com.toedter.calendar.JDateChooser Calendario1;
+    private javax.swing.JButton btn_RealizarContrato;
     private javax.swing.JButton btn_RegistrarInfo;
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txt_Color;
     private javax.swing.JTextField txt_IdentificacionPropietario;
     private javax.swing.JTextField txt_Marca1;
     private javax.swing.JTextField txt_Modelo;
+    private javax.swing.JTextField txt_Valor;
     // End of variables declaration//GEN-END:variables
 }

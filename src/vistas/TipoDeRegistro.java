@@ -159,6 +159,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
         try {
             char validacion='A';
             String placa=txt_placa.getText();
+            String tipo=miVehiculo.getTipoVehiculo();
             if(placa.equalsIgnoreCase("") ){
                 JOptionPane.showMessageDialog(null, "Ingresa un valor válido");
             }else{
@@ -171,7 +172,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 if(validacion=='A'){
                    JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un contrato activo en este parqueadero");
                 }else{
-                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa);
+                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa,tipo);
                     registro.setVisible(true);
                     this.dispose();
                 }
@@ -199,6 +200,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 if(controlador.buscarServicioActivo(txt_placa.getText(),codigoParqueadero) == 'N'){
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
+                    controlador.incluirServicio(miVehiculo, codigoParqueadero);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "El vehiculo ya se encuentra alojado en alguno de nuestros parqueaderos");
@@ -215,6 +217,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     private void btn_contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_contratoMouseClicked
         try {
             char validacion='A';
+            String tipo=miVehiculo.getTipoVehiculo();
             String placa=txt_placa.getText();
             if(placa.equalsIgnoreCase("") ){
                 JOptionPane.showMessageDialog(null, "Ingresa un valor válido");
@@ -228,7 +231,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 if(validacion=='A'){
                    JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un contrato activo en este parqueadero");
                 }else{
-                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa);
+                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa,tipo);
                     registro.setVisible(true);
                     this.dispose();
                 }
