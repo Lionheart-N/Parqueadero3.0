@@ -26,6 +26,7 @@ public class Controlador {
     private ContratoDAO contratoDAO = new ContratoDAO();
     private EstadisticaDAO estadisticaDAO = new EstadisticaDAO();
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    private EspacioDAO espacioDAO = new EspacioDAO();
     
     public void incluirEmpleado() throws CaException {
       empleadoDAO.incluirEmpleado();
@@ -56,6 +57,9 @@ public class Controlador {
     }
     public void incluirArea(Area area) throws CaException{
         areaDAO.incluirArea(area);
+    }
+    public void asignarEspacios(Espacio espacio)throws CaException{
+        espacioDAO.asignarEspacios(espacio);
     }
     public static ArrayList<String> consultar_nombres (){
         return ParqueaderoDAO.consultar_nombres();

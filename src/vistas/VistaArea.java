@@ -8,11 +8,13 @@ package vistas;
 import mundo.Area;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mundo.Controlador;
+import mundo.Espacio;
 import mundo.Parqueadero;
 import util.CaException;
 
@@ -25,9 +27,17 @@ public class VistaArea extends javax.swing.JFrame {
     Parqueadero parqueadero;
     Controlador control = new Controlador();
     Area area = new Area();
-    static int contador;
-    static int contadorPropio = 0;
-
+    Espacio espacio = new Espacio();
+    Random rnd = new Random();
+    static int contador;    //Numero de areas que se deben registrar
+    static int contadorPropio = 0;  //Contador que nos ayuda a saber cual es el area que estamos registrando
+    private int espaciosAuto;
+    private int espaciosMoto;
+    private int espaciosBici;
+    private char letraRandom;
+    private int inicioRandom;
+    private String random;
+    private String identificadorEspacio;
 
     /**
      * Creates new form Area
@@ -139,7 +149,7 @@ public class VistaArea extends javax.swing.JFrame {
 
     private void btn_AreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AreaMouseClicked
 
-        area.setCuposAutomoviles(Integer.parseInt(cuposCarros.getText()));
+        area.setCuposAutomoviles(Integer.parseInt(cuposCarros.getText()));  //Se asigna al objeto los valores recibidos
         area.setCuposMotos(Integer.parseInt(cuposMotos.getText()));
         area.setCuposBicicletas(Integer.parseInt(cuposBicicletas.getText()));
         area.setAutosDisponibles(Integer.parseInt(cuposCarros.getText()));
@@ -150,24 +160,135 @@ public class VistaArea extends javax.swing.JFrame {
         area.setIdentificacion(txt_areaID.getText());
         area.setCodigoParqueadero(parqueadero.getIdentificador());
 
-        contadorPropio++;
-        if (contadorPropio <= contador) {
+        espacio.setCodigoParqueadero(area.getCodigoParqueadero());
+        espacio.setEstado("D");
+        espacio.setAreaID(area.getIdentificacion());
+
+        contadorPropio++;   //Se aumenta el identificador de las ventanas
+
+        espaciosAuto = 0;
+        espaciosMoto = 0;
+        espaciosBici = 0;
+        inicioRandom = 0;
+
+        if (contadorPropio <= contador) { //Condicional que se cumple cuando no es la ultima area a registrar
             try {
+                espaciosAuto = 0;
+                espaciosMoto = 0;
+                espaciosBici = 0;
+
                 control.incluirArea(area);
+
+                inicioRandom = 0;   //Inicializamos el numero aleatorio 
+                random = "";        //Inicializamos el string que va a recibir el numero aleatorio
+
+                letraRandom = (char) (Math.random() * (122 - 97) + 97); //Obtenemos una letra al azar del abecedario
+                //En este ciclo obtenemos un string de 4 numeros aleatorios
+                for (int i = 0; i < 3; i++) {
+                    if (i < 3) {
+                        random += rnd.nextInt(10);
+                    }
+                }
+                inicioRandom = Integer.parseInt(random);    //Convertimos los numero aleatorio recibidos de tipo String a tipo int
+
+                while (espaciosAuto < area.getCuposAutomoviles()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosAuto++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Automovil");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
+                while (espaciosMoto < area.getCuposMotos()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosMoto++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Motocicletas");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
+                while (espaciosBici < area.getCuposBicicletas()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosBici++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Bicicletas");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
             } catch (CaException ex) {
                 Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.dispose();
-            System.out.println("Estoy en el primer if");
-            System.out.println(contador);
-            System.out.println(contadorPropio);
+
         }
-        if (contadorPropio == contador+1) {
-            System.out.println("Estoy en el segundo if");
-            System.out.println(contador);
-            System.out.println(contadorPropio);
+        if (contadorPropio == contador + 1) {   //Condicional que se cumple cuando es la ultima area a registrar
             try {
+                espaciosAuto = 0;
+                espaciosMoto = 0;
+                espaciosBici = 0;
+
                 control.incluirArea(area);
+
+                inicioRandom = 0;   //Inicializamos el numero aleatorio 
+                random = "";        //Inicializamos el string que va a recibir el numero aleatorio
+
+                letraRandom = (char) (Math.random() * (122 - 97) + 97); //Obtenemos una letra al azar del abecedario
+                //En este ciclo obtenemos un string de 4 numeros aleatorios
+                for (int i = 0; i < 3; i++) {
+                    if (i < 3) {
+                        random += rnd.nextInt(10);
+                    }
+                }
+                inicioRandom = Integer.parseInt(random);    //Convertimos los numero aleatorio recibidos de tipo String a tipo int
+
+                while (espaciosAuto < area.getCuposAutomoviles()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosAuto++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Automovil");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
+                while (espaciosMoto < area.getCuposMotos()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosMoto++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Motocicletas");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
+                while (espaciosBici < area.getCuposBicicletas()) {  //Mientras el contador sea menor al numero de espacios se siguen registrando los espacios
+                    identificadorEspacio = " "; //Limpiamos el identificador
+                    espaciosBici++; //Aumentamos el contador
+                    inicioRandom++; //Aumentamos en 1 el valor del numero aleatorio
+                    identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
+                    identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
+                    espacio.setIdEspacio(identificadorEspacio);
+                    espacio.setTipo("Bicicletas");
+                    control.asignarEspacios(espacio);
+                    System.out.println(identificadorEspacio);
+                }
+
             } catch (CaException ex) {
                 Logger.getLogger(VistaArea.class.getName()).log(Level.SEVERE, null, ex);
             }
