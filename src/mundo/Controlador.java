@@ -51,7 +51,9 @@ public class Controlador {
     public int columnasEstadisticas(String inicial, String ultimo) throws CaException{
         return estadisticaDAO.numeroColumnas(inicial, ultimo);
     }
-
+    public void actualizarServicio(String placa) throws CaException {
+        servicioDAO.actualizarServicio(placa);
+    }
     public void incluirArea(Area area) throws CaException{
         areaDAO.incluirArea(area);
     }
@@ -81,9 +83,9 @@ public class Controlador {
         }
         return respuesta;
     }
-    public char buscarServicioActivo(String placa){
+    public char buscarServicioActivo(String placa,int codigo){
         char ingreso='N';
-        ingreso= servicioDAO.buscarServicioActivo(placa);
+        ingreso= servicioDAO.buscarServicioActivo(placa,codigo);
         return ingreso;
     }
 

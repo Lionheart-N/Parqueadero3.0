@@ -40,6 +40,55 @@ public class ServicioDAO {
         servicioN = new Servicio();
     }
     
+    public void calcularMinutos(String placa){
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT f_fechaentrada, MAX(f_fechasalida), o_horaentrada, o_horasalida FROM servicio WHERE k_placa = '"
+                +placa+"' GROUP BY f_fechaentrada,o_horaentrada,o_horasalida ";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                /*String fechaInicial;
+                String fechaFinal;
+                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+                
+                servicioN.calcularDifMinutos(fechaInicial, fechaFinal);
+                */
+                
+            }
+            
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        
+    }
+    
+    
+    public void actualizarServicio(String placa) throws CaException {
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "UPDATE servicio SET f_fechasalida =?, o_horasalida=? WHERE k_placa = '"+placa+"' and f_fechasalida is null ";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+            prepStmt.setTime(2, java.sql.Time.valueOf(LocalTime.now()));
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+    
     public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero) throws CaException {
         Connection con;
         PreparedStatement prepStmt;
@@ -81,11 +130,11 @@ public class ServicioDAO {
       
     }
     
-    public char buscarServicioActivo(String placa){
+    public char buscarServicioActivo(String placa, int parqueadero){
         char ingreso='N';
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "select k_numeroservicio, count(*) from servicio where k_placa='"+placa+"' and f_fechasalida is null group by k_numeroservicio;";
+        String strSQL = "select k_numeroservicio, count(*) from servicio where k_placa='"+placa+"' and k_codigoParqueadero="+parqueadero+"and f_fechasalida is null group by k_numeroservicio;";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
@@ -173,7 +222,7 @@ public class ServicioDAO {
     public void actualizarServicio() throws CaException {
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "UPDATE servicio SET f_fechasalida = ?, o_horasalida";
+        String strSQL = "UPDATE servicio SET f_fechasalida = ?, o_horasalida = ? where f_fechasalida is null";
         ResultSet rs;
     }
     public Object getInformacion(){

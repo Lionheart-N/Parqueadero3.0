@@ -100,7 +100,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirMouseClicked
-       Empleado miEmpleado = new Empleado (null);
+       Empleado miEmpleado = new Empleado (codigoParqueadero);
        miEmpleado.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btn_SalirMouseClicked
@@ -110,12 +110,13 @@ public class RegistrarSalida extends javax.swing.JFrame {
         if(txtPlacaVehiculo.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor ingresa un valor válido");
         }else{
-            try {
+            try { 
                 if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='I'){
                     
-                    if(controlador.buscarServicioSalida(txtPlacaVehiculo.getText())== null)
+                    if(controlador.buscarServicioActivo(txtPlacaVehiculo.getText(),codigoParqueadero)=='Y')
                     {
-                        
+                        controlador.actualizarServicio(txtPlacaVehiculo.getText());
+                        JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente");       
                     }else{
                         JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
                     }

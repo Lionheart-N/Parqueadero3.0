@@ -170,7 +170,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             System.out.print(miVehiculo.getIdVehiculo()+ " "+miVehiculo.getTipoVehiculo());
             try {
                 
-                if(controlador.buscarServicioActivo(txt_placa.getText()) == 'N'){
+                if(controlador.buscarServicioActivo(txt_placa.getText(),codigoParqueadero) == 'N'){
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
                 }

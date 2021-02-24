@@ -42,6 +42,13 @@ public class Servicio {
     public void setIdServicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
+    public long calcularDifMinutos( String fechaInicial,String fechaFinal){
+      long respuesta=0;
+      
+      
+      
+      return respuesta;
+    }
 
     public Calendar getHoraEntrada() {
         return horaEntrada;
