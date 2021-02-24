@@ -5,6 +5,7 @@
  */
 package mundo;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,7 +45,16 @@ public class Servicio {
     }
     public long calcularDifMinutos( String fechaInicial,String fechaFinal){
       long respuesta=0;
-      
+      Date fechaIni = null;
+      Date fechafin = null;
+      SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+      try{
+          fechaIni = format.parse(fechaInicial);
+          fechafin = format.parse(fechaFinal);
+      }catch(Exception ex){
+          System.out.print(ex);
+      }
+      respuesta = (fechaIni.getTime() - fechafin.getTime())/6000;
       
       
       return respuesta;

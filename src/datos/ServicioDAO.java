@@ -40,10 +40,11 @@ public class ServicioDAO {
         servicioN = new Servicio();
     }
     
-    public void calcularMinutos(String placa){
+    public long calcularMinutos(String placa){
+        long minutos = 0;
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "SELECT f_fechaentrada, MAX(f_fechasalida), o_horaentrada, o_horasalida FROM servicio WHERE k_placa = '"
+        String strSQL = "SELECT f_fechaentrada, MAX(f_fechasalida) AS f_fechasalida , o_horaentrada, o_horasalida FROM servicio WHERE k_placa = '"
                 +placa+"' GROUP BY f_fechaentrada,o_horaentrada,o_horasalida ";
         ResultSet rs;
         try{
@@ -52,19 +53,18 @@ public class ServicioDAO {
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
             while (rs.next()){
-                /*String fechaInicial;
-                String fechaFinal;
-                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+                String fechaInicial = rs.getDate("f_fechaentrada") + " "+ rs.getTime("o_horaentrada");
+                String fechaFinal = rs.getDate("f_fechasalida") + " "+ rs.getTime("o_horasalida");
                 
-                servicioN.calcularDifMinutos(fechaInicial, fechaFinal);
-                */
+                minutos = servicioN.calcularDifMinutos(fechaInicial, fechaFinal);
+                
                 
             }
             
         }catch(Exception e){
             System.out.print(e);
         }
-        
+        return minutos;
     }
     
     
@@ -218,13 +218,6 @@ public class ServicioDAO {
         return fechaSalida;
     }
     
-
-    public void actualizarServicio() throws CaException {
-        Connection con;
-        PreparedStatement prepStmt;
-        String strSQL = "UPDATE servicio SET f_fechasalida = ?, o_horasalida = ? where f_fechasalida is null";
-        ResultSet rs;
-    }
     public Object getInformacion(){
         return informacion;
     }
