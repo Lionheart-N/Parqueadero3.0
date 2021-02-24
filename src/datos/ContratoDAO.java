@@ -32,7 +32,7 @@ public class ContratoDAO {
         char resultado='I';
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "select count(*) from contrato where k_codigoparqueadero="+parqueadero+
+        String strSQL = "select count(*) from contrato where k_codigoparqueadero="+1+
                 "and k_placa='"+placa+"' and q_estado='A';";
         ResultSet rs;
         try{   
@@ -40,14 +40,20 @@ public class ContratoDAO {
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
             prepStmt = con.prepareStatement(strSQL);
             rs = prepStmt.executeQuery();
-            if(rs.getInt(1)!=0){
-                resultado='A';
+            while(rs.next()){
+                if(rs.getInt(1)!=0){
+                    resultado='A';
+                }
             }
             
         }catch(Exception ex){
             
             System.out.print(ex);
+            System.out.print("Error en contratoDao");
+            
         }
+        System.out.print(resultado);
+            
         return resultado;
     }
     public Contrato getContrato(){

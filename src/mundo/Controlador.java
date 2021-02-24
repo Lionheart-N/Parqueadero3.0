@@ -79,14 +79,8 @@ public class Controlador {
     public int getCodigoParqueadero(String usuario){
         return empleadoDAO.getCodigoParqueadero(usuario);
     }
-    public char validarContrato(String placa,int codigo) throws CaException{
-        char respuesta='I';
-        try {
-            respuesta = contratoDAO.buscarContrato(placa,codigo);
-        } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return respuesta;
+    public char validarContrato(String placa,int codigo) throws CaException, SQLException{
+            return  contratoDAO.buscarContrato(placa,codigo);   
     }
     public char buscarServicioActivo(String placa,int codigo){
         char ingreso='N';

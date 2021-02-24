@@ -14,11 +14,15 @@ import javax.swing.ImageIcon;
  * @author rangu
  */
 public class DatosDueño extends javax.swing.JFrame {
+    int codigoParqueadero;
+    String placa;
 
     /**
      * Creates new form DatosDueño
      */
-    public DatosDueño() {
+    public DatosDueño(int codigo, String placa) {
+        codigoParqueadero=codigo;
+        this.placa=placa;
         initComponents();
         setTitle("Datos dueño");
         setResizable(false);
@@ -156,7 +160,7 @@ public class DatosDueño extends javax.swing.JFrame {
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         // TODO add your handling code here:
-        RegistrarEntrada registrarEntrada = new RegistrarEntrada();
+        RegistrarEntrada registrarEntrada = new RegistrarEntrada(codigoParqueadero,placa);
         registrarEntrada.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked
@@ -191,7 +195,6 @@ public class DatosDueño extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DatosDueño().setVisible(true);
             }
         });
     }

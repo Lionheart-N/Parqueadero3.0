@@ -8,6 +8,7 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,7 +156,32 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_contratoActionPerformed
-        // TODO add your handling code here:
+        try {
+            char validacion='A';
+            String placa=txt_placa.getText();
+            if(placa.equalsIgnoreCase("") ){
+                JOptionPane.showMessageDialog(null, "Ingresa un valor válido");
+            }else{
+
+                try {
+                    validacion=controlador.validarContrato(placa, codigoParqueadero);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(validacion=='A'){
+                   JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un contrato activo en este parqueadero");
+                }else{
+                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa);
+                    registro.setVisible(true);
+                    this.dispose();
+                }
+            }
+            
+        } catch (CaException ex) {
+                Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("error al llamar la validación");
+            }  
+        
     }//GEN-LAST:event_btn_contratoActionPerformed
 
     private void btn_pagoMinutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pagoMinutosMouseClicked
@@ -187,10 +213,33 @@ public class TipoDeRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_pagoMinutosMouseClicked
 
     private void btn_contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_contratoMouseClicked
-        // TODO add your handling code here:
-        RegistrarEntrada registrarEntrada = new RegistrarEntrada();
-        registrarEntrada.setVisible(true);
-        this.dispose();
+        try {
+            char validacion='A';
+            String placa=txt_placa.getText();
+            if(placa.equalsIgnoreCase("") ){
+                JOptionPane.showMessageDialog(null, "Ingresa un valor válido");
+            }else{
+
+                try {
+                    validacion=controlador.validarContrato(placa, codigoParqueadero);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(validacion=='A'){
+                   JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un contrato activo en este parqueadero");
+                }else{
+                    RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa);
+                    registro.setVisible(true);
+                    this.dispose();
+                }
+            }
+            
+        } catch (CaException ex) {
+                Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("error al llamar la validación");
+            }  
+              
+       
     }//GEN-LAST:event_btn_contratoMouseClicked
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
