@@ -30,6 +30,7 @@ public class DatosDueño extends javax.swing.JFrame {
         controlador=new Controlador();
         codigoParqueadero=codigo;
         this.placa=placa;
+        this.tipo=tipo;
         initComponents();
         setTitle("Datos dueño");
         setResizable(false);
