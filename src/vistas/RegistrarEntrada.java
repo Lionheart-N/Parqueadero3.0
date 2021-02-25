@@ -265,8 +265,12 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                     controlador.incluirServicio(miVehiculo, codigoParqueadero, idEspacio, idArea);
                     JOptionPane.showMessageDialog(null,"El vehículo ha sido ingresado correctamente.");
                 JOptionPane.showMessageDialog(null, "El Contrato ha sido creado correctamente y el auto ingresado al parqueadero");
+                Empleado empleado = new Empleado(codigoParqueadero);
+                empleado.setVisible(true);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "El propietario todavía no se encuentra registrado, por favor registrelo.");
+                
             }
         } catch (CaException ex) {
                 Logger.getLogger(RegistrarEntrada.class.getName()).log(Level.SEVERE, null, ex);
