@@ -103,6 +103,11 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 btn_salirMouseClicked(evt);
             }
         });
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Fecha de Finalización");
 
@@ -278,6 +283,13 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_RealizarContratoActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        Empleado empleado = new Empleado(codigoParqueadero);
+        empleado.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     /**
      * @param args the command line arguments
