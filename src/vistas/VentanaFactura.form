@@ -41,6 +41,7 @@
                   <Component id="lbl_telefono" alignment="2" min="-2" pref="122" max="-2" attributes="0"/>
                   <Component id="lbl_fSalida" alignment="2" min="-2" pref="122" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="2" min="-2" pref="271" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
@@ -79,7 +80,9 @@
               <Component id="jLabel2" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" pref="13" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -168,6 +171,15 @@
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aceptar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -148,7 +148,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         
                         /// HASTA AQUI
                         JOptionPane.showMessageDialog(null, "Total a pagar "+pago);
-                        ventanaFactura = new VentanaFactura(txtPlacaVehiculo.getText());
+                        ventanaFactura = new VentanaFactura(txtPlacaVehiculo.getText(), codigoParqueadero);
                         ventanaFactura.setVisible(true);
                         this.dispose();
                     }else{

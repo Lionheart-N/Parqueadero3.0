@@ -19,12 +19,14 @@ public class VentanaFactura extends javax.swing.JFrame {
 
      private Controlador controlador = new Controlador(); 
      private Factura factura = new Factura();
+     private int codigoParqueadero ;
     /**
      * Creates new form resultadoConsulta
      */
-    public VentanaFactura(java.lang.String placa) {
+    public VentanaFactura(java.lang.String placa, java.lang.Integer codigoParqueadero) {
         initComponents();
         setResizable(false);
+        this.codigoParqueadero = codigoParqueadero;
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
         int width = pantalla.width;		
@@ -64,6 +66,7 @@ public class VentanaFactura extends javax.swing.JFrame {
         lbl_placa = new javax.swing.JLabel();
         lbl_telefono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +108,18 @@ public class VentanaFactura extends javax.swing.JFrame {
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jButton1.setText("Aceptar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +141,8 @@ public class VentanaFactura extends javax.swing.JFrame {
                     .addComponent(lbl_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_fSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
@@ -162,7 +178,9 @@ public class VentanaFactura extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -171,6 +189,17 @@ public class VentanaFactura extends javax.swing.JFrame {
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        Empleado miEmpleado = new Empleado(codigoParqueadero);
+        miEmpleado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -205,12 +234,13 @@ public class VentanaFactura extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaFactura(null).setVisible(true);
+                new VentanaFactura(null, null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

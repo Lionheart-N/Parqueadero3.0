@@ -210,9 +210,9 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_RegistrarInfoActionPerformed
 
     private void btn_RegistrarInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarInfoMouseClicked
-                DatosDueño datosDueño = new DatosDueño(codigoParqueadero,placa,tipo);
-                datosDueño.setVisible(true);
-                this.dispose();             
+        DatosDueño datosDueño = new DatosDueño(codigoParqueadero,placa,tipo);
+        datosDueño.setVisible(true);
+        this.dispose();             
     }//GEN-LAST:event_btn_RegistrarInfoMouseClicked
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
@@ -271,15 +271,6 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         } catch (CaException ex) {
                 Logger.getLogger(RegistrarEntrada.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
     }//GEN-LAST:event_btn_RealizarContratoActionPerformed
