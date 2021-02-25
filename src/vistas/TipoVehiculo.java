@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mundo.Automoviles;
 import mundo.Bicicletas;
@@ -27,8 +30,16 @@ public class TipoVehiculo extends javax.swing.JFrame {
     public TipoVehiculo(int codigoParqueadero){
         this.codigoParqueadero = codigoParqueadero;
         initComponents();
-        
+        setTitle("Tipo Vehiculo");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
     }
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

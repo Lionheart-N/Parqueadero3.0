@@ -6,7 +6,10 @@
 
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import mundo.Registro;
 
@@ -28,6 +31,13 @@ public class Consulta extends javax.swing.JFrame {
     public Consulta(ArrayList<Registro> registros) {
         this.registros = registros;
         initComponents();
+        setTitle("Consulta");
+        setResizable(false);
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;		
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon (getClass().getResource("../img/icon.png")).getImage());
         DefaultTableModel modelo=(DefaultTableModel) jTable_registrosConsulta.getModel(); 
  
         
