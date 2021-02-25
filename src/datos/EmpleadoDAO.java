@@ -29,8 +29,28 @@ public class EmpleadoDAO {
         miEmpleado = new Empleado();
     }
     
-    public void incluirEmpleado() throws CaException {
-     
+    public void incluirEmpleado(Empleado miEmple) throws CaException {
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "INSERT INTO empleado VALUES(?,?,?,?)";
+
+        try {
+            Class.forName(conexion.getDriver());
+            con = DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            
+            prepStmt.setString(1, miEmple.getUsuario());
+            prepStmt.setString(2, miEmple.getContraseña());
+            prepStmt.setString(3, miEmple.getCargo());
+            prepStmt.setInt(4, Integer.parseInt(miEmple.getCodParqueadero()));
+            if (prepStmt.executeUpdate() > 0) {
+                con.close();
+            } else {
+                con.close();
+            }
+        } catch (Exception e) {
+
+        }
       
     }
     

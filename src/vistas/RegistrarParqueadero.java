@@ -270,6 +270,7 @@ public class RegistrarParqueadero extends javax.swing.JFrame {
             parqueadero.setNombre(txt_nombreParqueadero.getText());
             parqueadero.setCaracteristicas((String) box_caracteristicas.getSelectedItem());
             parqueadero.setDireccion(txt_direccion.getText());
+            System.out.print(txt_telefono.getText());
             parqueadero.setTelefono(Integer.parseInt(txt_telefono.getText()));
             parqueadero.setLocalidad((String) box_localidad.getSelectedItem());
             parqueadero.setNit(txt_nit.getText());

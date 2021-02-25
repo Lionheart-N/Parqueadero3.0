@@ -155,7 +155,7 @@ public class VistaArea extends javax.swing.JFrame {
         area.setAutosDisponibles(Integer.parseInt(cuposCarros.getText()));
         area.setMotosDisponibles(Integer.parseInt(cuposMotos.getText()));
         area.setBicicletasDisponibles(Integer.parseInt(cuposBicicletas.getText()));
-        int cuposTotales = Integer.parseInt(cuposCarros.getText()) + Integer.parseInt(cuposMotos.getText() + Integer.parseInt(cuposBicicletas.getText()));
+        int cuposTotales = Integer.parseInt(cuposCarros.getText()) + Integer.parseInt(cuposMotos.getText())+ Integer.parseInt(cuposBicicletas.getText());
         area.setCuposTotales(cuposTotales);
         area.setIdentificacion(txt_areaID.getText());
         area.setCodigoParqueadero(parqueadero.getIdentificador());
@@ -198,7 +198,7 @@ public class VistaArea extends javax.swing.JFrame {
                     identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
                     identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
                     espacio.setIdEspacio(identificadorEspacio);
-                    espacio.setTipo("Automovil");
+                    espacio.setTipo("Automoviles");
                     control.asignarEspacios(espacio);
                     System.out.println(identificadorEspacio);
                 }
@@ -260,7 +260,7 @@ public class VistaArea extends javax.swing.JFrame {
                     identificadorEspacio += letraRandom; //Adjuntamos al identificador la letra aleatoria
                     identificadorEspacio += inicioRandom;   //Adjuntamos al identificador el numero aleatorio con su incremento en 1
                     espacio.setIdEspacio(identificadorEspacio);
-                    espacio.setTipo("Automovil");
+                    espacio.setTipo("Automoviles");
                     control.asignarEspacios(espacio);
                     System.out.println(identificadorEspacio);
                 }

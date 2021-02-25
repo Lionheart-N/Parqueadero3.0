@@ -99,11 +99,11 @@ public class Empleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_RegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaActionPerformed
-                controlador.actualizarAreas();
-                TipoVehiculo vehiculo = new TipoVehiculo(codigoParqueadero);
-                vehiculo.setVisible(true);
-                this.dispose();          
-                // TODO add your handling code here:
+            controlador.actualizarAreas();
+            TipoVehiculo vehiculo = new TipoVehiculo(codigoParqueadero);
+            vehiculo.setVisible(true);
+            this.dispose();          
+            // TODO add your handling code here:
         
     }//GEN-LAST:event_btn_RegistrarEntradaActionPerformed
 
@@ -121,10 +121,7 @@ public class Empleado extends javax.swing.JFrame {
 
     private void btn_RegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaMouseClicked
         // TODO add your handling code here:
-        controlador.actualizarAreas();
-        TipoDeRegistro pago = new TipoDeRegistro(codigoParqueadero, null);
-        pago.setVisible(true);
-        this.dispose();
+       
     }//GEN-LAST:event_btn_RegistrarEntradaMouseClicked
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed

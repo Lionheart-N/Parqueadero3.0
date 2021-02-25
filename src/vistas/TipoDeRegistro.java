@@ -214,17 +214,11 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                     String idEspacio=null;
                     idEspacio=controlador.obtenerEspacio(idArea, miVehiculo.getTipoVehiculo(), codigoParqueadero);
                     controlador.incluirServicio(miVehiculo, codigoParqueadero, idEspacio, idArea);
+                    controlador.cambiarEstadoI(codigoParqueadero, miVehiculo, idEspacio, idArea);
                     JOptionPane.showMessageDialog(null,"El vehículo ha sido ingresado correctamente.");
                     Empleado miEmpleado = new Empleado(codigoParqueadero);
                     miEmpleado.setVisible(true);
-                    this.dispose();
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    this.dispose();        
                     
                 }
                 else{
@@ -234,9 +228,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             } catch (CaException ex) {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-
-        
+        }      
     }//GEN-LAST:event_btn_pagoMinutosMouseClicked
 
     private void btn_contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_contratoMouseClicked
@@ -267,8 +259,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("error al llamar la validación");
             }  
-              
-       
+                  
     }//GEN-LAST:event_btn_contratoMouseClicked
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked

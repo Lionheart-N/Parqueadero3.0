@@ -21,7 +21,7 @@ import util.ServiceLocator;
  */
 public class VehiculoDAO {
     private ServiceLocator conexion = new ServiceLocator();
-    
+    private Vehiculo miVehiculo = new Vehiculo();
     public void incluirVehiculoMinutos(Vehiculo miVehiculo) throws CaException {
      
         Connection con;
@@ -122,7 +122,27 @@ public class VehiculoDAO {
             System.out.print(e);
         }
     }
-    
+    public Vehiculo retornarTipoVehiculo(String placa){
+        
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT i_tipodevehiculo FROM vehiculo WHERE k_placa = '"+placa+"' ";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while(rs.next()){
+                
+                miVehiculo.setTipoVehiculo(rs.getString(1));
+            }
+            
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return miVehiculo;
+    }
     
     
     

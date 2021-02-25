@@ -31,8 +31,8 @@ public class Controlador {
     private JoinDAO joinDAO = new JoinDAO();
     private FacturaDAO facturaDAO = new FacturaDAO();
     
-    public void incluirEmpleado() throws CaException {
-      empleadoDAO.incluirEmpleado();
+    public void incluirEmpleado(Empleado empleado) throws CaException {
+      empleadoDAO.incluirEmpleado(empleado);
     }
     public Empleado getEmpleado() {
         return empleadoDAO.getMiEmpleado();
@@ -179,5 +179,23 @@ public class Controlador {
         String respuesta=null;
         respuesta=espacioDAO.obtenerEspacio(idarea, tipo, codigo);
         return respuesta;
+    }
+    public void cambiarEstadoI(int codigoparqueadero, Vehiculo miVehiculo, String idEspacio, String idArea){
+        
+        espacioDAO.cambiarEstadoI(codigoparqueadero, miVehiculo, idEspacio, idArea);
+    }
+    public Vehiculo retornarTipoVehiculo(String placa){
+        return vehiculoDAO.retornarTipoVehiculo(placa);
+    }
+    public void cambiarEstadoD(int codigoparqueadero, Vehiculo miVehiculo, String idEspacio, String idArea){
+        espacioDAO.cambiarEstadoD(codigoparqueadero, miVehiculo, idEspacio, idArea);
+    }
+    public String areaId(String Placa){
+        return joinDAO.areaId(Placa);
+                
+    }
+    public String espacioId(String Placa){
+ 
+        return joinDAO.espacioId(Placa);
     }
 }

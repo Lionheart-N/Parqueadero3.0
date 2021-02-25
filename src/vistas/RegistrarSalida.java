@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mundo.Controlador;
+import mundo.Vehiculo;
 import util.CaException;
 
 /**
@@ -24,6 +25,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private Controlador controlador = new Controlador();
     private int codigoParqueadero = 0;
     private VentanaFactura  ventanaFactura;
+    private Vehiculo miVehiculo = new Vehiculo();
     /**
      * Creates new form VentanaUno
      */
@@ -67,6 +69,11 @@ public class RegistrarSalida extends javax.swing.JFrame {
         btnSalida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalidaMouseClicked(evt);
+            }
+        });
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
             }
         });
         getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 110, -1));
@@ -116,15 +123,30 @@ public class RegistrarSalida extends javax.swing.JFrame {
                     
                     if(controlador.buscarServicioActivo(txtPlacaVehiculo.getText(),codigoParqueadero)=='Y')
                     {
+                        miVehiculo = controlador.retornarTipoVehiculo(txtPlacaVehiculo.getText());
+                        String areaId = controlador.areaId(txtPlacaVehiculo.getText());
+                        String idEspacio = controlador.espacioId(txtPlacaVehiculo.getText());
+                        controlador.cambiarEstadoD(codigoParqueadero, miVehiculo, idEspacio, areaId);
+                        //PONER AQUI
                         controlador.actualizarServicio(txtPlacaVehiculo.getText());
                         int minuto = (int) controlador.calcularMinutos(txtPlacaVehiculo.getText());
                         int pago  = controlador.valorPago(txtPlacaVehiculo.getText(), codigoParqueadero,minuto );
                         if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='A'){
                             pago = 0;
                         }
+                        System.out.println(miVehiculo.getTipoVehiculo());
+                        if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("Bicicletas")){
+                            pago = minuto*10;
+                        }
                         controlador.insertarMinutosPago(minuto, txtPlacaVehiculo.getText(), pago);
                         JOptionPane.showMessageDialog(null, "Se registro la salidad satisfactoriamente");
                         
+                        ///DESDE AQUI
+                        controlador.actualizarAreas();
+                        
+                        
+                        /// HASTA AQUI
+                        JOptionPane.showMessageDialog(null, "Total a pagar "+pago);
                         ventanaFactura = new VentanaFactura(txtPlacaVehiculo.getText());
                         ventanaFactura.setVisible(true);
                         this.dispose();
@@ -144,6 +166,10 @@ public class RegistrarSalida extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnSalidaMouseClicked
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalidaActionPerformed
 
     /**
      * @param args the command line arguments

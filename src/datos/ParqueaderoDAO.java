@@ -37,7 +37,7 @@ public class ParqueaderoDAO {
 
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?,?,?,?)";
+        String strSQL = "INSERT INTO parqueadero VALUES(?,?,?,?,?,?,?)";
 
         try {
             Class.forName(conexion.getDriver());
@@ -49,6 +49,7 @@ public class ParqueaderoDAO {
             prepStmt.setString(4, parqueadero.getNombre());
             prepStmt.setString(5, parqueadero.getCaracteristicas());
             prepStmt.setString(6, parqueadero.getNit());
+            prepStmt.setInt(7, parqueadero.getTelefono());
             if (prepStmt.executeUpdate() > 0) {
                 con.close();
             } else {

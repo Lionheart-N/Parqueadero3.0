@@ -44,6 +44,7 @@ public class Administrador extends javax.swing.JFrame {
         btn_EstadisticasIngreso = new javax.swing.JButton();
         btn_ValorRecaudado = new javax.swing.JButton();
         btn_Salir = new javax.swing.JButton();
+        btn_registrarEmpleado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,6 +117,14 @@ public class Administrador extends javax.swing.JFrame {
         });
         getContentPane().add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 50, 50));
 
+        btn_registrarEmpleado.setText("Registrar empleado");
+        btn_registrarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_registrarEmpleadoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_registrarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 233, 230, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,6 +175,13 @@ public class Administrador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_ValorRecaudadoMouseClicked
 
+    private void btn_registrarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarEmpleadoMouseClicked
+        // TODO add your handling code here:
+        IncluirEmpleado incluirEmple = new IncluirEmpleado();
+        incluirEmple.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_registrarEmpleadoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -207,6 +223,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton btn_RegistrarParqueadero;
     private javax.swing.JButton btn_Salir;
     private javax.swing.JButton btn_ValorRecaudado;
+    private javax.swing.JButton btn_registrarEmpleado;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,7 +30,7 @@ public class FacturaDAO {
         PreparedStatement prepStmt;
         String strSQL = "SELECT f_fechasalida, k_placa, v_valor, o_horasalida, telefono, n_nombreparqueadero, o_direccion\n" +
             "FROM parqueadero p, servicio s WHERE p.k_codigoparqueadero = s.k_codigoparqueadero\n" +
-            "AND k_placa = 'WTY254'";
+            "AND k_placa = '"+ placa +"'";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());

@@ -29,6 +29,8 @@ public class Empleado {
     public Empleado() {
     }
 
+    
+
     public String getUsuario() {
         return usuario;
     }

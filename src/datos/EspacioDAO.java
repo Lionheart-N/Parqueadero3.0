@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import mundo.Espacio;
+import mundo.Vehiculo;
 import util.CaException;
 import util.ServiceLocator;
 
@@ -90,5 +93,48 @@ public class EspacioDAO {
         }     
         return resultado;
     }
+    public void cambiarEstadoI(int codigoparqueadero, Vehiculo miVehiculo, String idEspacio, String idArea){
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update espacio set q_disponibilidad='I' "
+                + "where k_codigoparqueadero="+codigoparqueadero+" and k_idarea = '"+idArea+"' "
+                + " and k_idespacio = '"+idEspacio+"'";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+    public void cambiarEstadoD(int codigoparqueadero, Vehiculo miVehiculo, String idEspacio, String idArea){
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update espacio set q_disponibilidad='D' "
+                + "where k_codigoparqueadero="+codigoparqueadero+" and k_idarea = '"+idArea+"' "
+                + " and k_idespacio = '"+idEspacio+"'";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+
+
 
 }
+

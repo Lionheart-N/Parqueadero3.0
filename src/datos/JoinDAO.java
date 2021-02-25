@@ -50,5 +50,51 @@ public class JoinDAO {
         System.out.println(minutos);
         return (valorPago*minutos);
     }
+    public String areaId(String Placa){
+        String areaId = "";
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT a.k_idarea FROM area a, servicio s WHERE s.k_codigoparqueadero = a.k_codigoparqueadero \n" +
+        "AND s.k_idarea = a.k_idarea AND k_placa = '"+Placa+"' AND o_horasalida IS null;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while(rs.next()){
+                    
+                areaId = rs.getString(1);
+                
+            }
+                 
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return areaId;
+    }
+    public String espacioId(String Placa){
+        String espacioId = "";
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_idespacio FROM area a, servicio s WHERE s.k_codigoparqueadero = a.k_codigoparqueadero \n" +
+        "AND s.k_idarea = a.k_idarea AND k_placa = '"+Placa+"' AND o_horasalida IS null;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while(rs.next()){
+                    
+                espacioId = rs.getString(1);
+                
+            }
+                 
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return espacioId;
+    }
     
 }
