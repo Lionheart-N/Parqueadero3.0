@@ -54,6 +54,7 @@ public class IncluirEmpleado extends javax.swing.JFrame {
         txt_contraseña = new javax.swing.JTextField();
         box_cargo = new javax.swing.JComboBox<>();
         btn_registrar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -107,6 +108,16 @@ public class IncluirEmpleado extends javax.swing.JFrame {
         });
         getContentPane().add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-P.png"))); // NOI18N
+        btn_salir.setContentAreaFilled(false);
+        btn_salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Exit-G.png"))); // NOI18N
+        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -152,6 +163,13 @@ public class IncluirEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_registrarMouseClicked
 
+    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
+        // TODO add your handling code here:
+        Administrador admi = new Administrador();
+        admi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -190,6 +208,7 @@ public class IncluirEmpleado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> box_cargo;
     private javax.swing.JButton btn_registrar;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
