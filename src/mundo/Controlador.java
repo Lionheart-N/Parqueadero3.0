@@ -109,9 +109,9 @@ public class Controlador {
     public int id_incremento (int codigoParqueadero){
         return servicioDAO.id_incremento(codigoParqueadero);
     }
-    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero) throws CaException {
+    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero,String idEspacio,String idArea) throws CaException {
       
-        servicioDAO.incluirServicio(vehiculo, codigoParqueadero);
+        servicioDAO.incluirServicio(vehiculo, codigoParqueadero, idEspacio, idArea);
       
     }
     public char buscarContrato(String Placa, int parqueadero) throws CaException, SQLException{
@@ -155,8 +155,29 @@ public class Controlador {
         return facturaDAO.getFactura();
     }
     public void actualizarAreas(){
+        areaDAO.actualizarAreaMotocicletas();
         areaDAO.actualizarAreaAutomovil();
         areaDAO.actualizarAreaBicicletas();
-        areaDAO.actualizarAreaMotocicletas();
+    }
+    
+    public String obtenerAreaAuto(int codigoParqueadero){
+        String respuesta=null;
+        respuesta=areaDAO.obtenerAreaAutomovil(codigoParqueadero);
+        return respuesta;
+    }
+    public String obtenerAreaMoto(int codigoParqueadero){
+        String respuesta=null;
+        respuesta=areaDAO.obtenerAreaMotos(codigoParqueadero);
+        return respuesta;
+    }
+    public String obtenerAreaBici(int codigoParqueadero){
+        String respuesta=null;
+        respuesta=areaDAO.obtenerAreaBicicletas(codigoParqueadero);
+        return respuesta;
+    }
+    public String obtenerEspacio(String idarea,String tipo, int codigo){
+        String respuesta=null;
+        respuesta=espacioDAO.obtenerEspacio(idarea, tipo, codigo);
+        return respuesta;
     }
 }

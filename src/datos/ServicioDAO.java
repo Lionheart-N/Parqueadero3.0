@@ -87,27 +87,25 @@ public class ServicioDAO {
         }
     }
     
-    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero) throws CaException {
+    public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero,String idEspacio,String idArea) throws CaException {
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "INSERT INTO servicio VALUES(?,?,?,?,?,?,?,?,?,?,?)" ;
+        String strSQL = "INSERT INTO servicio VALUES((select count(*) from servicio)+1 ,?,?,?,?,?,?,?,?,?,?)" ;
         
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
-            prepStmt = con.prepareStatement(strSQL);
-            System.out.print(id_incremento ( codigoParqueadero));
-            prepStmt.setInt(1, id_incremento ( codigoParqueadero));           
-            prepStmt.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
-            prepStmt.setDate(3, null);
-            prepStmt.setTime(4, java.sql.Time.valueOf(LocalTime.now()));
-            prepStmt.setTime(5, null);
+            prepStmt = con.prepareStatement(strSQL);           
+            prepStmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+            prepStmt.setDate(2, null);
+            prepStmt.setTime(3, java.sql.Time.valueOf(LocalTime.now()));
+            prepStmt.setTime(4, null);
+            prepStmt.setInt(5, 1);
             prepStmt.setInt(6, 1);
-            prepStmt.setInt(7, 1);
-            prepStmt.setInt(8, 1);
-            prepStmt.setString(9, vehiculo.getIdVehiculo());
-            prepStmt.setString(10, null);
-            prepStmt.setInt(11, codigoParqueadero);
+            prepStmt.setString(7, idEspacio);
+            prepStmt.setString(8, vehiculo.getIdVehiculo());
+            prepStmt.setString(9, idArea);
+            prepStmt.setInt(10, codigoParqueadero);
             if(prepStmt.executeUpdate()>0){
                 con.close();
             }else{

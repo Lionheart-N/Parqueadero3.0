@@ -200,8 +200,32 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                 if(controlador.buscarServicioActivo(txt_placa.getText(),codigoParqueadero) == 'N'){
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
-                    controlador.incluirServicio(miVehiculo, codigoParqueadero);
                     controlador.actualizarAreas();
+                    String idArea=null;
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("automoviles")  ){
+                        idArea=controlador.obtenerAreaAuto(codigoParqueadero);
+                    }
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("motocicletas")  ){
+                       idArea=controlador.obtenerAreaMoto(codigoParqueadero); 
+                    }
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("bicicletas")  ){
+                       idArea=controlador.obtenerAreaBici(codigoParqueadero); 
+                    }
+                    String idEspacio=null;
+                    idEspacio=controlador.obtenerEspacio(idArea, miVehiculo.getTipoVehiculo(), codigoParqueadero);
+                    controlador.incluirServicio(miVehiculo, codigoParqueadero, idEspacio, idArea);
+                    JOptionPane.showMessageDialog(null,"El vehículo ha sido ingresado correctamente.");
+                    Empleado miEmpleado = new Empleado(codigoParqueadero);
+                    miEmpleado.setVisible(true);
+                    this.dispose();
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "El vehiculo ya se encuentra alojado en alguno de nuestros parqueaderos");
@@ -228,8 +252,9 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                     validacion=controlador.validarContrato(placa, codigoParqueadero);
                 } catch (SQLException ex) {
                     Logger.getLogger(TipoDeRegistro.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(validacion=='A'){
+                }if(controlador.buscarServicioActivo(placa,codigoParqueadero) == 'N'){
+                    JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un servicio activo en alguno de nuestros parqueaderos");
+                }else if(validacion=='A'){
                    JOptionPane.showMessageDialog(null, "El vehículo con la placa "+txt_placa.getText()+" ya cuenta con un contrato activo en este parqueadero");
                 }else{
                     RegistrarEntrada registro= new RegistrarEntrada(codigoParqueadero,placa,tipo);

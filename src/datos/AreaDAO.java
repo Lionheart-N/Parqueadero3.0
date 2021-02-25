@@ -150,5 +150,75 @@ public class AreaDAO {//Holaaa
         }catch(Exception e){
             System.out.print(e);
         }
-    }    
+    } 
+    
+    public String obtenerAreaAutomovil(int codigoParqueadero){
+        String respuesta=null;
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_idarea FROM area WHERE k_codigoparqueadero = "+ codigoParqueadero+" AND q_disponiblesautomoviles > 0 \n" +
+                        "ORDER BY q_disponiblesautomoviles DESC limit 1;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                  respuesta=rs.getString(1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("Error en Area DAO");
+            
+        }
+        return respuesta;
+    }
+    
+    public String obtenerAreaMotos(int codigoParqueadero){
+        String respuesta=null;
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_idarea FROM area WHERE k_codigoparqueadero = "+ codigoParqueadero+" AND q_disponiblesmotos > 0 \n" +
+                        "ORDER BY q_disponiblesmotos DESC limit 1;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                  respuesta=rs.getString(1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("Error en Area DAO");
+            
+        }
+        return respuesta;
+    }
+    
+    public String obtenerAreaBicicletas(int codigoParqueadero){
+        String respuesta=null;
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_idarea FROM area WHERE k_codigoparqueadero = "+ codigoParqueadero+" AND q_disponiblesBicicletas > 0 \n" +
+                        "ORDER BY q_disponiblesBicicletas DESC limit 1;";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                  respuesta=rs.getString(1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("Error en Area DAO");
+            
+        }
+        return respuesta;
+    }
+    
 }

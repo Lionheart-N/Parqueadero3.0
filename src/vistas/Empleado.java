@@ -8,6 +8,7 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import mundo.Controlador;
 
 
 /**
@@ -17,10 +18,13 @@ import javax.swing.ImageIcon;
 public class Empleado extends javax.swing.JFrame {
     
     private int codigoParqueadero;
+    private Controlador controlador;
     /**
      * Creates new form Empleado
      */
     public Empleado(java.lang.Integer codigoParqueadero) {
+        controlador=new Controlador();
+        controlador.actualizarAreas();
         initComponents();
         this.codigoParqueadero = codigoParqueadero;
         setTitle("Empleado");
@@ -95,6 +99,7 @@ public class Empleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_RegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaActionPerformed
+                controlador.actualizarAreas();
                 TipoVehiculo vehiculo = new TipoVehiculo(codigoParqueadero);
                 vehiculo.setVisible(true);
                 this.dispose();          
@@ -116,6 +121,7 @@ public class Empleado extends javax.swing.JFrame {
 
     private void btn_RegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RegistrarEntradaMouseClicked
         // TODO add your handling code here:
+        controlador.actualizarAreas();
         TipoDeRegistro pago = new TipoDeRegistro(codigoParqueadero, null);
         pago.setVisible(true);
         this.dispose();

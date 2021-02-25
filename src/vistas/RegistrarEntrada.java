@@ -240,10 +240,25 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         
         try {
             if(controlador.buscarPropietario(idPropietario)){
-                Vehiculo vehiculoContrato=new Vehiculo(placa,null,null,tipo);
-                controlador.incluirVehiculoMinutos(vehiculoContrato);
+                Vehiculo miVehiculo=new Vehiculo(placa,null,null,tipo);
+                controlador.incluirVehiculoMinutos(miVehiculo);
                 controlador.actualizarContratoYVehiculo(idPropietario, placa, fechaFinal, valor, codigoParqueadero, marca, modelo, color);
-                controlador.incluirServicio(vehiculoContrato, codigoParqueadero);
+                controlador.actualizarAreas();
+                    String idArea=null;
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("automoviles")  ){
+                        idArea=controlador.obtenerAreaAuto(codigoParqueadero);
+                    }
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("motocicletas")  ){
+                       idArea=controlador.obtenerAreaMoto(codigoParqueadero); 
+                    }
+                    if(miVehiculo.getTipoVehiculo().equalsIgnoreCase("bicicletas")  ){
+                       idArea=controlador.obtenerAreaBici(codigoParqueadero); 
+                    }
+                    String idEspacio=null;
+                    idEspacio=controlador.obtenerEspacio(idArea, miVehiculo.getTipoVehiculo(), codigoParqueadero);
+                    controlador.incluirServicio(miVehiculo, codigoParqueadero, idEspacio, idArea);
+                    JOptionPane.showMessageDialog(null,"El vehículo ha sido ingresado correctamente.");
+                JOptionPane.showMessageDialog(null, "El Contrato ha sido creado correctamente y el auto ingresado al parqueadero");
             }else{
                 JOptionPane.showMessageDialog(null, "El propietario todavía no se encuentra registrado, por favor registrelo.");
             }

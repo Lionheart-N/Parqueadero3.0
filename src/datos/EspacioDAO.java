@@ -8,6 +8,7 @@ package datos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import mundo.Espacio;
 import util.CaException;
 import util.ServiceLocator;
@@ -64,6 +65,30 @@ public class EspacioDAO {
 
     public void setConexion(ServiceLocator conexion) {
         this.conexion = conexion;
+    }
+    
+    public String obtenerEspacio(String idArea,String tipo,int codigo){
+        String resultado=null;
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "SELECT k_idespacio FROM espacio WHERE k_codigoparqueadero = "+codigo+" \n" +
+                        "AND n_tipo = '"+tipo+"' AND k_idarea = '"+idArea+"' \n" +
+                        "AND q_disponibilidad = 'D' limit 1";
+        ResultSet rs;
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+            rs = prepStmt.executeQuery();
+            while (rs.next()){
+                  resultado=rs.getString(1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("Error en espacio DAO");
+            
+        }     
+        return resultado;
     }
 
 }
