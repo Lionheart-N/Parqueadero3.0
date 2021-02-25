@@ -31,6 +31,7 @@ public class JoinDAO {
                 + "where v.k_placa='"+placa+"' and v.i_tipodevehiculo=t.n_tipodevehiculo "
                 + "and p.o_caracteristicas=t.o_caracteristicas and p.k_codigoparqueadero= "
                 + codigoParqueadero +" and p.n_localidad=t.n_localidad;";
+        
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());

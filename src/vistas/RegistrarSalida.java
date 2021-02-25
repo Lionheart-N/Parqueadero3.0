@@ -132,6 +132,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         int minuto = (int) controlador.calcularMinutos(txtPlacaVehiculo.getText());
                         int pago  = controlador.valorPago(txtPlacaVehiculo.getText(), codigoParqueadero,minuto );
                         if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='A'){
+                            System.out.print("JEJEJE");
                             pago = 0;
                         }
                         System.out.println(miVehiculo.getTipoVehiculo());

@@ -32,9 +32,9 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     public RegistrarEntrada(int codigo,String placa,String tipo) {
         this.tipo=tipo;
         this.placa=placa;
-        codigoParqueadero=codigo;
+        this.codigoParqueadero=codigo;
         initComponents();
-        setTitle("Registo por contrato");
+        setTitle("Registro por contrato");
         setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
@@ -236,10 +236,11 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         fechaFinal = sdf.format(Calendario1.getDate()) ;
         controlador=new Controlador();
-        valor=Integer.parseInt( txt_Valor.getText().toString());
+        valor=Integer.parseInt(txt_Valor.getText().toString());
         
         try {
             if(controlador.buscarPropietario(idPropietario)){
+                
                 Vehiculo miVehiculo=new Vehiculo(placa,null,null,tipo);
                 controlador.incluirVehiculoMinutos(miVehiculo);
                 controlador.actualizarContratoYVehiculo(idPropietario, placa, fechaFinal, valor, codigoParqueadero, marca, modelo, color);

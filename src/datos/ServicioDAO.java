@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.ZoneId;
@@ -88,28 +89,25 @@ public class ServicioDAO {
     }
     
     public void incluirServicio(Vehiculo vehiculo, int codigoParqueadero,String idEspacio,String idArea) throws CaException {
-        System.out.println(vehiculo.getIdVehiculo());
-        System.out.println(codigoParqueadero);
-        System.out.println(idEspacio);
-        System.out.println(idArea);
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "INSERT INTO servicio VALUES((select count(*) from servicio)+1 ,?,?,?,?,null,null,?,?,?,?)" ;
+        String strSQL = "INSERT INTO servicio VALUES((select count(*) from servicio)+1,?,?,?,?,?,?,?,?,?,?)";
         
         try{
             Class.forName(conexion.getDriver());
             con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
-            prepStmt = con.prepareStatement(strSQL); 
-            System.out.println("no");
-            prepStmt.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
-            prepStmt.setDate(3, null);
-            prepStmt.setTime(4, java.sql.Time.valueOf(LocalTime.now()));
-            prepStmt.setTime(5, null);
-            prepStmt.setString(8, idEspacio);
-            prepStmt.setString(9, vehiculo.getIdVehiculo());
-            prepStmt.setString(10, idArea);
-            prepStmt.setInt(11, codigoParqueadero);
-            System.out.println(prepStmt.toString());
+            prepStmt = con.prepareStatement(strSQL);
+            prepStmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+            prepStmt.setDate(2, null);
+            prepStmt.setTime(3, java.sql.Time.valueOf(LocalTime.now()));
+            prepStmt.setTime(4, null);
+            prepStmt.setNull(5, Types.NULL);
+            prepStmt.setNull(6, Types.NULL);
+            prepStmt.setString(7, idEspacio);
+            prepStmt.setString(8, vehiculo.getIdVehiculo());
+            prepStmt.setString(9, idArea);
+            prepStmt.setInt(10, codigoParqueadero);
+            
             if(prepStmt.executeUpdate()>0){
                 con.close();
             }else{
@@ -124,9 +122,6 @@ public class ServicioDAO {
     public void insertarMinutosPago(int minutos, String placa, int pago){
         Connection con;
         PreparedStatement prepStmt;
-        System.out.print(minutos);
-        System.out.print(placa);
-        System.out.print(pago);
         
         String strSQL = "UPDATE servicio SET q_minutos = ?, v_valor = ? WHERE k_placa = '"+placa+"' AND q_minutos IS null  "
                 + "AND v_valor IS null";

@@ -160,6 +160,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
             char validacion='A';
             String placa=txt_placa.getText();
             String tipo=miVehiculo.getTipoVehiculo();
+            System.out.print(tipo);
             if(placa.equalsIgnoreCase("") ){
                 JOptionPane.showMessageDialog(null, "Ingresa un valor válido");
             }else{

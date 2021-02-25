@@ -144,15 +144,7 @@ public class VehiculoDAO {
         return miVehiculo;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
     public ArrayList<Registro> buscarVehiculoContrato(String placa) throws CaException{
         ArrayList<Registro> registros = new ArrayList<>();
