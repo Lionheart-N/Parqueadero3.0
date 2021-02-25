@@ -201,6 +201,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
                     
                     controlador.incluirVehiculoMinutos(miVehiculo);
                     controlador.incluirServicio(miVehiculo, codigoParqueadero);
+                    controlador.actualizarAreas();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "El vehiculo ya se encuentra alojado en alguno de nuestros parqueaderos");
@@ -247,7 +248,7 @@ public class TipoDeRegistro extends javax.swing.JFrame {
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         // TODO add your handling code here:
-        Empleado miEmpleado = new Empleado(null);
+        Empleado miEmpleado = new Empleado(codigoParqueadero);
         miEmpleado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_salirMouseClicked

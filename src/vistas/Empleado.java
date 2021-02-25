@@ -84,6 +84,11 @@ public class Empleado extends javax.swing.JFrame {
                 btn_SalirMouseClicked(evt);
             }
         });
+        btn_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 50, 50));
 
         pack();
@@ -115,6 +120,10 @@ public class Empleado extends javax.swing.JFrame {
         pago.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_RegistrarEntradaMouseClicked
+
+    private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_SalirActionPerformed
 
     /**
      * @param args the command line arguments

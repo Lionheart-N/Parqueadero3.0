@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import mundo.Area;
 import mundo.Empleado;
 import mundo.Parqueadero;
@@ -86,5 +88,67 @@ public class AreaDAO {//Holaaa
     public void setMiArea(Area miArea) {
         this.miArea = miArea;
     }
+    public void actualizarAreaAutomovil(){
+        
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update area b set q_disponiblesAutomoviles=(select count(*)"
+                + "from espacio e,area a where e.n_tipo='Automoviles' and e.k_codigoparqueadero=a.k_codigoparqueadero "
+                + "and e.k_idarea=a.k_idarea and b.k_idarea=a.k_idarea and e.q_disponibilidad='D');";
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
 
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+    public void actualizarAreaMotocicletas(){
+        
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update area b set q_disponiblesMotos=(select count(*)"
+                + "from espacio e,area a where e.n_tipo='Motocicletas' and e.k_codigoparqueadero=a.k_codigoparqueadero "
+                + "and e.k_idarea=a.k_idarea and b.k_idarea=a.k_idarea and e.q_disponibilidad='D');";
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+    public void actualizarAreaBicicletas(){
+        
+        Connection con;
+        PreparedStatement prepStmt;
+        String strSQL = "update area b set q_disponiblesBicicletas=(select count(*)"
+                + "from espacio e,area a where e.n_tipo='Bicicletas' and e.k_codigoparqueadero=a.k_codigoparqueadero "
+                + "and e.k_idarea=a.k_idarea and b.k_idarea=a.k_idarea and e.q_disponibilidad='D');";
+        try{
+            Class.forName(conexion.getDriver());
+            con= DriverManager.getConnection(conexion.getUrl(), conexion.getUsuario(), conexion.getPass());
+            prepStmt = con.prepareStatement(strSQL);
+
+            if(prepStmt.executeUpdate()>0){
+                con.close();
+            }else{
+                con.close();
+            }
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }    
 }

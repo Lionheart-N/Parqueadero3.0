@@ -28,7 +28,7 @@ public class ParqueaderoDAO {
     private int contador;
     private int contadorVerdadero;
     private int contadorFalso;
-
+    
     public ParqueaderoDAO() {
         conexion = new ServiceLocator();
     }
@@ -195,4 +195,7 @@ public class ParqueaderoDAO {
             return false;
         }
     }
+    /*public int obtenerArea(){
+        
+    }*/
 }

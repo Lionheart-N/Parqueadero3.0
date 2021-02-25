@@ -154,5 +154,9 @@ public class Controlador {
         
         return facturaDAO.getFactura();
     }
-
+    public void actualizarAreas(){
+        areaDAO.actualizarAreaAutomovil();
+        areaDAO.actualizarAreaBicicletas();
+        areaDAO.actualizarAreaMotocicletas();
+    }
 }
