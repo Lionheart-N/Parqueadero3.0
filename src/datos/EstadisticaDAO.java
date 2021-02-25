@@ -35,7 +35,7 @@ public class EstadisticaDAO {
         informacion=new Object [auxiliar];
         Connection con;
         PreparedStatement prepStmt;
-        String strSQL = "select n_nombreparqueadero,n_tipo, count(*) from espacio e, servicio s,area a, parqueadero p where s.k_idarea=e.k_idarea and s.k_codigoparqueadero=e.k_codigoparqueadero and s.k_idarea=a.k_idarea and s.k_codigoparqueadero=a.k_codigoparqueadero and p.k_codigoparqueadero=a.k_codigoparqueadero and f_fechaentrada>='"+inicial+"' and f_fechasalida<='"+ultimo+"' group by n_nombreparqueadero,n_tipo;";
+        String strSQL = "select n_nombreparqueadero,n_tipo, count(*) from espacio e, servicio s, parqueadero p where e.k_idespacio=s.k_idespacio and s.k_idarea=e.k_idarea and s.k_codigoparqueadero=e.k_codigoparqueadero and f_fechaentrada>='"+inicial+"' and f_fechasalida<='"+ultimo+"' group by n_nombreparqueadero,n_tipo;";
         ResultSet rs;
         try{
             Class.forName(conexion.getDriver());
