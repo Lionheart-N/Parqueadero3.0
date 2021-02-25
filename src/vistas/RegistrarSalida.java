@@ -119,8 +119,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor ingresa un valor válido");
         }else{
             try { 
-                if(controlador.buscarContrato(txtPlacaVehiculo.getText(), codigoParqueadero)=='I'){
-                    
                     if(controlador.buscarServicioActivo(txtPlacaVehiculo.getText(),codigoParqueadero)=='Y')
                     {
                         miVehiculo = controlador.retornarTipoVehiculo(txtPlacaVehiculo.getText());
@@ -154,10 +152,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                     }else{
                         JOptionPane.showMessageDialog(null, "El automovil ya salio del parqueadero");
                     }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "El vehiculo cuenta con un contrato inactivo");
-                }
+                
             } catch (CaException ex) {
                 //Logger.getLogger(RegistrarSalida.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
